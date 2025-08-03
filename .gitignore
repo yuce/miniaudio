@@ -51,3 +51,5 @@
 /tools/codegen/miniaudio_docgen.c
 /tools/codegen/miniaudio_hrtfgen.c
 /tools/codegen/miniaudio_splitter.c
+
+*.so
