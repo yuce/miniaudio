@@ -144,7 +144,7 @@ def char_pointer_cast(string, encoding='utf-8'):
 
 
 _libraries = {}
-_libraries['miniaudio.so'] = ctypes.CDLL('../miniaudio.so')
+_libraries['miniaudio.so'] = ctypes.CDLL('miniaudio.so')
 class FunctionFactoryStub:
     def __getattr__(self, _):
       return ctypes.CFUNCTYPE(lambda y:y)

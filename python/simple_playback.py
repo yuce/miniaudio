@@ -1,24 +1,26 @@
+import sys
 import ctypes
 
-# lib = ctypes.CDLL("../miniaudio.so")
-# print(lib)
-
 import miniaudio as ma
-# for item in dir(ma):
-#     print(item)
 
 
+if len(sys.argv) != 2:
+    print(f"usage: {sys.argv[0]} FILE.wav")
+    sys.exit(1)
+
+path = sys.argv[1]
 
 decoder = ma.ma_decoder()
 
+data_callback = ctypes.CFUNCTYPE(None, ctypes.POINTER(ma.struct_ma_device), ctypes.POINTER(None), ctypes.POINTER(None), ctypes.c_uint32)
 
-@ctypes.CFUNCTYPE(None, ctypes.POINTER(ma.struct_ma_device), ctypes.POINTER(None), ctypes.POINTER(None), ctypes.c_uint32)
-def data_callback(pDevice, pOutput, pInput, frameCount):
+@data_callback
+def on_data(pDevice, pOutput, pInput, frameCount):
     pDecoder = decoder
     ma.ma_decoder_read_pcm_frames(pDecoder, pOutput, frameCount, None)
 
 
-result = ma.ma_decoder_init_file("/dev/shm/output.wav".encode("utf-8"), None, ctypes.byref(decoder))
+result = ma.ma_decoder_init_file(path.encode("utf-8"), None, ctypes.byref(decoder))
 if result != ma.MA_SUCCESS:
     raise Exception(f"failed: {result}")
 
@@ -26,7 +28,7 @@ device_config = ma.ma_device_config_init(ma.ma_device_type_playback)
 device_config.playback.format   = decoder.outputFormat
 device_config.playback.channels = decoder.outputChannels
 device_config.sampleRate        = decoder.outputSampleRate
-device_config.dataCallback      = data_callback
+device_config.dataCallback      = on_data
 
 device = ma.ma_device()
 
