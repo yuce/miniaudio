@@ -144,7 +144,7 @@ def char_pointer_cast(string, encoding='utf-8'):
 
 
 _libraries = {}
-_libraries['miniaudio.so'] = ctypes.CDLL('miniaudio.so')
+_libraries['libminiaudio.so'] = ctypes.CDLL('libminiaudio.so')
 class FunctionFactoryStub:
     def __getattr__(self, _):
       return ctypes.CFUNCTYPE(lambda y:y)
@@ -1661,13 +1661,13 @@ ma_atomic_uint64 = struct_ma_atomic_uint64
 ma_spinlock = ctypes.c_uint32
 ma_thread = ctypes.c_uint64
 try:
-    ma_version = _libraries['miniaudio.so'].ma_version
+    ma_version = _libraries['libminiaudio.so'].ma_version
     ma_version.restype = None
     ma_version.argtypes = [ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_version_string = _libraries['miniaudio.so'].ma_version_string
+    ma_version_string = _libraries['libminiaudio.so'].ma_version_string
     ma_version_string.restype = ctypes.POINTER(ctypes.c_char)
     ma_version_string.argtypes = []
 except AttributeError:
@@ -1675,37 +1675,37 @@ except AttributeError:
 ma_log_callback_proc = ctypes.CFUNCTYPE(None, ctypes.POINTER(None), ctypes.c_uint32, ctypes.POINTER(ctypes.c_char))
 ma_log_callback = struct_ma_log_callback
 try:
-    ma_log_callback_init = _libraries['miniaudio.so'].ma_log_callback_init
+    ma_log_callback_init = _libraries['libminiaudio.so'].ma_log_callback_init
     ma_log_callback_init.restype = ma_log_callback
     ma_log_callback_init.argtypes = [ma_log_callback_proc, ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_log_init = _libraries['miniaudio.so'].ma_log_init
+    ma_log_init = _libraries['libminiaudio.so'].ma_log_init
     ma_log_init.restype = ma_result
     ma_log_init.argtypes = [ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_log)]
 except AttributeError:
     pass
 try:
-    ma_log_uninit = _libraries['miniaudio.so'].ma_log_uninit
+    ma_log_uninit = _libraries['libminiaudio.so'].ma_log_uninit
     ma_log_uninit.restype = None
     ma_log_uninit.argtypes = [ctypes.POINTER(struct_ma_log)]
 except AttributeError:
     pass
 try:
-    ma_log_register_callback = _libraries['miniaudio.so'].ma_log_register_callback
+    ma_log_register_callback = _libraries['libminiaudio.so'].ma_log_register_callback
     ma_log_register_callback.restype = ma_result
     ma_log_register_callback.argtypes = [ctypes.POINTER(struct_ma_log), ma_log_callback]
 except AttributeError:
     pass
 try:
-    ma_log_unregister_callback = _libraries['miniaudio.so'].ma_log_unregister_callback
+    ma_log_unregister_callback = _libraries['libminiaudio.so'].ma_log_unregister_callback
     ma_log_unregister_callback.restype = ma_result
     ma_log_unregister_callback.argtypes = [ctypes.POINTER(struct_ma_log), ma_log_callback]
 except AttributeError:
     pass
 try:
-    ma_log_post = _libraries['miniaudio.so'].ma_log_post
+    ma_log_post = _libraries['libminiaudio.so'].ma_log_post
     ma_log_post.restype = ma_result
     ma_log_post.argtypes = [ctypes.POINTER(struct_ma_log), ma_uint32, ctypes.POINTER(ctypes.c_char)]
 except AttributeError:
@@ -1723,13 +1723,13 @@ struct___va_list_tag._fields_ = [
 
 va_list = struct___va_list_tag * 1
 try:
-    ma_log_postv = _libraries['miniaudio.so'].ma_log_postv
+    ma_log_postv = _libraries['libminiaudio.so'].ma_log_postv
     ma_log_postv.restype = ma_result
     ma_log_postv.argtypes = [ctypes.POINTER(struct_ma_log), ma_uint32, ctypes.POINTER(ctypes.c_char), va_list]
 except AttributeError:
     pass
 try:
-    ma_log_postf = _libraries['miniaudio.so'].ma_log_postf
+    ma_log_postf = _libraries['libminiaudio.so'].ma_log_postf
     ma_log_postf.restype = ma_result
     ma_log_postf.argtypes = [ctypes.POINTER(struct_ma_log), ma_uint32, ctypes.POINTER(ctypes.c_char)]
 except AttributeError:
@@ -1761,7 +1761,7 @@ struct_ma_biquad_config._fields_ = [
 
 ma_biquad_config = struct_ma_biquad_config
 try:
-    ma_biquad_config_init = _libraries['miniaudio.so'].ma_biquad_config_init
+    ma_biquad_config_init = _libraries['libminiaudio.so'].ma_biquad_config_init
     ma_biquad_config_init.restype = ma_biquad_config
     ma_biquad_config_init.argtypes = [ma_format, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -1788,49 +1788,49 @@ struct_ma_biquad._fields_ = [
 
 ma_biquad = struct_ma_biquad
 try:
-    ma_biquad_get_heap_size = _libraries['miniaudio.so'].ma_biquad_get_heap_size
+    ma_biquad_get_heap_size = _libraries['libminiaudio.so'].ma_biquad_get_heap_size
     ma_biquad_get_heap_size.restype = ma_result
     ma_biquad_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_biquad_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_biquad_init_preallocated = _libraries['miniaudio.so'].ma_biquad_init_preallocated
+    ma_biquad_init_preallocated = _libraries['libminiaudio.so'].ma_biquad_init_preallocated
     ma_biquad_init_preallocated.restype = ma_result
     ma_biquad_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_biquad_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_biquad)]
 except AttributeError:
     pass
 try:
-    ma_biquad_init = _libraries['miniaudio.so'].ma_biquad_init
+    ma_biquad_init = _libraries['libminiaudio.so'].ma_biquad_init
     ma_biquad_init.restype = ma_result
     ma_biquad_init.argtypes = [ctypes.POINTER(struct_ma_biquad_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_biquad)]
 except AttributeError:
     pass
 try:
-    ma_biquad_uninit = _libraries['miniaudio.so'].ma_biquad_uninit
+    ma_biquad_uninit = _libraries['libminiaudio.so'].ma_biquad_uninit
     ma_biquad_uninit.restype = None
     ma_biquad_uninit.argtypes = [ctypes.POINTER(struct_ma_biquad), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_biquad_reinit = _libraries['miniaudio.so'].ma_biquad_reinit
+    ma_biquad_reinit = _libraries['libminiaudio.so'].ma_biquad_reinit
     ma_biquad_reinit.restype = ma_result
     ma_biquad_reinit.argtypes = [ctypes.POINTER(struct_ma_biquad_config), ctypes.POINTER(struct_ma_biquad)]
 except AttributeError:
     pass
 try:
-    ma_biquad_clear_cache = _libraries['miniaudio.so'].ma_biquad_clear_cache
+    ma_biquad_clear_cache = _libraries['libminiaudio.so'].ma_biquad_clear_cache
     ma_biquad_clear_cache.restype = ma_result
     ma_biquad_clear_cache.argtypes = [ctypes.POINTER(struct_ma_biquad)]
 except AttributeError:
     pass
 try:
-    ma_biquad_process_pcm_frames = _libraries['miniaudio.so'].ma_biquad_process_pcm_frames
+    ma_biquad_process_pcm_frames = _libraries['libminiaudio.so'].ma_biquad_process_pcm_frames
     ma_biquad_process_pcm_frames.restype = ma_result
     ma_biquad_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_biquad), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_biquad_get_latency = _libraries['miniaudio.so'].ma_biquad_get_latency
+    ma_biquad_get_latency = _libraries['libminiaudio.so'].ma_biquad_get_latency
     ma_biquad_get_latency.restype = ma_uint32
     ma_biquad_get_latency.argtypes = [ctypes.POINTER(struct_ma_biquad)]
 except AttributeError:
@@ -1851,13 +1851,13 @@ struct_ma_lpf1_config._fields_ = [
 ma_lpf1_config = struct_ma_lpf1_config
 ma_lpf2_config = struct_ma_lpf1_config
 try:
-    ma_lpf1_config_init = _libraries['miniaudio.so'].ma_lpf1_config_init
+    ma_lpf1_config_init = _libraries['libminiaudio.so'].ma_lpf1_config_init
     ma_lpf1_config_init.restype = ma_lpf1_config
     ma_lpf1_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_lpf2_config_init = _libraries['miniaudio.so'].ma_lpf2_config_init
+    ma_lpf2_config_init = _libraries['libminiaudio.so'].ma_lpf2_config_init
     ma_lpf2_config_init.restype = ma_lpf2_config
     ma_lpf2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -1876,49 +1876,49 @@ struct_ma_lpf1._fields_ = [
 
 ma_lpf1 = struct_ma_lpf1
 try:
-    ma_lpf1_get_heap_size = _libraries['miniaudio.so'].ma_lpf1_get_heap_size
+    ma_lpf1_get_heap_size = _libraries['libminiaudio.so'].ma_lpf1_get_heap_size
     ma_lpf1_get_heap_size.restype = ma_result
     ma_lpf1_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_lpf1_init_preallocated = _libraries['miniaudio.so'].ma_lpf1_init_preallocated
+    ma_lpf1_init_preallocated = _libraries['libminiaudio.so'].ma_lpf1_init_preallocated
     ma_lpf1_init_preallocated.restype = ma_result
     ma_lpf1_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_lpf1)]
 except AttributeError:
     pass
 try:
-    ma_lpf1_init = _libraries['miniaudio.so'].ma_lpf1_init
+    ma_lpf1_init = _libraries['libminiaudio.so'].ma_lpf1_init
     ma_lpf1_init.restype = ma_result
     ma_lpf1_init.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_lpf1)]
 except AttributeError:
     pass
 try:
-    ma_lpf1_uninit = _libraries['miniaudio.so'].ma_lpf1_uninit
+    ma_lpf1_uninit = _libraries['libminiaudio.so'].ma_lpf1_uninit
     ma_lpf1_uninit.restype = None
     ma_lpf1_uninit.argtypes = [ctypes.POINTER(struct_ma_lpf1), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_lpf1_reinit = _libraries['miniaudio.so'].ma_lpf1_reinit
+    ma_lpf1_reinit = _libraries['libminiaudio.so'].ma_lpf1_reinit
     ma_lpf1_reinit.restype = ma_result
     ma_lpf1_reinit.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(struct_ma_lpf1)]
 except AttributeError:
     pass
 try:
-    ma_lpf1_clear_cache = _libraries['miniaudio.so'].ma_lpf1_clear_cache
+    ma_lpf1_clear_cache = _libraries['libminiaudio.so'].ma_lpf1_clear_cache
     ma_lpf1_clear_cache.restype = ma_result
     ma_lpf1_clear_cache.argtypes = [ctypes.POINTER(struct_ma_lpf1)]
 except AttributeError:
     pass
 try:
-    ma_lpf1_process_pcm_frames = _libraries['miniaudio.so'].ma_lpf1_process_pcm_frames
+    ma_lpf1_process_pcm_frames = _libraries['libminiaudio.so'].ma_lpf1_process_pcm_frames
     ma_lpf1_process_pcm_frames.restype = ma_result
     ma_lpf1_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_lpf1), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_lpf1_get_latency = _libraries['miniaudio.so'].ma_lpf1_get_latency
+    ma_lpf1_get_latency = _libraries['libminiaudio.so'].ma_lpf1_get_latency
     ma_lpf1_get_latency.restype = ma_uint32
     ma_lpf1_get_latency.argtypes = [ctypes.POINTER(struct_ma_lpf1)]
 except AttributeError:
@@ -1930,49 +1930,49 @@ struct_ma_lpf2._fields_ = [
 
 ma_lpf2 = struct_ma_lpf2
 try:
-    ma_lpf2_get_heap_size = _libraries['miniaudio.so'].ma_lpf2_get_heap_size
+    ma_lpf2_get_heap_size = _libraries['libminiaudio.so'].ma_lpf2_get_heap_size
     ma_lpf2_get_heap_size.restype = ma_result
     ma_lpf2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_lpf2_init_preallocated = _libraries['miniaudio.so'].ma_lpf2_init_preallocated
+    ma_lpf2_init_preallocated = _libraries['libminiaudio.so'].ma_lpf2_init_preallocated
     ma_lpf2_init_preallocated.restype = ma_result
     ma_lpf2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_lpf2)]
 except AttributeError:
     pass
 try:
-    ma_lpf2_init = _libraries['miniaudio.so'].ma_lpf2_init
+    ma_lpf2_init = _libraries['libminiaudio.so'].ma_lpf2_init
     ma_lpf2_init.restype = ma_result
     ma_lpf2_init.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_lpf2)]
 except AttributeError:
     pass
 try:
-    ma_lpf2_uninit = _libraries['miniaudio.so'].ma_lpf2_uninit
+    ma_lpf2_uninit = _libraries['libminiaudio.so'].ma_lpf2_uninit
     ma_lpf2_uninit.restype = None
     ma_lpf2_uninit.argtypes = [ctypes.POINTER(struct_ma_lpf2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_lpf2_reinit = _libraries['miniaudio.so'].ma_lpf2_reinit
+    ma_lpf2_reinit = _libraries['libminiaudio.so'].ma_lpf2_reinit
     ma_lpf2_reinit.restype = ma_result
     ma_lpf2_reinit.argtypes = [ctypes.POINTER(struct_ma_lpf1_config), ctypes.POINTER(struct_ma_lpf2)]
 except AttributeError:
     pass
 try:
-    ma_lpf2_clear_cache = _libraries['miniaudio.so'].ma_lpf2_clear_cache
+    ma_lpf2_clear_cache = _libraries['libminiaudio.so'].ma_lpf2_clear_cache
     ma_lpf2_clear_cache.restype = ma_result
     ma_lpf2_clear_cache.argtypes = [ctypes.POINTER(struct_ma_lpf2)]
 except AttributeError:
     pass
 try:
-    ma_lpf2_process_pcm_frames = _libraries['miniaudio.so'].ma_lpf2_process_pcm_frames
+    ma_lpf2_process_pcm_frames = _libraries['libminiaudio.so'].ma_lpf2_process_pcm_frames
     ma_lpf2_process_pcm_frames.restype = ma_result
     ma_lpf2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_lpf2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_lpf2_get_latency = _libraries['miniaudio.so'].ma_lpf2_get_latency
+    ma_lpf2_get_latency = _libraries['libminiaudio.so'].ma_lpf2_get_latency
     ma_lpf2_get_latency.restype = ma_uint32
     ma_lpf2_get_latency.argtypes = [ctypes.POINTER(struct_ma_lpf2)]
 except AttributeError:
@@ -1993,55 +1993,55 @@ struct_ma_lpf_config._fields_ = [
 
 ma_lpf_config = struct_ma_lpf_config
 try:
-    ma_lpf_config_init = _libraries['miniaudio.so'].ma_lpf_config_init
+    ma_lpf_config_init = _libraries['libminiaudio.so'].ma_lpf_config_init
     ma_lpf_config_init.restype = ma_lpf_config
     ma_lpf_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_lpf_get_heap_size = _libraries['miniaudio.so'].ma_lpf_get_heap_size
+    ma_lpf_get_heap_size = _libraries['libminiaudio.so'].ma_lpf_get_heap_size
     ma_lpf_get_heap_size.restype = ma_result
     ma_lpf_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_lpf_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_lpf_init_preallocated = _libraries['miniaudio.so'].ma_lpf_init_preallocated
+    ma_lpf_init_preallocated = _libraries['libminiaudio.so'].ma_lpf_init_preallocated
     ma_lpf_init_preallocated.restype = ma_result
     ma_lpf_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_lpf_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_lpf)]
 except AttributeError:
     pass
 try:
-    ma_lpf_init = _libraries['miniaudio.so'].ma_lpf_init
+    ma_lpf_init = _libraries['libminiaudio.so'].ma_lpf_init
     ma_lpf_init.restype = ma_result
     ma_lpf_init.argtypes = [ctypes.POINTER(struct_ma_lpf_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_lpf)]
 except AttributeError:
     pass
 try:
-    ma_lpf_uninit = _libraries['miniaudio.so'].ma_lpf_uninit
+    ma_lpf_uninit = _libraries['libminiaudio.so'].ma_lpf_uninit
     ma_lpf_uninit.restype = None
     ma_lpf_uninit.argtypes = [ctypes.POINTER(struct_ma_lpf), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_lpf_reinit = _libraries['miniaudio.so'].ma_lpf_reinit
+    ma_lpf_reinit = _libraries['libminiaudio.so'].ma_lpf_reinit
     ma_lpf_reinit.restype = ma_result
     ma_lpf_reinit.argtypes = [ctypes.POINTER(struct_ma_lpf_config), ctypes.POINTER(struct_ma_lpf)]
 except AttributeError:
     pass
 try:
-    ma_lpf_clear_cache = _libraries['miniaudio.so'].ma_lpf_clear_cache
+    ma_lpf_clear_cache = _libraries['libminiaudio.so'].ma_lpf_clear_cache
     ma_lpf_clear_cache.restype = ma_result
     ma_lpf_clear_cache.argtypes = [ctypes.POINTER(struct_ma_lpf)]
 except AttributeError:
     pass
 try:
-    ma_lpf_process_pcm_frames = _libraries['miniaudio.so'].ma_lpf_process_pcm_frames
+    ma_lpf_process_pcm_frames = _libraries['libminiaudio.so'].ma_lpf_process_pcm_frames
     ma_lpf_process_pcm_frames.restype = ma_result
     ma_lpf_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_lpf), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_lpf_get_latency = _libraries['miniaudio.so'].ma_lpf_get_latency
+    ma_lpf_get_latency = _libraries['libminiaudio.so'].ma_lpf_get_latency
     ma_lpf_get_latency.restype = ma_uint32
     ma_lpf_get_latency.argtypes = [ctypes.POINTER(struct_ma_lpf)]
 except AttributeError:
@@ -2062,13 +2062,13 @@ struct_ma_hpf1_config._fields_ = [
 ma_hpf1_config = struct_ma_hpf1_config
 ma_hpf2_config = struct_ma_hpf1_config
 try:
-    ma_hpf1_config_init = _libraries['miniaudio.so'].ma_hpf1_config_init
+    ma_hpf1_config_init = _libraries['libminiaudio.so'].ma_hpf1_config_init
     ma_hpf1_config_init.restype = ma_hpf1_config
     ma_hpf1_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_hpf2_config_init = _libraries['miniaudio.so'].ma_hpf2_config_init
+    ma_hpf2_config_init = _libraries['libminiaudio.so'].ma_hpf2_config_init
     ma_hpf2_config_init.restype = ma_hpf2_config
     ma_hpf2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -2090,43 +2090,43 @@ struct_ma_hpf1._fields_ = [
 
 ma_hpf1 = struct_ma_hpf1
 try:
-    ma_hpf1_get_heap_size = _libraries['miniaudio.so'].ma_hpf1_get_heap_size
+    ma_hpf1_get_heap_size = _libraries['libminiaudio.so'].ma_hpf1_get_heap_size
     ma_hpf1_get_heap_size.restype = ma_result
     ma_hpf1_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_hpf1_init_preallocated = _libraries['miniaudio.so'].ma_hpf1_init_preallocated
+    ma_hpf1_init_preallocated = _libraries['libminiaudio.so'].ma_hpf1_init_preallocated
     ma_hpf1_init_preallocated.restype = ma_result
     ma_hpf1_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_hpf1)]
 except AttributeError:
     pass
 try:
-    ma_hpf1_init = _libraries['miniaudio.so'].ma_hpf1_init
+    ma_hpf1_init = _libraries['libminiaudio.so'].ma_hpf1_init
     ma_hpf1_init.restype = ma_result
     ma_hpf1_init.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_hpf1)]
 except AttributeError:
     pass
 try:
-    ma_hpf1_uninit = _libraries['miniaudio.so'].ma_hpf1_uninit
+    ma_hpf1_uninit = _libraries['libminiaudio.so'].ma_hpf1_uninit
     ma_hpf1_uninit.restype = None
     ma_hpf1_uninit.argtypes = [ctypes.POINTER(struct_ma_hpf1), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_hpf1_reinit = _libraries['miniaudio.so'].ma_hpf1_reinit
+    ma_hpf1_reinit = _libraries['libminiaudio.so'].ma_hpf1_reinit
     ma_hpf1_reinit.restype = ma_result
     ma_hpf1_reinit.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(struct_ma_hpf1)]
 except AttributeError:
     pass
 try:
-    ma_hpf1_process_pcm_frames = _libraries['miniaudio.so'].ma_hpf1_process_pcm_frames
+    ma_hpf1_process_pcm_frames = _libraries['libminiaudio.so'].ma_hpf1_process_pcm_frames
     ma_hpf1_process_pcm_frames.restype = ma_result
     ma_hpf1_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_hpf1), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_hpf1_get_latency = _libraries['miniaudio.so'].ma_hpf1_get_latency
+    ma_hpf1_get_latency = _libraries['libminiaudio.so'].ma_hpf1_get_latency
     ma_hpf1_get_latency.restype = ma_uint32
     ma_hpf1_get_latency.argtypes = [ctypes.POINTER(struct_ma_hpf1)]
 except AttributeError:
@@ -2139,43 +2139,43 @@ class struct_ma_hpf2(Structure):
 
 ma_hpf2 = struct_ma_hpf2
 try:
-    ma_hpf2_get_heap_size = _libraries['miniaudio.so'].ma_hpf2_get_heap_size
+    ma_hpf2_get_heap_size = _libraries['libminiaudio.so'].ma_hpf2_get_heap_size
     ma_hpf2_get_heap_size.restype = ma_result
     ma_hpf2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_hpf2_init_preallocated = _libraries['miniaudio.so'].ma_hpf2_init_preallocated
+    ma_hpf2_init_preallocated = _libraries['libminiaudio.so'].ma_hpf2_init_preallocated
     ma_hpf2_init_preallocated.restype = ma_result
     ma_hpf2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_hpf2)]
 except AttributeError:
     pass
 try:
-    ma_hpf2_init = _libraries['miniaudio.so'].ma_hpf2_init
+    ma_hpf2_init = _libraries['libminiaudio.so'].ma_hpf2_init
     ma_hpf2_init.restype = ma_result
     ma_hpf2_init.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_hpf2)]
 except AttributeError:
     pass
 try:
-    ma_hpf2_uninit = _libraries['miniaudio.so'].ma_hpf2_uninit
+    ma_hpf2_uninit = _libraries['libminiaudio.so'].ma_hpf2_uninit
     ma_hpf2_uninit.restype = None
     ma_hpf2_uninit.argtypes = [ctypes.POINTER(struct_ma_hpf2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_hpf2_reinit = _libraries['miniaudio.so'].ma_hpf2_reinit
+    ma_hpf2_reinit = _libraries['libminiaudio.so'].ma_hpf2_reinit
     ma_hpf2_reinit.restype = ma_result
     ma_hpf2_reinit.argtypes = [ctypes.POINTER(struct_ma_hpf1_config), ctypes.POINTER(struct_ma_hpf2)]
 except AttributeError:
     pass
 try:
-    ma_hpf2_process_pcm_frames = _libraries['miniaudio.so'].ma_hpf2_process_pcm_frames
+    ma_hpf2_process_pcm_frames = _libraries['libminiaudio.so'].ma_hpf2_process_pcm_frames
     ma_hpf2_process_pcm_frames.restype = ma_result
     ma_hpf2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_hpf2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_hpf2_get_latency = _libraries['miniaudio.so'].ma_hpf2_get_latency
+    ma_hpf2_get_latency = _libraries['libminiaudio.so'].ma_hpf2_get_latency
     ma_hpf2_get_latency.restype = ma_uint32
     ma_hpf2_get_latency.argtypes = [ctypes.POINTER(struct_ma_hpf2)]
 except AttributeError:
@@ -2196,7 +2196,7 @@ struct_ma_hpf_config._fields_ = [
 
 ma_hpf_config = struct_ma_hpf_config
 try:
-    ma_hpf_config_init = _libraries['miniaudio.so'].ma_hpf_config_init
+    ma_hpf_config_init = _libraries['libminiaudio.so'].ma_hpf_config_init
     ma_hpf_config_init.restype = ma_hpf_config
     ma_hpf_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ma_uint32]
 except AttributeError:
@@ -2221,43 +2221,43 @@ struct_ma_hpf._fields_ = [
 
 ma_hpf = struct_ma_hpf
 try:
-    ma_hpf_get_heap_size = _libraries['miniaudio.so'].ma_hpf_get_heap_size
+    ma_hpf_get_heap_size = _libraries['libminiaudio.so'].ma_hpf_get_heap_size
     ma_hpf_get_heap_size.restype = ma_result
     ma_hpf_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_hpf_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_hpf_init_preallocated = _libraries['miniaudio.so'].ma_hpf_init_preallocated
+    ma_hpf_init_preallocated = _libraries['libminiaudio.so'].ma_hpf_init_preallocated
     ma_hpf_init_preallocated.restype = ma_result
     ma_hpf_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_hpf_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_hpf)]
 except AttributeError:
     pass
 try:
-    ma_hpf_init = _libraries['miniaudio.so'].ma_hpf_init
+    ma_hpf_init = _libraries['libminiaudio.so'].ma_hpf_init
     ma_hpf_init.restype = ma_result
     ma_hpf_init.argtypes = [ctypes.POINTER(struct_ma_hpf_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_hpf)]
 except AttributeError:
     pass
 try:
-    ma_hpf_uninit = _libraries['miniaudio.so'].ma_hpf_uninit
+    ma_hpf_uninit = _libraries['libminiaudio.so'].ma_hpf_uninit
     ma_hpf_uninit.restype = None
     ma_hpf_uninit.argtypes = [ctypes.POINTER(struct_ma_hpf), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_hpf_reinit = _libraries['miniaudio.so'].ma_hpf_reinit
+    ma_hpf_reinit = _libraries['libminiaudio.so'].ma_hpf_reinit
     ma_hpf_reinit.restype = ma_result
     ma_hpf_reinit.argtypes = [ctypes.POINTER(struct_ma_hpf_config), ctypes.POINTER(struct_ma_hpf)]
 except AttributeError:
     pass
 try:
-    ma_hpf_process_pcm_frames = _libraries['miniaudio.so'].ma_hpf_process_pcm_frames
+    ma_hpf_process_pcm_frames = _libraries['libminiaudio.so'].ma_hpf_process_pcm_frames
     ma_hpf_process_pcm_frames.restype = ma_result
     ma_hpf_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_hpf), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_hpf_get_latency = _libraries['miniaudio.so'].ma_hpf_get_latency
+    ma_hpf_get_latency = _libraries['libminiaudio.so'].ma_hpf_get_latency
     ma_hpf_get_latency.restype = ma_uint32
     ma_hpf_get_latency.argtypes = [ctypes.POINTER(struct_ma_hpf)]
 except AttributeError:
@@ -2277,7 +2277,7 @@ struct_ma_bpf2_config._fields_ = [
 
 ma_bpf2_config = struct_ma_bpf2_config
 try:
-    ma_bpf2_config_init = _libraries['miniaudio.so'].ma_bpf2_config_init
+    ma_bpf2_config_init = _libraries['libminiaudio.so'].ma_bpf2_config_init
     ma_bpf2_config_init.restype = ma_bpf2_config
     ma_bpf2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -2290,43 +2290,43 @@ class struct_ma_bpf2(Structure):
 
 ma_bpf2 = struct_ma_bpf2
 try:
-    ma_bpf2_get_heap_size = _libraries['miniaudio.so'].ma_bpf2_get_heap_size
+    ma_bpf2_get_heap_size = _libraries['libminiaudio.so'].ma_bpf2_get_heap_size
     ma_bpf2_get_heap_size.restype = ma_result
     ma_bpf2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_bpf2_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_bpf2_init_preallocated = _libraries['miniaudio.so'].ma_bpf2_init_preallocated
+    ma_bpf2_init_preallocated = _libraries['libminiaudio.so'].ma_bpf2_init_preallocated
     ma_bpf2_init_preallocated.restype = ma_result
     ma_bpf2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_bpf2_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_bpf2)]
 except AttributeError:
     pass
 try:
-    ma_bpf2_init = _libraries['miniaudio.so'].ma_bpf2_init
+    ma_bpf2_init = _libraries['libminiaudio.so'].ma_bpf2_init
     ma_bpf2_init.restype = ma_result
     ma_bpf2_init.argtypes = [ctypes.POINTER(struct_ma_bpf2_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_bpf2)]
 except AttributeError:
     pass
 try:
-    ma_bpf2_uninit = _libraries['miniaudio.so'].ma_bpf2_uninit
+    ma_bpf2_uninit = _libraries['libminiaudio.so'].ma_bpf2_uninit
     ma_bpf2_uninit.restype = None
     ma_bpf2_uninit.argtypes = [ctypes.POINTER(struct_ma_bpf2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_bpf2_reinit = _libraries['miniaudio.so'].ma_bpf2_reinit
+    ma_bpf2_reinit = _libraries['libminiaudio.so'].ma_bpf2_reinit
     ma_bpf2_reinit.restype = ma_result
     ma_bpf2_reinit.argtypes = [ctypes.POINTER(struct_ma_bpf2_config), ctypes.POINTER(struct_ma_bpf2)]
 except AttributeError:
     pass
 try:
-    ma_bpf2_process_pcm_frames = _libraries['miniaudio.so'].ma_bpf2_process_pcm_frames
+    ma_bpf2_process_pcm_frames = _libraries['libminiaudio.so'].ma_bpf2_process_pcm_frames
     ma_bpf2_process_pcm_frames.restype = ma_result
     ma_bpf2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_bpf2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_bpf2_get_latency = _libraries['miniaudio.so'].ma_bpf2_get_latency
+    ma_bpf2_get_latency = _libraries['libminiaudio.so'].ma_bpf2_get_latency
     ma_bpf2_get_latency.restype = ma_uint32
     ma_bpf2_get_latency.argtypes = [ctypes.POINTER(struct_ma_bpf2)]
 except AttributeError:
@@ -2347,7 +2347,7 @@ struct_ma_bpf_config._fields_ = [
 
 ma_bpf_config = struct_ma_bpf_config
 try:
-    ma_bpf_config_init = _libraries['miniaudio.so'].ma_bpf_config_init
+    ma_bpf_config_init = _libraries['libminiaudio.so'].ma_bpf_config_init
     ma_bpf_config_init.restype = ma_bpf_config
     ma_bpf_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ma_uint32]
 except AttributeError:
@@ -2369,43 +2369,43 @@ struct_ma_bpf._fields_ = [
 
 ma_bpf = struct_ma_bpf
 try:
-    ma_bpf_get_heap_size = _libraries['miniaudio.so'].ma_bpf_get_heap_size
+    ma_bpf_get_heap_size = _libraries['libminiaudio.so'].ma_bpf_get_heap_size
     ma_bpf_get_heap_size.restype = ma_result
     ma_bpf_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_bpf_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_bpf_init_preallocated = _libraries['miniaudio.so'].ma_bpf_init_preallocated
+    ma_bpf_init_preallocated = _libraries['libminiaudio.so'].ma_bpf_init_preallocated
     ma_bpf_init_preallocated.restype = ma_result
     ma_bpf_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_bpf_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_bpf)]
 except AttributeError:
     pass
 try:
-    ma_bpf_init = _libraries['miniaudio.so'].ma_bpf_init
+    ma_bpf_init = _libraries['libminiaudio.so'].ma_bpf_init
     ma_bpf_init.restype = ma_result
     ma_bpf_init.argtypes = [ctypes.POINTER(struct_ma_bpf_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_bpf)]
 except AttributeError:
     pass
 try:
-    ma_bpf_uninit = _libraries['miniaudio.so'].ma_bpf_uninit
+    ma_bpf_uninit = _libraries['libminiaudio.so'].ma_bpf_uninit
     ma_bpf_uninit.restype = None
     ma_bpf_uninit.argtypes = [ctypes.POINTER(struct_ma_bpf), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_bpf_reinit = _libraries['miniaudio.so'].ma_bpf_reinit
+    ma_bpf_reinit = _libraries['libminiaudio.so'].ma_bpf_reinit
     ma_bpf_reinit.restype = ma_result
     ma_bpf_reinit.argtypes = [ctypes.POINTER(struct_ma_bpf_config), ctypes.POINTER(struct_ma_bpf)]
 except AttributeError:
     pass
 try:
-    ma_bpf_process_pcm_frames = _libraries['miniaudio.so'].ma_bpf_process_pcm_frames
+    ma_bpf_process_pcm_frames = _libraries['libminiaudio.so'].ma_bpf_process_pcm_frames
     ma_bpf_process_pcm_frames.restype = ma_result
     ma_bpf_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_bpf), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_bpf_get_latency = _libraries['miniaudio.so'].ma_bpf_get_latency
+    ma_bpf_get_latency = _libraries['libminiaudio.so'].ma_bpf_get_latency
     ma_bpf_get_latency.restype = ma_uint32
     ma_bpf_get_latency.argtypes = [ctypes.POINTER(struct_ma_bpf)]
 except AttributeError:
@@ -2426,7 +2426,7 @@ struct_ma_notch2_config._fields_ = [
 ma_notch2_config = struct_ma_notch2_config
 ma_notch_config = struct_ma_notch2_config
 try:
-    ma_notch2_config_init = _libraries['miniaudio.so'].ma_notch2_config_init
+    ma_notch2_config_init = _libraries['libminiaudio.so'].ma_notch2_config_init
     ma_notch2_config_init.restype = ma_notch2_config
     ma_notch2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -2439,43 +2439,43 @@ class struct_ma_notch2(Structure):
 
 ma_notch2 = struct_ma_notch2
 try:
-    ma_notch2_get_heap_size = _libraries['miniaudio.so'].ma_notch2_get_heap_size
+    ma_notch2_get_heap_size = _libraries['libminiaudio.so'].ma_notch2_get_heap_size
     ma_notch2_get_heap_size.restype = ma_result
     ma_notch2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_notch2_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_notch2_init_preallocated = _libraries['miniaudio.so'].ma_notch2_init_preallocated
+    ma_notch2_init_preallocated = _libraries['libminiaudio.so'].ma_notch2_init_preallocated
     ma_notch2_init_preallocated.restype = ma_result
     ma_notch2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_notch2_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_notch2)]
 except AttributeError:
     pass
 try:
-    ma_notch2_init = _libraries['miniaudio.so'].ma_notch2_init
+    ma_notch2_init = _libraries['libminiaudio.so'].ma_notch2_init
     ma_notch2_init.restype = ma_result
     ma_notch2_init.argtypes = [ctypes.POINTER(struct_ma_notch2_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_notch2)]
 except AttributeError:
     pass
 try:
-    ma_notch2_uninit = _libraries['miniaudio.so'].ma_notch2_uninit
+    ma_notch2_uninit = _libraries['libminiaudio.so'].ma_notch2_uninit
     ma_notch2_uninit.restype = None
     ma_notch2_uninit.argtypes = [ctypes.POINTER(struct_ma_notch2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_notch2_reinit = _libraries['miniaudio.so'].ma_notch2_reinit
+    ma_notch2_reinit = _libraries['libminiaudio.so'].ma_notch2_reinit
     ma_notch2_reinit.restype = ma_result
     ma_notch2_reinit.argtypes = [ctypes.POINTER(struct_ma_notch2_config), ctypes.POINTER(struct_ma_notch2)]
 except AttributeError:
     pass
 try:
-    ma_notch2_process_pcm_frames = _libraries['miniaudio.so'].ma_notch2_process_pcm_frames
+    ma_notch2_process_pcm_frames = _libraries['libminiaudio.so'].ma_notch2_process_pcm_frames
     ma_notch2_process_pcm_frames.restype = ma_result
     ma_notch2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_notch2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_notch2_get_latency = _libraries['miniaudio.so'].ma_notch2_get_latency
+    ma_notch2_get_latency = _libraries['libminiaudio.so'].ma_notch2_get_latency
     ma_notch2_get_latency.restype = ma_uint32
     ma_notch2_get_latency.argtypes = [ctypes.POINTER(struct_ma_notch2)]
 except AttributeError:
@@ -2497,7 +2497,7 @@ struct_ma_peak2_config._fields_ = [
 ma_peak2_config = struct_ma_peak2_config
 ma_peak_config = struct_ma_peak2_config
 try:
-    ma_peak2_config_init = _libraries['miniaudio.so'].ma_peak2_config_init
+    ma_peak2_config_init = _libraries['libminiaudio.so'].ma_peak2_config_init
     ma_peak2_config_init.restype = ma_peak2_config
     ma_peak2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -2510,43 +2510,43 @@ class struct_ma_peak2(Structure):
 
 ma_peak2 = struct_ma_peak2
 try:
-    ma_peak2_get_heap_size = _libraries['miniaudio.so'].ma_peak2_get_heap_size
+    ma_peak2_get_heap_size = _libraries['libminiaudio.so'].ma_peak2_get_heap_size
     ma_peak2_get_heap_size.restype = ma_result
     ma_peak2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_peak2_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_peak2_init_preallocated = _libraries['miniaudio.so'].ma_peak2_init_preallocated
+    ma_peak2_init_preallocated = _libraries['libminiaudio.so'].ma_peak2_init_preallocated
     ma_peak2_init_preallocated.restype = ma_result
     ma_peak2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_peak2_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_peak2)]
 except AttributeError:
     pass
 try:
-    ma_peak2_init = _libraries['miniaudio.so'].ma_peak2_init
+    ma_peak2_init = _libraries['libminiaudio.so'].ma_peak2_init
     ma_peak2_init.restype = ma_result
     ma_peak2_init.argtypes = [ctypes.POINTER(struct_ma_peak2_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_peak2)]
 except AttributeError:
     pass
 try:
-    ma_peak2_uninit = _libraries['miniaudio.so'].ma_peak2_uninit
+    ma_peak2_uninit = _libraries['libminiaudio.so'].ma_peak2_uninit
     ma_peak2_uninit.restype = None
     ma_peak2_uninit.argtypes = [ctypes.POINTER(struct_ma_peak2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_peak2_reinit = _libraries['miniaudio.so'].ma_peak2_reinit
+    ma_peak2_reinit = _libraries['libminiaudio.so'].ma_peak2_reinit
     ma_peak2_reinit.restype = ma_result
     ma_peak2_reinit.argtypes = [ctypes.POINTER(struct_ma_peak2_config), ctypes.POINTER(struct_ma_peak2)]
 except AttributeError:
     pass
 try:
-    ma_peak2_process_pcm_frames = _libraries['miniaudio.so'].ma_peak2_process_pcm_frames
+    ma_peak2_process_pcm_frames = _libraries['libminiaudio.so'].ma_peak2_process_pcm_frames
     ma_peak2_process_pcm_frames.restype = ma_result
     ma_peak2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_peak2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_peak2_get_latency = _libraries['miniaudio.so'].ma_peak2_get_latency
+    ma_peak2_get_latency = _libraries['libminiaudio.so'].ma_peak2_get_latency
     ma_peak2_get_latency.restype = ma_uint32
     ma_peak2_get_latency.argtypes = [ctypes.POINTER(struct_ma_peak2)]
 except AttributeError:
@@ -2568,7 +2568,7 @@ struct_ma_loshelf2_config._fields_ = [
 ma_loshelf2_config = struct_ma_loshelf2_config
 ma_loshelf_config = struct_ma_loshelf2_config
 try:
-    ma_loshelf2_config_init = _libraries['miniaudio.so'].ma_loshelf2_config_init
+    ma_loshelf2_config_init = _libraries['libminiaudio.so'].ma_loshelf2_config_init
     ma_loshelf2_config_init.restype = ma_loshelf2_config
     ma_loshelf2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -2581,43 +2581,43 @@ class struct_ma_loshelf2(Structure):
 
 ma_loshelf2 = struct_ma_loshelf2
 try:
-    ma_loshelf2_get_heap_size = _libraries['miniaudio.so'].ma_loshelf2_get_heap_size
+    ma_loshelf2_get_heap_size = _libraries['libminiaudio.so'].ma_loshelf2_get_heap_size
     ma_loshelf2_get_heap_size.restype = ma_result
     ma_loshelf2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_loshelf2_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_loshelf2_init_preallocated = _libraries['miniaudio.so'].ma_loshelf2_init_preallocated
+    ma_loshelf2_init_preallocated = _libraries['libminiaudio.so'].ma_loshelf2_init_preallocated
     ma_loshelf2_init_preallocated.restype = ma_result
     ma_loshelf2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_loshelf2_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_loshelf2)]
 except AttributeError:
     pass
 try:
-    ma_loshelf2_init = _libraries['miniaudio.so'].ma_loshelf2_init
+    ma_loshelf2_init = _libraries['libminiaudio.so'].ma_loshelf2_init
     ma_loshelf2_init.restype = ma_result
     ma_loshelf2_init.argtypes = [ctypes.POINTER(struct_ma_loshelf2_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_loshelf2)]
 except AttributeError:
     pass
 try:
-    ma_loshelf2_uninit = _libraries['miniaudio.so'].ma_loshelf2_uninit
+    ma_loshelf2_uninit = _libraries['libminiaudio.so'].ma_loshelf2_uninit
     ma_loshelf2_uninit.restype = None
     ma_loshelf2_uninit.argtypes = [ctypes.POINTER(struct_ma_loshelf2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_loshelf2_reinit = _libraries['miniaudio.so'].ma_loshelf2_reinit
+    ma_loshelf2_reinit = _libraries['libminiaudio.so'].ma_loshelf2_reinit
     ma_loshelf2_reinit.restype = ma_result
     ma_loshelf2_reinit.argtypes = [ctypes.POINTER(struct_ma_loshelf2_config), ctypes.POINTER(struct_ma_loshelf2)]
 except AttributeError:
     pass
 try:
-    ma_loshelf2_process_pcm_frames = _libraries['miniaudio.so'].ma_loshelf2_process_pcm_frames
+    ma_loshelf2_process_pcm_frames = _libraries['libminiaudio.so'].ma_loshelf2_process_pcm_frames
     ma_loshelf2_process_pcm_frames.restype = ma_result
     ma_loshelf2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_loshelf2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_loshelf2_get_latency = _libraries['miniaudio.so'].ma_loshelf2_get_latency
+    ma_loshelf2_get_latency = _libraries['libminiaudio.so'].ma_loshelf2_get_latency
     ma_loshelf2_get_latency.restype = ma_uint32
     ma_loshelf2_get_latency.argtypes = [ctypes.POINTER(struct_ma_loshelf2)]
 except AttributeError:
@@ -2639,7 +2639,7 @@ struct_ma_hishelf2_config._fields_ = [
 ma_hishelf2_config = struct_ma_hishelf2_config
 ma_hishelf_config = struct_ma_hishelf2_config
 try:
-    ma_hishelf2_config_init = _libraries['miniaudio.so'].ma_hishelf2_config_init
+    ma_hishelf2_config_init = _libraries['libminiaudio.so'].ma_hishelf2_config_init
     ma_hishelf2_config_init.restype = ma_hishelf2_config
     ma_hishelf2_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -2652,43 +2652,43 @@ class struct_ma_hishelf2(Structure):
 
 ma_hishelf2 = struct_ma_hishelf2
 try:
-    ma_hishelf2_get_heap_size = _libraries['miniaudio.so'].ma_hishelf2_get_heap_size
+    ma_hishelf2_get_heap_size = _libraries['libminiaudio.so'].ma_hishelf2_get_heap_size
     ma_hishelf2_get_heap_size.restype = ma_result
     ma_hishelf2_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_hishelf2_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_hishelf2_init_preallocated = _libraries['miniaudio.so'].ma_hishelf2_init_preallocated
+    ma_hishelf2_init_preallocated = _libraries['libminiaudio.so'].ma_hishelf2_init_preallocated
     ma_hishelf2_init_preallocated.restype = ma_result
     ma_hishelf2_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_hishelf2_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_hishelf2)]
 except AttributeError:
     pass
 try:
-    ma_hishelf2_init = _libraries['miniaudio.so'].ma_hishelf2_init
+    ma_hishelf2_init = _libraries['libminiaudio.so'].ma_hishelf2_init
     ma_hishelf2_init.restype = ma_result
     ma_hishelf2_init.argtypes = [ctypes.POINTER(struct_ma_hishelf2_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_hishelf2)]
 except AttributeError:
     pass
 try:
-    ma_hishelf2_uninit = _libraries['miniaudio.so'].ma_hishelf2_uninit
+    ma_hishelf2_uninit = _libraries['libminiaudio.so'].ma_hishelf2_uninit
     ma_hishelf2_uninit.restype = None
     ma_hishelf2_uninit.argtypes = [ctypes.POINTER(struct_ma_hishelf2), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_hishelf2_reinit = _libraries['miniaudio.so'].ma_hishelf2_reinit
+    ma_hishelf2_reinit = _libraries['libminiaudio.so'].ma_hishelf2_reinit
     ma_hishelf2_reinit.restype = ma_result
     ma_hishelf2_reinit.argtypes = [ctypes.POINTER(struct_ma_hishelf2_config), ctypes.POINTER(struct_ma_hishelf2)]
 except AttributeError:
     pass
 try:
-    ma_hishelf2_process_pcm_frames = _libraries['miniaudio.so'].ma_hishelf2_process_pcm_frames
+    ma_hishelf2_process_pcm_frames = _libraries['libminiaudio.so'].ma_hishelf2_process_pcm_frames
     ma_hishelf2_process_pcm_frames.restype = ma_result
     ma_hishelf2_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_hishelf2), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_hishelf2_get_latency = _libraries['miniaudio.so'].ma_hishelf2_get_latency
+    ma_hishelf2_get_latency = _libraries['libminiaudio.so'].ma_hishelf2_get_latency
     ma_hishelf2_get_latency.restype = ma_uint32
     ma_hishelf2_get_latency.argtypes = [ctypes.POINTER(struct_ma_hishelf2)]
 except AttributeError:
@@ -2709,7 +2709,7 @@ struct_ma_delay_config._fields_ = [
 
 ma_delay_config = struct_ma_delay_config
 try:
-    ma_delay_config_init = _libraries['miniaudio.so'].ma_delay_config_init
+    ma_delay_config_init = _libraries['libminiaudio.so'].ma_delay_config_init
     ma_delay_config_init.restype = ma_delay_config
     ma_delay_config_init.argtypes = [ma_uint32, ma_uint32, ma_uint32, ctypes.c_float]
 except AttributeError:
@@ -2728,55 +2728,55 @@ struct_ma_delay._fields_ = [
 
 ma_delay = struct_ma_delay
 try:
-    ma_delay_init = _libraries['miniaudio.so'].ma_delay_init
+    ma_delay_init = _libraries['libminiaudio.so'].ma_delay_init
     ma_delay_init.restype = ma_result
     ma_delay_init.argtypes = [ctypes.POINTER(struct_ma_delay_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_delay)]
 except AttributeError:
     pass
 try:
-    ma_delay_uninit = _libraries['miniaudio.so'].ma_delay_uninit
+    ma_delay_uninit = _libraries['libminiaudio.so'].ma_delay_uninit
     ma_delay_uninit.restype = None
     ma_delay_uninit.argtypes = [ctypes.POINTER(struct_ma_delay), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_delay_process_pcm_frames = _libraries['miniaudio.so'].ma_delay_process_pcm_frames
+    ma_delay_process_pcm_frames = _libraries['libminiaudio.so'].ma_delay_process_pcm_frames
     ma_delay_process_pcm_frames.restype = ma_result
     ma_delay_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_delay), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_delay_set_wet = _libraries['miniaudio.so'].ma_delay_set_wet
+    ma_delay_set_wet = _libraries['libminiaudio.so'].ma_delay_set_wet
     ma_delay_set_wet.restype = None
     ma_delay_set_wet.argtypes = [ctypes.POINTER(struct_ma_delay), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_delay_get_wet = _libraries['miniaudio.so'].ma_delay_get_wet
+    ma_delay_get_wet = _libraries['libminiaudio.so'].ma_delay_get_wet
     ma_delay_get_wet.restype = ctypes.c_float
     ma_delay_get_wet.argtypes = [ctypes.POINTER(struct_ma_delay)]
 except AttributeError:
     pass
 try:
-    ma_delay_set_dry = _libraries['miniaudio.so'].ma_delay_set_dry
+    ma_delay_set_dry = _libraries['libminiaudio.so'].ma_delay_set_dry
     ma_delay_set_dry.restype = None
     ma_delay_set_dry.argtypes = [ctypes.POINTER(struct_ma_delay), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_delay_get_dry = _libraries['miniaudio.so'].ma_delay_get_dry
+    ma_delay_get_dry = _libraries['libminiaudio.so'].ma_delay_get_dry
     ma_delay_get_dry.restype = ctypes.c_float
     ma_delay_get_dry.argtypes = [ctypes.POINTER(struct_ma_delay)]
 except AttributeError:
     pass
 try:
-    ma_delay_set_decay = _libraries['miniaudio.so'].ma_delay_set_decay
+    ma_delay_set_decay = _libraries['libminiaudio.so'].ma_delay_set_decay
     ma_delay_set_decay.restype = None
     ma_delay_set_decay.argtypes = [ctypes.POINTER(struct_ma_delay), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_delay_get_decay = _libraries['miniaudio.so'].ma_delay_get_decay
+    ma_delay_get_decay = _libraries['libminiaudio.so'].ma_delay_get_decay
     ma_delay_get_decay.restype = ctypes.c_float
     ma_delay_get_decay.argtypes = [ctypes.POINTER(struct_ma_delay)]
 except AttributeError:
@@ -2792,7 +2792,7 @@ struct_ma_gainer_config._fields_ = [
 
 ma_gainer_config = struct_ma_gainer_config
 try:
-    ma_gainer_config_init = _libraries['miniaudio.so'].ma_gainer_config_init
+    ma_gainer_config_init = _libraries['libminiaudio.so'].ma_gainer_config_init
     ma_gainer_config_init.restype = ma_gainer_config
     ma_gainer_config_init.argtypes = [ma_uint32, ma_uint32]
 except AttributeError:
@@ -2814,55 +2814,55 @@ struct_ma_gainer._fields_ = [
 
 ma_gainer = struct_ma_gainer
 try:
-    ma_gainer_get_heap_size = _libraries['miniaudio.so'].ma_gainer_get_heap_size
+    ma_gainer_get_heap_size = _libraries['libminiaudio.so'].ma_gainer_get_heap_size
     ma_gainer_get_heap_size.restype = ma_result
     ma_gainer_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_gainer_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_gainer_init_preallocated = _libraries['miniaudio.so'].ma_gainer_init_preallocated
+    ma_gainer_init_preallocated = _libraries['libminiaudio.so'].ma_gainer_init_preallocated
     ma_gainer_init_preallocated.restype = ma_result
     ma_gainer_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_gainer_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_gainer)]
 except AttributeError:
     pass
 try:
-    ma_gainer_init = _libraries['miniaudio.so'].ma_gainer_init
+    ma_gainer_init = _libraries['libminiaudio.so'].ma_gainer_init
     ma_gainer_init.restype = ma_result
     ma_gainer_init.argtypes = [ctypes.POINTER(struct_ma_gainer_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_gainer)]
 except AttributeError:
     pass
 try:
-    ma_gainer_uninit = _libraries['miniaudio.so'].ma_gainer_uninit
+    ma_gainer_uninit = _libraries['libminiaudio.so'].ma_gainer_uninit
     ma_gainer_uninit.restype = None
     ma_gainer_uninit.argtypes = [ctypes.POINTER(struct_ma_gainer), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_gainer_process_pcm_frames = _libraries['miniaudio.so'].ma_gainer_process_pcm_frames
+    ma_gainer_process_pcm_frames = _libraries['libminiaudio.so'].ma_gainer_process_pcm_frames
     ma_gainer_process_pcm_frames.restype = ma_result
     ma_gainer_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_gainer), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_gainer_set_gain = _libraries['miniaudio.so'].ma_gainer_set_gain
+    ma_gainer_set_gain = _libraries['libminiaudio.so'].ma_gainer_set_gain
     ma_gainer_set_gain.restype = ma_result
     ma_gainer_set_gain.argtypes = [ctypes.POINTER(struct_ma_gainer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_gainer_set_gains = _libraries['miniaudio.so'].ma_gainer_set_gains
+    ma_gainer_set_gains = _libraries['libminiaudio.so'].ma_gainer_set_gains
     ma_gainer_set_gains.restype = ma_result
     ma_gainer_set_gains.argtypes = [ctypes.POINTER(struct_ma_gainer), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_gainer_set_master_volume = _libraries['miniaudio.so'].ma_gainer_set_master_volume
+    ma_gainer_set_master_volume = _libraries['libminiaudio.so'].ma_gainer_set_master_volume
     ma_gainer_set_master_volume.restype = ma_result
     ma_gainer_set_master_volume.argtypes = [ctypes.POINTER(struct_ma_gainer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_gainer_get_master_volume = _libraries['miniaudio.so'].ma_gainer_get_master_volume
+    ma_gainer_get_master_volume = _libraries['libminiaudio.so'].ma_gainer_get_master_volume
     ma_gainer_get_master_volume.restype = ma_result
     ma_gainer_get_master_volume.argtypes = [ctypes.POINTER(struct_ma_gainer), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
@@ -2889,7 +2889,7 @@ struct_ma_panner_config._fields_ = [
 
 ma_panner_config = struct_ma_panner_config
 try:
-    ma_panner_config_init = _libraries['miniaudio.so'].ma_panner_config_init
+    ma_panner_config_init = _libraries['libminiaudio.so'].ma_panner_config_init
     ma_panner_config_init.restype = ma_panner_config
     ma_panner_config_init.argtypes = [ma_format, ma_uint32]
 except AttributeError:
@@ -2907,37 +2907,37 @@ struct_ma_panner._fields_ = [
 
 ma_panner = struct_ma_panner
 try:
-    ma_panner_init = _libraries['miniaudio.so'].ma_panner_init
+    ma_panner_init = _libraries['libminiaudio.so'].ma_panner_init
     ma_panner_init.restype = ma_result
     ma_panner_init.argtypes = [ctypes.POINTER(struct_ma_panner_config), ctypes.POINTER(struct_ma_panner)]
 except AttributeError:
     pass
 try:
-    ma_panner_process_pcm_frames = _libraries['miniaudio.so'].ma_panner_process_pcm_frames
+    ma_panner_process_pcm_frames = _libraries['libminiaudio.so'].ma_panner_process_pcm_frames
     ma_panner_process_pcm_frames.restype = ma_result
     ma_panner_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_panner), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_panner_set_mode = _libraries['miniaudio.so'].ma_panner_set_mode
+    ma_panner_set_mode = _libraries['libminiaudio.so'].ma_panner_set_mode
     ma_panner_set_mode.restype = None
     ma_panner_set_mode.argtypes = [ctypes.POINTER(struct_ma_panner), ma_pan_mode]
 except AttributeError:
     pass
 try:
-    ma_panner_get_mode = _libraries['miniaudio.so'].ma_panner_get_mode
+    ma_panner_get_mode = _libraries['libminiaudio.so'].ma_panner_get_mode
     ma_panner_get_mode.restype = ma_pan_mode
     ma_panner_get_mode.argtypes = [ctypes.POINTER(struct_ma_panner)]
 except AttributeError:
     pass
 try:
-    ma_panner_set_pan = _libraries['miniaudio.so'].ma_panner_set_pan
+    ma_panner_set_pan = _libraries['libminiaudio.so'].ma_panner_set_pan
     ma_panner_set_pan.restype = None
     ma_panner_set_pan.argtypes = [ctypes.POINTER(struct_ma_panner), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_panner_get_pan = _libraries['miniaudio.so'].ma_panner_get_pan
+    ma_panner_get_pan = _libraries['libminiaudio.so'].ma_panner_get_pan
     ma_panner_get_pan.restype = ctypes.c_float
     ma_panner_get_pan.argtypes = [ctypes.POINTER(struct_ma_panner)]
 except AttributeError:
@@ -2954,7 +2954,7 @@ struct_ma_fader_config._fields_ = [
 
 ma_fader_config = struct_ma_fader_config
 try:
-    ma_fader_config_init = _libraries['miniaudio.so'].ma_fader_config_init
+    ma_fader_config_init = _libraries['libminiaudio.so'].ma_fader_config_init
     ma_fader_config_init.restype = ma_fader_config
     ma_fader_config_init.argtypes = [ma_format, ma_uint32, ma_uint32]
 except AttributeError:
@@ -2974,37 +2974,37 @@ struct_ma_fader._fields_ = [
 
 ma_fader = struct_ma_fader
 try:
-    ma_fader_init = _libraries['miniaudio.so'].ma_fader_init
+    ma_fader_init = _libraries['libminiaudio.so'].ma_fader_init
     ma_fader_init.restype = ma_result
     ma_fader_init.argtypes = [ctypes.POINTER(struct_ma_fader_config), ctypes.POINTER(struct_ma_fader)]
 except AttributeError:
     pass
 try:
-    ma_fader_process_pcm_frames = _libraries['miniaudio.so'].ma_fader_process_pcm_frames
+    ma_fader_process_pcm_frames = _libraries['libminiaudio.so'].ma_fader_process_pcm_frames
     ma_fader_process_pcm_frames.restype = ma_result
     ma_fader_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_fader), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_fader_get_data_format = _libraries['miniaudio.so'].ma_fader_get_data_format
+    ma_fader_get_data_format = _libraries['libminiaudio.so'].ma_fader_get_data_format
     ma_fader_get_data_format.restype = None
     ma_fader_get_data_format.argtypes = [ctypes.POINTER(struct_ma_fader), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_fader_set_fade = _libraries['miniaudio.so'].ma_fader_set_fade
+    ma_fader_set_fade = _libraries['libminiaudio.so'].ma_fader_set_fade
     ma_fader_set_fade.restype = None
     ma_fader_set_fade.argtypes = [ctypes.POINTER(struct_ma_fader), ctypes.c_float, ctypes.c_float, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_fader_set_fade_ex = _libraries['miniaudio.so'].ma_fader_set_fade_ex
+    ma_fader_set_fade_ex = _libraries['libminiaudio.so'].ma_fader_set_fade_ex
     ma_fader_set_fade_ex.restype = None
     ma_fader_set_fade_ex.argtypes = [ctypes.POINTER(struct_ma_fader), ctypes.c_float, ctypes.c_float, ma_uint64, ma_int64]
 except AttributeError:
     pass
 try:
-    ma_fader_get_current_volume = _libraries['miniaudio.so'].ma_fader_get_current_volume
+    ma_fader_get_current_volume = _libraries['libminiaudio.so'].ma_fader_get_current_volume
     ma_fader_get_current_volume.restype = ctypes.c_float
     ma_fader_get_current_volume.argtypes = [ctypes.POINTER(struct_ma_fader)]
 except AttributeError:
@@ -3079,7 +3079,7 @@ struct_ma_spatializer_listener_config._fields_ = [
 
 ma_spatializer_listener_config = struct_ma_spatializer_listener_config
 try:
-    ma_spatializer_listener_config_init = _libraries['miniaudio.so'].ma_spatializer_listener_config_init
+    ma_spatializer_listener_config_init = _libraries['libminiaudio.so'].ma_spatializer_listener_config_init
     ma_spatializer_listener_config_init.restype = ma_spatializer_listener_config
     ma_spatializer_listener_config_init.argtypes = [ma_uint32]
 except AttributeError:
@@ -3100,115 +3100,115 @@ struct_ma_spatializer_listener._fields_ = [
 
 ma_spatializer_listener = struct_ma_spatializer_listener
 try:
-    ma_spatializer_listener_get_heap_size = _libraries['miniaudio.so'].ma_spatializer_listener_get_heap_size
+    ma_spatializer_listener_get_heap_size = _libraries['libminiaudio.so'].ma_spatializer_listener_get_heap_size
     ma_spatializer_listener_get_heap_size.restype = ma_result
     ma_spatializer_listener_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_init_preallocated = _libraries['miniaudio.so'].ma_spatializer_listener_init_preallocated
+    ma_spatializer_listener_init_preallocated = _libraries['libminiaudio.so'].ma_spatializer_listener_init_preallocated
     ma_spatializer_listener_init_preallocated.restype = ma_result
     ma_spatializer_listener_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_init = _libraries['miniaudio.so'].ma_spatializer_listener_init
+    ma_spatializer_listener_init = _libraries['libminiaudio.so'].ma_spatializer_listener_init
     ma_spatializer_listener_init.restype = ma_result
     ma_spatializer_listener_init.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_uninit = _libraries['miniaudio.so'].ma_spatializer_listener_uninit
+    ma_spatializer_listener_uninit = _libraries['libminiaudio.so'].ma_spatializer_listener_uninit
     ma_spatializer_listener_uninit.restype = None
     ma_spatializer_listener_uninit.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_channel_map = _libraries['miniaudio.so'].ma_spatializer_listener_get_channel_map
+    ma_spatializer_listener_get_channel_map = _libraries['libminiaudio.so'].ma_spatializer_listener_get_channel_map
     ma_spatializer_listener_get_channel_map.restype = ctypes.POINTER(ctypes.c_ubyte)
     ma_spatializer_listener_get_channel_map.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_cone = _libraries['miniaudio.so'].ma_spatializer_listener_set_cone
+    ma_spatializer_listener_set_cone = _libraries['libminiaudio.so'].ma_spatializer_listener_set_cone
     ma_spatializer_listener_set_cone.restype = None
     ma_spatializer_listener_set_cone.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_cone = _libraries['miniaudio.so'].ma_spatializer_listener_get_cone
+    ma_spatializer_listener_get_cone = _libraries['libminiaudio.so'].ma_spatializer_listener_get_cone
     ma_spatializer_listener_get_cone.restype = None
     ma_spatializer_listener_get_cone.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_position = _libraries['miniaudio.so'].ma_spatializer_listener_set_position
+    ma_spatializer_listener_set_position = _libraries['libminiaudio.so'].ma_spatializer_listener_set_position
     ma_spatializer_listener_set_position.restype = None
     ma_spatializer_listener_set_position.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_position = _libraries['miniaudio.so'].ma_spatializer_listener_get_position
+    ma_spatializer_listener_get_position = _libraries['libminiaudio.so'].ma_spatializer_listener_get_position
     ma_spatializer_listener_get_position.restype = ma_vec3f
     ma_spatializer_listener_get_position.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_direction = _libraries['miniaudio.so'].ma_spatializer_listener_set_direction
+    ma_spatializer_listener_set_direction = _libraries['libminiaudio.so'].ma_spatializer_listener_set_direction
     ma_spatializer_listener_set_direction.restype = None
     ma_spatializer_listener_set_direction.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_direction = _libraries['miniaudio.so'].ma_spatializer_listener_get_direction
+    ma_spatializer_listener_get_direction = _libraries['libminiaudio.so'].ma_spatializer_listener_get_direction
     ma_spatializer_listener_get_direction.restype = ma_vec3f
     ma_spatializer_listener_get_direction.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_velocity = _libraries['miniaudio.so'].ma_spatializer_listener_set_velocity
+    ma_spatializer_listener_set_velocity = _libraries['libminiaudio.so'].ma_spatializer_listener_set_velocity
     ma_spatializer_listener_set_velocity.restype = None
     ma_spatializer_listener_set_velocity.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_velocity = _libraries['miniaudio.so'].ma_spatializer_listener_get_velocity
+    ma_spatializer_listener_get_velocity = _libraries['libminiaudio.so'].ma_spatializer_listener_get_velocity
     ma_spatializer_listener_get_velocity.restype = ma_vec3f
     ma_spatializer_listener_get_velocity.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_speed_of_sound = _libraries['miniaudio.so'].ma_spatializer_listener_set_speed_of_sound
+    ma_spatializer_listener_set_speed_of_sound = _libraries['libminiaudio.so'].ma_spatializer_listener_set_speed_of_sound
     ma_spatializer_listener_set_speed_of_sound.restype = None
     ma_spatializer_listener_set_speed_of_sound.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_speed_of_sound = _libraries['miniaudio.so'].ma_spatializer_listener_get_speed_of_sound
+    ma_spatializer_listener_get_speed_of_sound = _libraries['libminiaudio.so'].ma_spatializer_listener_get_speed_of_sound
     ma_spatializer_listener_get_speed_of_sound.restype = ctypes.c_float
     ma_spatializer_listener_get_speed_of_sound.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_world_up = _libraries['miniaudio.so'].ma_spatializer_listener_set_world_up
+    ma_spatializer_listener_set_world_up = _libraries['libminiaudio.so'].ma_spatializer_listener_set_world_up
     ma_spatializer_listener_set_world_up.restype = None
     ma_spatializer_listener_set_world_up.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_get_world_up = _libraries['miniaudio.so'].ma_spatializer_listener_get_world_up
+    ma_spatializer_listener_get_world_up = _libraries['libminiaudio.so'].ma_spatializer_listener_get_world_up
     ma_spatializer_listener_get_world_up.restype = ma_vec3f
     ma_spatializer_listener_get_world_up.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_set_enabled = _libraries['miniaudio.so'].ma_spatializer_listener_set_enabled
+    ma_spatializer_listener_set_enabled = _libraries['libminiaudio.so'].ma_spatializer_listener_set_enabled
     ma_spatializer_listener_set_enabled.restype = None
     ma_spatializer_listener_set_enabled.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_spatializer_listener_is_enabled = _libraries['miniaudio.so'].ma_spatializer_listener_is_enabled
+    ma_spatializer_listener_is_enabled = _libraries['libminiaudio.so'].ma_spatializer_listener_is_enabled
     ma_spatializer_listener_is_enabled.restype = ma_bool32
     ma_spatializer_listener_is_enabled.argtypes = [ctypes.POINTER(struct_ma_spatializer_listener)]
 except AttributeError:
@@ -3241,7 +3241,7 @@ struct_ma_spatializer_config._fields_ = [
 
 ma_spatializer_config = struct_ma_spatializer_config
 try:
-    ma_spatializer_config_init = _libraries['miniaudio.so'].ma_spatializer_config_init
+    ma_spatializer_config_init = _libraries['libminiaudio.so'].ma_spatializer_config_init
     ma_spatializer_config_init.restype = ma_spatializer_config
     ma_spatializer_config_init.argtypes = [ma_uint32, ma_uint32]
 except AttributeError:
@@ -3282,295 +3282,295 @@ struct_ma_spatializer._fields_ = [
 
 ma_spatializer = struct_ma_spatializer
 try:
-    ma_spatializer_get_heap_size = _libraries['miniaudio.so'].ma_spatializer_get_heap_size
+    ma_spatializer_get_heap_size = _libraries['libminiaudio.so'].ma_spatializer_get_heap_size
     ma_spatializer_get_heap_size.restype = ma_result
     ma_spatializer_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_spatializer_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_init_preallocated = _libraries['miniaudio.so'].ma_spatializer_init_preallocated
+    ma_spatializer_init_preallocated = _libraries['libminiaudio.so'].ma_spatializer_init_preallocated
     ma_spatializer_init_preallocated.restype = ma_result
     ma_spatializer_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_spatializer_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_init = _libraries['miniaudio.so'].ma_spatializer_init
+    ma_spatializer_init = _libraries['libminiaudio.so'].ma_spatializer_init
     ma_spatializer_init.restype = ma_result
     ma_spatializer_init.argtypes = [ctypes.POINTER(struct_ma_spatializer_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_uninit = _libraries['miniaudio.so'].ma_spatializer_uninit
+    ma_spatializer_uninit = _libraries['libminiaudio.so'].ma_spatializer_uninit
     ma_spatializer_uninit.restype = None
     ma_spatializer_uninit.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_process_pcm_frames = _libraries['miniaudio.so'].ma_spatializer_process_pcm_frames
+    ma_spatializer_process_pcm_frames = _libraries['libminiaudio.so'].ma_spatializer_process_pcm_frames
     ma_spatializer_process_pcm_frames.restype = ma_result
     ma_spatializer_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.POINTER(struct_ma_spatializer_listener), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_master_volume = _libraries['miniaudio.so'].ma_spatializer_set_master_volume
+    ma_spatializer_set_master_volume = _libraries['libminiaudio.so'].ma_spatializer_set_master_volume
     ma_spatializer_set_master_volume.restype = ma_result
     ma_spatializer_set_master_volume.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_master_volume = _libraries['miniaudio.so'].ma_spatializer_get_master_volume
+    ma_spatializer_get_master_volume = _libraries['libminiaudio.so'].ma_spatializer_get_master_volume
     ma_spatializer_get_master_volume.restype = ma_result
     ma_spatializer_get_master_volume.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_input_channels = _libraries['miniaudio.so'].ma_spatializer_get_input_channels
+    ma_spatializer_get_input_channels = _libraries['libminiaudio.so'].ma_spatializer_get_input_channels
     ma_spatializer_get_input_channels.restype = ma_uint32
     ma_spatializer_get_input_channels.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_output_channels = _libraries['miniaudio.so'].ma_spatializer_get_output_channels
+    ma_spatializer_get_output_channels = _libraries['libminiaudio.so'].ma_spatializer_get_output_channels
     ma_spatializer_get_output_channels.restype = ma_uint32
     ma_spatializer_get_output_channels.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_attenuation_model = _libraries['miniaudio.so'].ma_spatializer_set_attenuation_model
+    ma_spatializer_set_attenuation_model = _libraries['libminiaudio.so'].ma_spatializer_set_attenuation_model
     ma_spatializer_set_attenuation_model.restype = None
     ma_spatializer_set_attenuation_model.argtypes = [ctypes.POINTER(struct_ma_spatializer), ma_attenuation_model]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_attenuation_model = _libraries['miniaudio.so'].ma_spatializer_get_attenuation_model
+    ma_spatializer_get_attenuation_model = _libraries['libminiaudio.so'].ma_spatializer_get_attenuation_model
     ma_spatializer_get_attenuation_model.restype = ma_attenuation_model
     ma_spatializer_get_attenuation_model.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_positioning = _libraries['miniaudio.so'].ma_spatializer_set_positioning
+    ma_spatializer_set_positioning = _libraries['libminiaudio.so'].ma_spatializer_set_positioning
     ma_spatializer_set_positioning.restype = None
     ma_spatializer_set_positioning.argtypes = [ctypes.POINTER(struct_ma_spatializer), ma_positioning]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_positioning = _libraries['miniaudio.so'].ma_spatializer_get_positioning
+    ma_spatializer_get_positioning = _libraries['libminiaudio.so'].ma_spatializer_get_positioning
     ma_spatializer_get_positioning.restype = ma_positioning
     ma_spatializer_get_positioning.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_rolloff = _libraries['miniaudio.so'].ma_spatializer_set_rolloff
+    ma_spatializer_set_rolloff = _libraries['libminiaudio.so'].ma_spatializer_set_rolloff
     ma_spatializer_set_rolloff.restype = None
     ma_spatializer_set_rolloff.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_rolloff = _libraries['miniaudio.so'].ma_spatializer_get_rolloff
+    ma_spatializer_get_rolloff = _libraries['libminiaudio.so'].ma_spatializer_get_rolloff
     ma_spatializer_get_rolloff.restype = ctypes.c_float
     ma_spatializer_get_rolloff.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_min_gain = _libraries['miniaudio.so'].ma_spatializer_set_min_gain
+    ma_spatializer_set_min_gain = _libraries['libminiaudio.so'].ma_spatializer_set_min_gain
     ma_spatializer_set_min_gain.restype = None
     ma_spatializer_set_min_gain.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_min_gain = _libraries['miniaudio.so'].ma_spatializer_get_min_gain
+    ma_spatializer_get_min_gain = _libraries['libminiaudio.so'].ma_spatializer_get_min_gain
     ma_spatializer_get_min_gain.restype = ctypes.c_float
     ma_spatializer_get_min_gain.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_max_gain = _libraries['miniaudio.so'].ma_spatializer_set_max_gain
+    ma_spatializer_set_max_gain = _libraries['libminiaudio.so'].ma_spatializer_set_max_gain
     ma_spatializer_set_max_gain.restype = None
     ma_spatializer_set_max_gain.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_max_gain = _libraries['miniaudio.so'].ma_spatializer_get_max_gain
+    ma_spatializer_get_max_gain = _libraries['libminiaudio.so'].ma_spatializer_get_max_gain
     ma_spatializer_get_max_gain.restype = ctypes.c_float
     ma_spatializer_get_max_gain.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_min_distance = _libraries['miniaudio.so'].ma_spatializer_set_min_distance
+    ma_spatializer_set_min_distance = _libraries['libminiaudio.so'].ma_spatializer_set_min_distance
     ma_spatializer_set_min_distance.restype = None
     ma_spatializer_set_min_distance.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_min_distance = _libraries['miniaudio.so'].ma_spatializer_get_min_distance
+    ma_spatializer_get_min_distance = _libraries['libminiaudio.so'].ma_spatializer_get_min_distance
     ma_spatializer_get_min_distance.restype = ctypes.c_float
     ma_spatializer_get_min_distance.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_max_distance = _libraries['miniaudio.so'].ma_spatializer_set_max_distance
+    ma_spatializer_set_max_distance = _libraries['libminiaudio.so'].ma_spatializer_set_max_distance
     ma_spatializer_set_max_distance.restype = None
     ma_spatializer_set_max_distance.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_max_distance = _libraries['miniaudio.so'].ma_spatializer_get_max_distance
+    ma_spatializer_get_max_distance = _libraries['libminiaudio.so'].ma_spatializer_get_max_distance
     ma_spatializer_get_max_distance.restype = ctypes.c_float
     ma_spatializer_get_max_distance.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_cone = _libraries['miniaudio.so'].ma_spatializer_set_cone
+    ma_spatializer_set_cone = _libraries['libminiaudio.so'].ma_spatializer_set_cone
     ma_spatializer_set_cone.restype = None
     ma_spatializer_set_cone.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_cone = _libraries['miniaudio.so'].ma_spatializer_get_cone
+    ma_spatializer_get_cone = _libraries['libminiaudio.so'].ma_spatializer_get_cone
     ma_spatializer_get_cone.restype = None
     ma_spatializer_get_cone.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_doppler_factor = _libraries['miniaudio.so'].ma_spatializer_set_doppler_factor
+    ma_spatializer_set_doppler_factor = _libraries['libminiaudio.so'].ma_spatializer_set_doppler_factor
     ma_spatializer_set_doppler_factor.restype = None
     ma_spatializer_set_doppler_factor.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_doppler_factor = _libraries['miniaudio.so'].ma_spatializer_get_doppler_factor
+    ma_spatializer_get_doppler_factor = _libraries['libminiaudio.so'].ma_spatializer_get_doppler_factor
     ma_spatializer_get_doppler_factor.restype = ctypes.c_float
     ma_spatializer_get_doppler_factor.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_directional_attenuation_factor = _libraries['miniaudio.so'].ma_spatializer_set_directional_attenuation_factor
+    ma_spatializer_set_directional_attenuation_factor = _libraries['libminiaudio.so'].ma_spatializer_set_directional_attenuation_factor
     ma_spatializer_set_directional_attenuation_factor.restype = None
     ma_spatializer_set_directional_attenuation_factor.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_directional_attenuation_factor = _libraries['miniaudio.so'].ma_spatializer_get_directional_attenuation_factor
+    ma_spatializer_get_directional_attenuation_factor = _libraries['libminiaudio.so'].ma_spatializer_get_directional_attenuation_factor
     ma_spatializer_get_directional_attenuation_factor.restype = ctypes.c_float
     ma_spatializer_get_directional_attenuation_factor.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_position = _libraries['miniaudio.so'].ma_spatializer_set_position
+    ma_spatializer_set_position = _libraries['libminiaudio.so'].ma_spatializer_set_position
     ma_spatializer_set_position.restype = None
     ma_spatializer_set_position.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_position = _libraries['miniaudio.so'].ma_spatializer_get_position
+    ma_spatializer_get_position = _libraries['libminiaudio.so'].ma_spatializer_get_position
     ma_spatializer_get_position.restype = ma_vec3f
     ma_spatializer_get_position.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_direction = _libraries['miniaudio.so'].ma_spatializer_set_direction
+    ma_spatializer_set_direction = _libraries['libminiaudio.so'].ma_spatializer_set_direction
     ma_spatializer_set_direction.restype = None
     ma_spatializer_set_direction.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_direction = _libraries['miniaudio.so'].ma_spatializer_get_direction
+    ma_spatializer_get_direction = _libraries['libminiaudio.so'].ma_spatializer_get_direction
     ma_spatializer_get_direction.restype = ma_vec3f
     ma_spatializer_get_direction.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_set_velocity = _libraries['miniaudio.so'].ma_spatializer_set_velocity
+    ma_spatializer_set_velocity = _libraries['libminiaudio.so'].ma_spatializer_set_velocity
     ma_spatializer_set_velocity.restype = None
     ma_spatializer_set_velocity.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_velocity = _libraries['miniaudio.so'].ma_spatializer_get_velocity
+    ma_spatializer_get_velocity = _libraries['libminiaudio.so'].ma_spatializer_get_velocity
     ma_spatializer_get_velocity.restype = ma_vec3f
     ma_spatializer_get_velocity.argtypes = [ctypes.POINTER(struct_ma_spatializer)]
 except AttributeError:
     pass
 try:
-    ma_spatializer_get_relative_position_and_direction = _libraries['miniaudio.so'].ma_spatializer_get_relative_position_and_direction
+    ma_spatializer_get_relative_position_and_direction = _libraries['libminiaudio.so'].ma_spatializer_get_relative_position_and_direction
     ma_spatializer_get_relative_position_and_direction.restype = None
     ma_spatializer_get_relative_position_and_direction.argtypes = [ctypes.POINTER(struct_ma_spatializer), ctypes.POINTER(struct_ma_spatializer_listener), ctypes.POINTER(struct_ma_vec3f), ctypes.POINTER(struct_ma_vec3f)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_config_init = _libraries['miniaudio.so'].ma_linear_resampler_config_init
+    ma_linear_resampler_config_init = _libraries['libminiaudio.so'].ma_linear_resampler_config_init
     ma_linear_resampler_config_init.restype = ma_linear_resampler_config
     ma_linear_resampler_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_get_heap_size = _libraries['miniaudio.so'].ma_linear_resampler_get_heap_size
+    ma_linear_resampler_get_heap_size = _libraries['libminiaudio.so'].ma_linear_resampler_get_heap_size
     ma_linear_resampler_get_heap_size.restype = ma_result
     ma_linear_resampler_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_linear_resampler_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_init_preallocated = _libraries['miniaudio.so'].ma_linear_resampler_init_preallocated
+    ma_linear_resampler_init_preallocated = _libraries['libminiaudio.so'].ma_linear_resampler_init_preallocated
     ma_linear_resampler_init_preallocated.restype = ma_result
     ma_linear_resampler_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_linear_resampler_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_linear_resampler)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_init = _libraries['miniaudio.so'].ma_linear_resampler_init
+    ma_linear_resampler_init = _libraries['libminiaudio.so'].ma_linear_resampler_init
     ma_linear_resampler_init.restype = ma_result
     ma_linear_resampler_init.argtypes = [ctypes.POINTER(struct_ma_linear_resampler_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_linear_resampler)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_uninit = _libraries['miniaudio.so'].ma_linear_resampler_uninit
+    ma_linear_resampler_uninit = _libraries['libminiaudio.so'].ma_linear_resampler_uninit
     ma_linear_resampler_uninit.restype = None
     ma_linear_resampler_uninit.argtypes = [ctypes.POINTER(struct_ma_linear_resampler), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_process_pcm_frames = _libraries['miniaudio.so'].ma_linear_resampler_process_pcm_frames
+    ma_linear_resampler_process_pcm_frames = _libraries['libminiaudio.so'].ma_linear_resampler_process_pcm_frames
     ma_linear_resampler_process_pcm_frames.restype = ma_result
     ma_linear_resampler_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_linear_resampler), ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_set_rate = _libraries['miniaudio.so'].ma_linear_resampler_set_rate
+    ma_linear_resampler_set_rate = _libraries['libminiaudio.so'].ma_linear_resampler_set_rate
     ma_linear_resampler_set_rate.restype = ma_result
     ma_linear_resampler_set_rate.argtypes = [ctypes.POINTER(struct_ma_linear_resampler), ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_set_rate_ratio = _libraries['miniaudio.so'].ma_linear_resampler_set_rate_ratio
+    ma_linear_resampler_set_rate_ratio = _libraries['libminiaudio.so'].ma_linear_resampler_set_rate_ratio
     ma_linear_resampler_set_rate_ratio.restype = ma_result
     ma_linear_resampler_set_rate_ratio.argtypes = [ctypes.POINTER(struct_ma_linear_resampler), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_get_input_latency = _libraries['miniaudio.so'].ma_linear_resampler_get_input_latency
+    ma_linear_resampler_get_input_latency = _libraries['libminiaudio.so'].ma_linear_resampler_get_input_latency
     ma_linear_resampler_get_input_latency.restype = ma_uint64
     ma_linear_resampler_get_input_latency.argtypes = [ctypes.POINTER(struct_ma_linear_resampler)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_get_output_latency = _libraries['miniaudio.so'].ma_linear_resampler_get_output_latency
+    ma_linear_resampler_get_output_latency = _libraries['libminiaudio.so'].ma_linear_resampler_get_output_latency
     ma_linear_resampler_get_output_latency.restype = ma_uint64
     ma_linear_resampler_get_output_latency.argtypes = [ctypes.POINTER(struct_ma_linear_resampler)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_get_required_input_frame_count = _libraries['miniaudio.so'].ma_linear_resampler_get_required_input_frame_count
+    ma_linear_resampler_get_required_input_frame_count = _libraries['libminiaudio.so'].ma_linear_resampler_get_required_input_frame_count
     ma_linear_resampler_get_required_input_frame_count.restype = ma_result
     ma_linear_resampler_get_required_input_frame_count.argtypes = [ctypes.POINTER(struct_ma_linear_resampler), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_get_expected_output_frame_count = _libraries['miniaudio.so'].ma_linear_resampler_get_expected_output_frame_count
+    ma_linear_resampler_get_expected_output_frame_count = _libraries['libminiaudio.so'].ma_linear_resampler_get_expected_output_frame_count
     ma_linear_resampler_get_expected_output_frame_count.restype = ma_result
     ma_linear_resampler_get_expected_output_frame_count.argtypes = [ctypes.POINTER(struct_ma_linear_resampler), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_linear_resampler_reset = _libraries['miniaudio.so'].ma_linear_resampler_reset
+    ma_linear_resampler_reset = _libraries['libminiaudio.so'].ma_linear_resampler_reset
     ma_linear_resampler_reset.restype = ma_result
     ma_linear_resampler_reset.argtypes = [ctypes.POINTER(struct_ma_linear_resampler)]
 except AttributeError:
@@ -3618,79 +3618,79 @@ struct_ma_resampling_backend_vtable._fields_ = [
 
 ma_resampling_backend_vtable = struct_ma_resampling_backend_vtable
 try:
-    ma_resampler_config_init = _libraries['miniaudio.so'].ma_resampler_config_init
+    ma_resampler_config_init = _libraries['libminiaudio.so'].ma_resampler_config_init
     ma_resampler_config_init.restype = ma_resampler_config
     ma_resampler_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ma_uint32, ma_resample_algorithm]
 except AttributeError:
     pass
 try:
-    ma_resampler_get_heap_size = _libraries['miniaudio.so'].ma_resampler_get_heap_size
+    ma_resampler_get_heap_size = _libraries['libminiaudio.so'].ma_resampler_get_heap_size
     ma_resampler_get_heap_size.restype = ma_result
     ma_resampler_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_resampler_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resampler_init_preallocated = _libraries['miniaudio.so'].ma_resampler_init_preallocated
+    ma_resampler_init_preallocated = _libraries['libminiaudio.so'].ma_resampler_init_preallocated
     ma_resampler_init_preallocated.restype = ma_result
     ma_resampler_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_resampler_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_resampler)]
 except AttributeError:
     pass
 try:
-    ma_resampler_init = _libraries['miniaudio.so'].ma_resampler_init
+    ma_resampler_init = _libraries['libminiaudio.so'].ma_resampler_init
     ma_resampler_init.restype = ma_result
     ma_resampler_init.argtypes = [ctypes.POINTER(struct_ma_resampler_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_resampler)]
 except AttributeError:
     pass
 try:
-    ma_resampler_uninit = _libraries['miniaudio.so'].ma_resampler_uninit
+    ma_resampler_uninit = _libraries['libminiaudio.so'].ma_resampler_uninit
     ma_resampler_uninit.restype = None
     ma_resampler_uninit.argtypes = [ctypes.POINTER(struct_ma_resampler), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_resampler_process_pcm_frames = _libraries['miniaudio.so'].ma_resampler_process_pcm_frames
+    ma_resampler_process_pcm_frames = _libraries['libminiaudio.so'].ma_resampler_process_pcm_frames
     ma_resampler_process_pcm_frames.restype = ma_result
     ma_resampler_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resampler), ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resampler_set_rate = _libraries['miniaudio.so'].ma_resampler_set_rate
+    ma_resampler_set_rate = _libraries['libminiaudio.so'].ma_resampler_set_rate
     ma_resampler_set_rate.restype = ma_result
     ma_resampler_set_rate.argtypes = [ctypes.POINTER(struct_ma_resampler), ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_resampler_set_rate_ratio = _libraries['miniaudio.so'].ma_resampler_set_rate_ratio
+    ma_resampler_set_rate_ratio = _libraries['libminiaudio.so'].ma_resampler_set_rate_ratio
     ma_resampler_set_rate_ratio.restype = ma_result
     ma_resampler_set_rate_ratio.argtypes = [ctypes.POINTER(struct_ma_resampler), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_resampler_get_input_latency = _libraries['miniaudio.so'].ma_resampler_get_input_latency
+    ma_resampler_get_input_latency = _libraries['libminiaudio.so'].ma_resampler_get_input_latency
     ma_resampler_get_input_latency.restype = ma_uint64
     ma_resampler_get_input_latency.argtypes = [ctypes.POINTER(struct_ma_resampler)]
 except AttributeError:
     pass
 try:
-    ma_resampler_get_output_latency = _libraries['miniaudio.so'].ma_resampler_get_output_latency
+    ma_resampler_get_output_latency = _libraries['libminiaudio.so'].ma_resampler_get_output_latency
     ma_resampler_get_output_latency.restype = ma_uint64
     ma_resampler_get_output_latency.argtypes = [ctypes.POINTER(struct_ma_resampler)]
 except AttributeError:
     pass
 try:
-    ma_resampler_get_required_input_frame_count = _libraries['miniaudio.so'].ma_resampler_get_required_input_frame_count
+    ma_resampler_get_required_input_frame_count = _libraries['libminiaudio.so'].ma_resampler_get_required_input_frame_count
     ma_resampler_get_required_input_frame_count.restype = ma_result
     ma_resampler_get_required_input_frame_count.argtypes = [ctypes.POINTER(struct_ma_resampler), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resampler_get_expected_output_frame_count = _libraries['miniaudio.so'].ma_resampler_get_expected_output_frame_count
+    ma_resampler_get_expected_output_frame_count = _libraries['libminiaudio.so'].ma_resampler_get_expected_output_frame_count
     ma_resampler_get_expected_output_frame_count.restype = ma_result
     ma_resampler_get_expected_output_frame_count.argtypes = [ctypes.POINTER(struct_ma_resampler), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resampler_reset = _libraries['miniaudio.so'].ma_resampler_reset
+    ma_resampler_reset = _libraries['libminiaudio.so'].ma_resampler_reset
     ma_resampler_reset.restype = ma_result
     ma_resampler_reset.argtypes = [ctypes.POINTER(struct_ma_resampler)]
 except AttributeError:
@@ -3726,50 +3726,50 @@ struct_ma_channel_converter_config._fields_ = [
 
 ma_channel_converter_config = struct_ma_channel_converter_config
 try:
-    ma_channel_converter_config_init = _libraries['miniaudio.so'].ma_channel_converter_config_init
+    ma_channel_converter_config_init = _libraries['libminiaudio.so'].ma_channel_converter_config_init
     ma_channel_converter_config_init.restype = ma_channel_converter_config
     ma_channel_converter_config_init.argtypes = [ma_format, ma_uint32, ctypes.POINTER(ctypes.c_ubyte), ma_uint32, ctypes.POINTER(ctypes.c_ubyte), ma_channel_mix_mode]
 except AttributeError:
     pass
 try:
-    ma_channel_converter_get_heap_size = _libraries['miniaudio.so'].ma_channel_converter_get_heap_size
+    ma_channel_converter_get_heap_size = _libraries['libminiaudio.so'].ma_channel_converter_get_heap_size
     ma_channel_converter_get_heap_size.restype = ma_result
     ma_channel_converter_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_channel_converter_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_channel_converter_init_preallocated = _libraries['miniaudio.so'].ma_channel_converter_init_preallocated
+    ma_channel_converter_init_preallocated = _libraries['libminiaudio.so'].ma_channel_converter_init_preallocated
     ma_channel_converter_init_preallocated.restype = ma_result
     ma_channel_converter_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_channel_converter_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_channel_converter)]
 except AttributeError:
     pass
 try:
-    ma_channel_converter_init = _libraries['miniaudio.so'].ma_channel_converter_init
+    ma_channel_converter_init = _libraries['libminiaudio.so'].ma_channel_converter_init
     ma_channel_converter_init.restype = ma_result
     ma_channel_converter_init.argtypes = [ctypes.POINTER(struct_ma_channel_converter_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_channel_converter)]
 except AttributeError:
     pass
 try:
-    ma_channel_converter_uninit = _libraries['miniaudio.so'].ma_channel_converter_uninit
+    ma_channel_converter_uninit = _libraries['libminiaudio.so'].ma_channel_converter_uninit
     ma_channel_converter_uninit.restype = None
     ma_channel_converter_uninit.argtypes = [ctypes.POINTER(struct_ma_channel_converter), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_channel_converter_process_pcm_frames = _libraries['miniaudio.so'].ma_channel_converter_process_pcm_frames
+    ma_channel_converter_process_pcm_frames = _libraries['libminiaudio.so'].ma_channel_converter_process_pcm_frames
     ma_channel_converter_process_pcm_frames.restype = ma_result
     ma_channel_converter_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_channel_converter), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 size_t = ctypes.c_uint64
 try:
-    ma_channel_converter_get_input_channel_map = _libraries['miniaudio.so'].ma_channel_converter_get_input_channel_map
+    ma_channel_converter_get_input_channel_map = _libraries['libminiaudio.so'].ma_channel_converter_get_input_channel_map
     ma_channel_converter_get_input_channel_map.restype = ma_result
     ma_channel_converter_get_input_channel_map.argtypes = [ctypes.POINTER(struct_ma_channel_converter), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_channel_converter_get_output_channel_map = _libraries['miniaudio.so'].ma_channel_converter_get_output_channel_map
+    ma_channel_converter_get_output_channel_map = _libraries['libminiaudio.so'].ma_channel_converter_get_output_channel_map
     ma_channel_converter_get_output_channel_map.restype = ma_result
     ma_channel_converter_get_output_channel_map.argtypes = [ctypes.POINTER(struct_ma_channel_converter), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
@@ -3799,325 +3799,325 @@ struct_ma_data_converter_config._fields_ = [
 
 ma_data_converter_config = struct_ma_data_converter_config
 try:
-    ma_data_converter_config_init_default = _libraries['miniaudio.so'].ma_data_converter_config_init_default
+    ma_data_converter_config_init_default = _libraries['libminiaudio.so'].ma_data_converter_config_init_default
     ma_data_converter_config_init_default.restype = ma_data_converter_config
     ma_data_converter_config_init_default.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_data_converter_config_init = _libraries['miniaudio.so'].ma_data_converter_config_init
+    ma_data_converter_config_init = _libraries['libminiaudio.so'].ma_data_converter_config_init
     ma_data_converter_config_init.restype = ma_data_converter_config
     ma_data_converter_config_init.argtypes = [ma_format, ma_format, ma_uint32, ma_uint32, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_heap_size = _libraries['miniaudio.so'].ma_data_converter_get_heap_size
+    ma_data_converter_get_heap_size = _libraries['libminiaudio.so'].ma_data_converter_get_heap_size
     ma_data_converter_get_heap_size.restype = ma_result
     ma_data_converter_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_data_converter_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_init_preallocated = _libraries['miniaudio.so'].ma_data_converter_init_preallocated
+    ma_data_converter_init_preallocated = _libraries['libminiaudio.so'].ma_data_converter_init_preallocated
     ma_data_converter_init_preallocated.restype = ma_result
     ma_data_converter_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_data_converter_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_data_converter)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_init = _libraries['miniaudio.so'].ma_data_converter_init
+    ma_data_converter_init = _libraries['libminiaudio.so'].ma_data_converter_init
     ma_data_converter_init.restype = ma_result
     ma_data_converter_init.argtypes = [ctypes.POINTER(struct_ma_data_converter_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_data_converter)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_uninit = _libraries['miniaudio.so'].ma_data_converter_uninit
+    ma_data_converter_uninit = _libraries['libminiaudio.so'].ma_data_converter_uninit
     ma_data_converter_uninit.restype = None
     ma_data_converter_uninit.argtypes = [ctypes.POINTER(struct_ma_data_converter), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_process_pcm_frames = _libraries['miniaudio.so'].ma_data_converter_process_pcm_frames
+    ma_data_converter_process_pcm_frames = _libraries['libminiaudio.so'].ma_data_converter_process_pcm_frames
     ma_data_converter_process_pcm_frames.restype = ma_result
     ma_data_converter_process_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_data_converter), ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_set_rate = _libraries['miniaudio.so'].ma_data_converter_set_rate
+    ma_data_converter_set_rate = _libraries['libminiaudio.so'].ma_data_converter_set_rate
     ma_data_converter_set_rate.restype = ma_result
     ma_data_converter_set_rate.argtypes = [ctypes.POINTER(struct_ma_data_converter), ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_data_converter_set_rate_ratio = _libraries['miniaudio.so'].ma_data_converter_set_rate_ratio
+    ma_data_converter_set_rate_ratio = _libraries['libminiaudio.so'].ma_data_converter_set_rate_ratio
     ma_data_converter_set_rate_ratio.restype = ma_result
     ma_data_converter_set_rate_ratio.argtypes = [ctypes.POINTER(struct_ma_data_converter), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_input_latency = _libraries['miniaudio.so'].ma_data_converter_get_input_latency
+    ma_data_converter_get_input_latency = _libraries['libminiaudio.so'].ma_data_converter_get_input_latency
     ma_data_converter_get_input_latency.restype = ma_uint64
     ma_data_converter_get_input_latency.argtypes = [ctypes.POINTER(struct_ma_data_converter)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_output_latency = _libraries['miniaudio.so'].ma_data_converter_get_output_latency
+    ma_data_converter_get_output_latency = _libraries['libminiaudio.so'].ma_data_converter_get_output_latency
     ma_data_converter_get_output_latency.restype = ma_uint64
     ma_data_converter_get_output_latency.argtypes = [ctypes.POINTER(struct_ma_data_converter)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_required_input_frame_count = _libraries['miniaudio.so'].ma_data_converter_get_required_input_frame_count
+    ma_data_converter_get_required_input_frame_count = _libraries['libminiaudio.so'].ma_data_converter_get_required_input_frame_count
     ma_data_converter_get_required_input_frame_count.restype = ma_result
     ma_data_converter_get_required_input_frame_count.argtypes = [ctypes.POINTER(struct_ma_data_converter), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_expected_output_frame_count = _libraries['miniaudio.so'].ma_data_converter_get_expected_output_frame_count
+    ma_data_converter_get_expected_output_frame_count = _libraries['libminiaudio.so'].ma_data_converter_get_expected_output_frame_count
     ma_data_converter_get_expected_output_frame_count.restype = ma_result
     ma_data_converter_get_expected_output_frame_count.argtypes = [ctypes.POINTER(struct_ma_data_converter), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_input_channel_map = _libraries['miniaudio.so'].ma_data_converter_get_input_channel_map
+    ma_data_converter_get_input_channel_map = _libraries['libminiaudio.so'].ma_data_converter_get_input_channel_map
     ma_data_converter_get_input_channel_map.restype = ma_result
     ma_data_converter_get_input_channel_map.argtypes = [ctypes.POINTER(struct_ma_data_converter), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_data_converter_get_output_channel_map = _libraries['miniaudio.so'].ma_data_converter_get_output_channel_map
+    ma_data_converter_get_output_channel_map = _libraries['libminiaudio.so'].ma_data_converter_get_output_channel_map
     ma_data_converter_get_output_channel_map.restype = ma_result
     ma_data_converter_get_output_channel_map.argtypes = [ctypes.POINTER(struct_ma_data_converter), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_data_converter_reset = _libraries['miniaudio.so'].ma_data_converter_reset
+    ma_data_converter_reset = _libraries['libminiaudio.so'].ma_data_converter_reset
     ma_data_converter_reset.restype = ma_result
     ma_data_converter_reset.argtypes = [ctypes.POINTER(struct_ma_data_converter)]
 except AttributeError:
     pass
 try:
-    ma_pcm_u8_to_s16 = _libraries['miniaudio.so'].ma_pcm_u8_to_s16
+    ma_pcm_u8_to_s16 = _libraries['libminiaudio.so'].ma_pcm_u8_to_s16
     ma_pcm_u8_to_s16.restype = None
     ma_pcm_u8_to_s16.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_u8_to_s24 = _libraries['miniaudio.so'].ma_pcm_u8_to_s24
+    ma_pcm_u8_to_s24 = _libraries['libminiaudio.so'].ma_pcm_u8_to_s24
     ma_pcm_u8_to_s24.restype = None
     ma_pcm_u8_to_s24.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_u8_to_s32 = _libraries['miniaudio.so'].ma_pcm_u8_to_s32
+    ma_pcm_u8_to_s32 = _libraries['libminiaudio.so'].ma_pcm_u8_to_s32
     ma_pcm_u8_to_s32.restype = None
     ma_pcm_u8_to_s32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_u8_to_f32 = _libraries['miniaudio.so'].ma_pcm_u8_to_f32
+    ma_pcm_u8_to_f32 = _libraries['libminiaudio.so'].ma_pcm_u8_to_f32
     ma_pcm_u8_to_f32.restype = None
     ma_pcm_u8_to_f32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s16_to_u8 = _libraries['miniaudio.so'].ma_pcm_s16_to_u8
+    ma_pcm_s16_to_u8 = _libraries['libminiaudio.so'].ma_pcm_s16_to_u8
     ma_pcm_s16_to_u8.restype = None
     ma_pcm_s16_to_u8.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s16_to_s24 = _libraries['miniaudio.so'].ma_pcm_s16_to_s24
+    ma_pcm_s16_to_s24 = _libraries['libminiaudio.so'].ma_pcm_s16_to_s24
     ma_pcm_s16_to_s24.restype = None
     ma_pcm_s16_to_s24.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s16_to_s32 = _libraries['miniaudio.so'].ma_pcm_s16_to_s32
+    ma_pcm_s16_to_s32 = _libraries['libminiaudio.so'].ma_pcm_s16_to_s32
     ma_pcm_s16_to_s32.restype = None
     ma_pcm_s16_to_s32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s16_to_f32 = _libraries['miniaudio.so'].ma_pcm_s16_to_f32
+    ma_pcm_s16_to_f32 = _libraries['libminiaudio.so'].ma_pcm_s16_to_f32
     ma_pcm_s16_to_f32.restype = None
     ma_pcm_s16_to_f32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s24_to_u8 = _libraries['miniaudio.so'].ma_pcm_s24_to_u8
+    ma_pcm_s24_to_u8 = _libraries['libminiaudio.so'].ma_pcm_s24_to_u8
     ma_pcm_s24_to_u8.restype = None
     ma_pcm_s24_to_u8.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s24_to_s16 = _libraries['miniaudio.so'].ma_pcm_s24_to_s16
+    ma_pcm_s24_to_s16 = _libraries['libminiaudio.so'].ma_pcm_s24_to_s16
     ma_pcm_s24_to_s16.restype = None
     ma_pcm_s24_to_s16.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s24_to_s32 = _libraries['miniaudio.so'].ma_pcm_s24_to_s32
+    ma_pcm_s24_to_s32 = _libraries['libminiaudio.so'].ma_pcm_s24_to_s32
     ma_pcm_s24_to_s32.restype = None
     ma_pcm_s24_to_s32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s24_to_f32 = _libraries['miniaudio.so'].ma_pcm_s24_to_f32
+    ma_pcm_s24_to_f32 = _libraries['libminiaudio.so'].ma_pcm_s24_to_f32
     ma_pcm_s24_to_f32.restype = None
     ma_pcm_s24_to_f32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s32_to_u8 = _libraries['miniaudio.so'].ma_pcm_s32_to_u8
+    ma_pcm_s32_to_u8 = _libraries['libminiaudio.so'].ma_pcm_s32_to_u8
     ma_pcm_s32_to_u8.restype = None
     ma_pcm_s32_to_u8.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s32_to_s16 = _libraries['miniaudio.so'].ma_pcm_s32_to_s16
+    ma_pcm_s32_to_s16 = _libraries['libminiaudio.so'].ma_pcm_s32_to_s16
     ma_pcm_s32_to_s16.restype = None
     ma_pcm_s32_to_s16.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s32_to_s24 = _libraries['miniaudio.so'].ma_pcm_s32_to_s24
+    ma_pcm_s32_to_s24 = _libraries['libminiaudio.so'].ma_pcm_s32_to_s24
     ma_pcm_s32_to_s24.restype = None
     ma_pcm_s32_to_s24.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_s32_to_f32 = _libraries['miniaudio.so'].ma_pcm_s32_to_f32
+    ma_pcm_s32_to_f32 = _libraries['libminiaudio.so'].ma_pcm_s32_to_f32
     ma_pcm_s32_to_f32.restype = None
     ma_pcm_s32_to_f32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_f32_to_u8 = _libraries['miniaudio.so'].ma_pcm_f32_to_u8
+    ma_pcm_f32_to_u8 = _libraries['libminiaudio.so'].ma_pcm_f32_to_u8
     ma_pcm_f32_to_u8.restype = None
     ma_pcm_f32_to_u8.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_f32_to_s16 = _libraries['miniaudio.so'].ma_pcm_f32_to_s16
+    ma_pcm_f32_to_s16 = _libraries['libminiaudio.so'].ma_pcm_f32_to_s16
     ma_pcm_f32_to_s16.restype = None
     ma_pcm_f32_to_s16.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_f32_to_s24 = _libraries['miniaudio.so'].ma_pcm_f32_to_s24
+    ma_pcm_f32_to_s24 = _libraries['libminiaudio.so'].ma_pcm_f32_to_s24
     ma_pcm_f32_to_s24.restype = None
     ma_pcm_f32_to_s24.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_f32_to_s32 = _libraries['miniaudio.so'].ma_pcm_f32_to_s32
+    ma_pcm_f32_to_s32 = _libraries['libminiaudio.so'].ma_pcm_f32_to_s32
     ma_pcm_f32_to_s32.restype = None
     ma_pcm_f32_to_s32.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_pcm_convert = _libraries['miniaudio.so'].ma_pcm_convert
+    ma_pcm_convert = _libraries['libminiaudio.so'].ma_pcm_convert
     ma_pcm_convert.restype = None
     ma_pcm_convert.argtypes = [ctypes.POINTER(None), ma_format, ctypes.POINTER(None), ma_format, ma_uint64, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_convert_pcm_frames_format = _libraries['miniaudio.so'].ma_convert_pcm_frames_format
+    ma_convert_pcm_frames_format = _libraries['libminiaudio.so'].ma_convert_pcm_frames_format
     ma_convert_pcm_frames_format.restype = None
     ma_convert_pcm_frames_format.argtypes = [ctypes.POINTER(None), ma_format, ctypes.POINTER(None), ma_format, ma_uint64, ma_uint32, ma_dither_mode]
 except AttributeError:
     pass
 try:
-    ma_deinterleave_pcm_frames = _libraries['miniaudio.so'].ma_deinterleave_pcm_frames
+    ma_deinterleave_pcm_frames = _libraries['libminiaudio.so'].ma_deinterleave_pcm_frames
     ma_deinterleave_pcm_frames.restype = None
     ma_deinterleave_pcm_frames.argtypes = [ma_format, ma_uint32, ma_uint64, ctypes.POINTER(None), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_interleave_pcm_frames = _libraries['miniaudio.so'].ma_interleave_pcm_frames
+    ma_interleave_pcm_frames = _libraries['libminiaudio.so'].ma_interleave_pcm_frames
     ma_interleave_pcm_frames.restype = None
     ma_interleave_pcm_frames.argtypes = [ma_format, ma_uint32, ma_uint64, ctypes.POINTER(ctypes.POINTER(None)), ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_channel_map_get_channel = _libraries['miniaudio.so'].ma_channel_map_get_channel
+    ma_channel_map_get_channel = _libraries['libminiaudio.so'].ma_channel_map_get_channel
     ma_channel_map_get_channel.restype = ma_channel
     ma_channel_map_get_channel.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_init_blank = _libraries['miniaudio.so'].ma_channel_map_init_blank
+    ma_channel_map_init_blank = _libraries['libminiaudio.so'].ma_channel_map_init_blank
     ma_channel_map_init_blank.restype = None
     ma_channel_map_init_blank.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_init_standard = _libraries['miniaudio.so'].ma_channel_map_init_standard
+    ma_channel_map_init_standard = _libraries['libminiaudio.so'].ma_channel_map_init_standard
     ma_channel_map_init_standard.restype = None
     ma_channel_map_init_standard.argtypes = [ma_standard_channel_map, ctypes.POINTER(ctypes.c_ubyte), size_t, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_copy = _libraries['miniaudio.so'].ma_channel_map_copy
+    ma_channel_map_copy = _libraries['libminiaudio.so'].ma_channel_map_copy
     ma_channel_map_copy.restype = None
     ma_channel_map_copy.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_ubyte), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_copy_or_default = _libraries['miniaudio.so'].ma_channel_map_copy_or_default
+    ma_channel_map_copy_or_default = _libraries['libminiaudio.so'].ma_channel_map_copy_or_default
     ma_channel_map_copy_or_default.restype = None
     ma_channel_map_copy_or_default.argtypes = [ctypes.POINTER(ctypes.c_ubyte), size_t, ctypes.POINTER(ctypes.c_ubyte), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_is_valid = _libraries['miniaudio.so'].ma_channel_map_is_valid
+    ma_channel_map_is_valid = _libraries['libminiaudio.so'].ma_channel_map_is_valid
     ma_channel_map_is_valid.restype = ma_bool32
     ma_channel_map_is_valid.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_is_equal = _libraries['miniaudio.so'].ma_channel_map_is_equal
+    ma_channel_map_is_equal = _libraries['libminiaudio.so'].ma_channel_map_is_equal
     ma_channel_map_is_equal.restype = ma_bool32
     ma_channel_map_is_equal.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_ubyte), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_is_blank = _libraries['miniaudio.so'].ma_channel_map_is_blank
+    ma_channel_map_is_blank = _libraries['libminiaudio.so'].ma_channel_map_is_blank
     ma_channel_map_is_blank.restype = ma_bool32
     ma_channel_map_is_blank.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_channel_map_contains_channel_position = _libraries['miniaudio.so'].ma_channel_map_contains_channel_position
+    ma_channel_map_contains_channel_position = _libraries['libminiaudio.so'].ma_channel_map_contains_channel_position
     ma_channel_map_contains_channel_position.restype = ma_bool32
     ma_channel_map_contains_channel_position.argtypes = [ma_uint32, ctypes.POINTER(ctypes.c_ubyte), ma_channel]
 except AttributeError:
     pass
 try:
-    ma_channel_map_find_channel_position = _libraries['miniaudio.so'].ma_channel_map_find_channel_position
+    ma_channel_map_find_channel_position = _libraries['libminiaudio.so'].ma_channel_map_find_channel_position
     ma_channel_map_find_channel_position.restype = ma_bool32
     ma_channel_map_find_channel_position.argtypes = [ma_uint32, ctypes.POINTER(ctypes.c_ubyte), ma_channel, ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_channel_map_to_string = _libraries['miniaudio.so'].ma_channel_map_to_string
+    ma_channel_map_to_string = _libraries['libminiaudio.so'].ma_channel_map_to_string
     ma_channel_map_to_string.restype = size_t
     ma_channel_map_to_string.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint32, ctypes.POINTER(ctypes.c_char), size_t]
 except AttributeError:
     pass
 try:
-    ma_channel_position_to_string = _libraries['miniaudio.so'].ma_channel_position_to_string
+    ma_channel_position_to_string = _libraries['libminiaudio.so'].ma_channel_position_to_string
     ma_channel_position_to_string.restype = ctypes.POINTER(ctypes.c_char)
     ma_channel_position_to_string.argtypes = [ma_channel]
 except AttributeError:
     pass
 try:
-    ma_convert_frames = _libraries['miniaudio.so'].ma_convert_frames
+    ma_convert_frames = _libraries['libminiaudio.so'].ma_convert_frames
     ma_convert_frames.restype = ma_uint64
     ma_convert_frames.argtypes = [ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ma_uint32, ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_convert_frames_ex = _libraries['miniaudio.so'].ma_convert_frames_ex
+    ma_convert_frames_ex = _libraries['libminiaudio.so'].ma_convert_frames_ex
     ma_convert_frames_ex.restype = ma_uint64
     ma_convert_frames_ex.argtypes = [ctypes.POINTER(None), ma_uint64, ctypes.POINTER(None), ma_uint64, ctypes.POINTER(struct_ma_data_converter_config)]
 except AttributeError:
@@ -4147,151 +4147,151 @@ struct_ma_data_source_config._fields_ = [
 
 ma_data_source_config = struct_ma_data_source_config
 try:
-    ma_data_source_config_init = _libraries['miniaudio.so'].ma_data_source_config_init
+    ma_data_source_config_init = _libraries['libminiaudio.so'].ma_data_source_config_init
     ma_data_source_config_init.restype = ma_data_source_config
     ma_data_source_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_data_source_init = _libraries['miniaudio.so'].ma_data_source_init
+    ma_data_source_init = _libraries['libminiaudio.so'].ma_data_source_init
     ma_data_source_init.restype = ma_result
     ma_data_source_init.argtypes = [ctypes.POINTER(struct_ma_data_source_config), ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_uninit = _libraries['miniaudio.so'].ma_data_source_uninit
+    ma_data_source_uninit = _libraries['libminiaudio.so'].ma_data_source_uninit
     ma_data_source_uninit.restype = None
     ma_data_source_uninit.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_read_pcm_frames = _libraries['miniaudio.so'].ma_data_source_read_pcm_frames
+    ma_data_source_read_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_read_pcm_frames
     ma_data_source_read_pcm_frames.restype = ma_result
     ma_data_source_read_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_source_seek_pcm_frames = _libraries['miniaudio.so'].ma_data_source_seek_pcm_frames
+    ma_data_source_seek_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_seek_pcm_frames
     ma_data_source_seek_pcm_frames.restype = ma_result
     ma_data_source_seek_pcm_frames.argtypes = [ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_source_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_data_source_seek_to_pcm_frame
+    ma_data_source_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_data_source_seek_to_pcm_frame
     ma_data_source_seek_to_pcm_frame.restype = ma_result
     ma_data_source_seek_to_pcm_frame.argtypes = [ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_data_source_seek_seconds = _libraries['miniaudio.so'].ma_data_source_seek_seconds
+    ma_data_source_seek_seconds = _libraries['libminiaudio.so'].ma_data_source_seek_seconds
     ma_data_source_seek_seconds.restype = ma_result
     ma_data_source_seek_seconds.argtypes = [ctypes.POINTER(None), ctypes.c_float, ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_data_source_seek_to_second = _libraries['miniaudio.so'].ma_data_source_seek_to_second
+    ma_data_source_seek_to_second = _libraries['libminiaudio.so'].ma_data_source_seek_to_second
     ma_data_source_seek_to_second.restype = ma_result
     ma_data_source_seek_to_second.argtypes = [ctypes.POINTER(None), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_data_format = _libraries['miniaudio.so'].ma_data_source_get_data_format
+    ma_data_source_get_data_format = _libraries['libminiaudio.so'].ma_data_source_get_data_format
     ma_data_source_get_data_format.restype = ma_result
     ma_data_source_get_data_format.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_data_source_get_cursor_in_pcm_frames
+    ma_data_source_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_get_cursor_in_pcm_frames
     ma_data_source_get_cursor_in_pcm_frames.restype = ma_result
     ma_data_source_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_data_source_get_length_in_pcm_frames
+    ma_data_source_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_get_length_in_pcm_frames
     ma_data_source_get_length_in_pcm_frames.restype = ma_result
     ma_data_source_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_cursor_in_seconds = _libraries['miniaudio.so'].ma_data_source_get_cursor_in_seconds
+    ma_data_source_get_cursor_in_seconds = _libraries['libminiaudio.so'].ma_data_source_get_cursor_in_seconds
     ma_data_source_get_cursor_in_seconds.restype = ma_result
     ma_data_source_get_cursor_in_seconds.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_length_in_seconds = _libraries['miniaudio.so'].ma_data_source_get_length_in_seconds
+    ma_data_source_get_length_in_seconds = _libraries['libminiaudio.so'].ma_data_source_get_length_in_seconds
     ma_data_source_get_length_in_seconds.restype = ma_result
     ma_data_source_get_length_in_seconds.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_data_source_set_looping = _libraries['miniaudio.so'].ma_data_source_set_looping
+    ma_data_source_set_looping = _libraries['libminiaudio.so'].ma_data_source_set_looping
     ma_data_source_set_looping.restype = ma_result
     ma_data_source_set_looping.argtypes = [ctypes.POINTER(None), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_data_source_is_looping = _libraries['miniaudio.so'].ma_data_source_is_looping
+    ma_data_source_is_looping = _libraries['libminiaudio.so'].ma_data_source_is_looping
     ma_data_source_is_looping.restype = ma_bool32
     ma_data_source_is_looping.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_set_range_in_pcm_frames = _libraries['miniaudio.so'].ma_data_source_set_range_in_pcm_frames
+    ma_data_source_set_range_in_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_set_range_in_pcm_frames
     ma_data_source_set_range_in_pcm_frames.restype = ma_result
     ma_data_source_set_range_in_pcm_frames.argtypes = [ctypes.POINTER(None), ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_range_in_pcm_frames = _libraries['miniaudio.so'].ma_data_source_get_range_in_pcm_frames
+    ma_data_source_get_range_in_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_get_range_in_pcm_frames
     ma_data_source_get_range_in_pcm_frames.restype = None
     ma_data_source_get_range_in_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_source_set_loop_point_in_pcm_frames = _libraries['miniaudio.so'].ma_data_source_set_loop_point_in_pcm_frames
+    ma_data_source_set_loop_point_in_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_set_loop_point_in_pcm_frames
     ma_data_source_set_loop_point_in_pcm_frames.restype = ma_result
     ma_data_source_set_loop_point_in_pcm_frames.argtypes = [ctypes.POINTER(None), ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_loop_point_in_pcm_frames = _libraries['miniaudio.so'].ma_data_source_get_loop_point_in_pcm_frames
+    ma_data_source_get_loop_point_in_pcm_frames = _libraries['libminiaudio.so'].ma_data_source_get_loop_point_in_pcm_frames
     ma_data_source_get_loop_point_in_pcm_frames.restype = None
     ma_data_source_get_loop_point_in_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_data_source_set_current = _libraries['miniaudio.so'].ma_data_source_set_current
+    ma_data_source_set_current = _libraries['libminiaudio.so'].ma_data_source_set_current
     ma_data_source_set_current.restype = ma_result
     ma_data_source_set_current.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_current = _libraries['miniaudio.so'].ma_data_source_get_current
+    ma_data_source_get_current = _libraries['libminiaudio.so'].ma_data_source_get_current
     ma_data_source_get_current.restype = ctypes.POINTER(None)
     ma_data_source_get_current.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_set_next = _libraries['miniaudio.so'].ma_data_source_set_next
+    ma_data_source_set_next = _libraries['libminiaudio.so'].ma_data_source_set_next
     ma_data_source_set_next.restype = ma_result
     ma_data_source_set_next.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_next = _libraries['miniaudio.so'].ma_data_source_get_next
+    ma_data_source_get_next = _libraries['libminiaudio.so'].ma_data_source_get_next
     ma_data_source_get_next.restype = ctypes.POINTER(None)
     ma_data_source_get_next.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_data_source_set_next_callback = _libraries['miniaudio.so'].ma_data_source_set_next_callback
+    ma_data_source_set_next_callback = _libraries['libminiaudio.so'].ma_data_source_set_next_callback
     ma_data_source_set_next_callback.restype = ma_result
     ma_data_source_set_next_callback.argtypes = [ctypes.POINTER(None), ma_data_source_get_next_proc]
 except AttributeError:
     pass
 try:
-    ma_data_source_get_next_callback = _libraries['miniaudio.so'].ma_data_source_get_next_callback
+    ma_data_source_get_next_callback = _libraries['libminiaudio.so'].ma_data_source_get_next_callback
     ma_data_source_get_next_callback.restype = ma_data_source_get_next_proc
     ma_data_source_get_next_callback.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
@@ -4313,67 +4313,67 @@ struct_ma_audio_buffer_ref._fields_ = [
 
 ma_audio_buffer_ref = struct_ma_audio_buffer_ref
 try:
-    ma_audio_buffer_ref_init = _libraries['miniaudio.so'].ma_audio_buffer_ref_init
+    ma_audio_buffer_ref_init = _libraries['libminiaudio.so'].ma_audio_buffer_ref_init
     ma_audio_buffer_ref_init.restype = ma_result
     ma_audio_buffer_ref_init.argtypes = [ma_format, ma_uint32, ctypes.POINTER(None), ma_uint64, ctypes.POINTER(struct_ma_audio_buffer_ref)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_uninit = _libraries['miniaudio.so'].ma_audio_buffer_ref_uninit
+    ma_audio_buffer_ref_uninit = _libraries['libminiaudio.so'].ma_audio_buffer_ref_uninit
     ma_audio_buffer_ref_uninit.restype = None
     ma_audio_buffer_ref_uninit.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_set_data = _libraries['miniaudio.so'].ma_audio_buffer_ref_set_data
+    ma_audio_buffer_ref_set_data = _libraries['libminiaudio.so'].ma_audio_buffer_ref_set_data
     ma_audio_buffer_ref_set_data.restype = ma_result
     ma_audio_buffer_ref_set_data.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_read_pcm_frames = _libraries['miniaudio.so'].ma_audio_buffer_ref_read_pcm_frames
+    ma_audio_buffer_ref_read_pcm_frames = _libraries['libminiaudio.so'].ma_audio_buffer_ref_read_pcm_frames
     ma_audio_buffer_ref_read_pcm_frames.restype = ma_uint64
     ma_audio_buffer_ref_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ctypes.POINTER(None), ma_uint64, ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_audio_buffer_ref_seek_to_pcm_frame
+    ma_audio_buffer_ref_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_audio_buffer_ref_seek_to_pcm_frame
     ma_audio_buffer_ref_seek_to_pcm_frame.restype = ma_result
     ma_audio_buffer_ref_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_map = _libraries['miniaudio.so'].ma_audio_buffer_ref_map
+    ma_audio_buffer_ref_map = _libraries['libminiaudio.so'].ma_audio_buffer_ref_map
     ma_audio_buffer_ref_map.restype = ma_result
     ma_audio_buffer_ref_map.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ctypes.POINTER(ctypes.POINTER(None)), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_unmap = _libraries['miniaudio.so'].ma_audio_buffer_ref_unmap
+    ma_audio_buffer_ref_unmap = _libraries['libminiaudio.so'].ma_audio_buffer_ref_unmap
     ma_audio_buffer_ref_unmap.restype = ma_result
     ma_audio_buffer_ref_unmap.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_at_end = _libraries['miniaudio.so'].ma_audio_buffer_ref_at_end
+    ma_audio_buffer_ref_at_end = _libraries['libminiaudio.so'].ma_audio_buffer_ref_at_end
     ma_audio_buffer_ref_at_end.restype = ma_bool32
     ma_audio_buffer_ref_at_end.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_audio_buffer_ref_get_cursor_in_pcm_frames
+    ma_audio_buffer_ref_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_audio_buffer_ref_get_cursor_in_pcm_frames
     ma_audio_buffer_ref_get_cursor_in_pcm_frames.restype = ma_result
     ma_audio_buffer_ref_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_audio_buffer_ref_get_length_in_pcm_frames
+    ma_audio_buffer_ref_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_audio_buffer_ref_get_length_in_pcm_frames
     ma_audio_buffer_ref_get_length_in_pcm_frames.restype = ma_result
     ma_audio_buffer_ref_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_ref_get_available_frames = _libraries['miniaudio.so'].ma_audio_buffer_ref_get_available_frames
+    ma_audio_buffer_ref_get_available_frames = _libraries['libminiaudio.so'].ma_audio_buffer_ref_get_available_frames
     ma_audio_buffer_ref_get_available_frames.restype = ma_result
     ma_audio_buffer_ref_get_available_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_ref), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
@@ -4394,7 +4394,7 @@ struct_ma_audio_buffer_config._fields_ = [
 
 ma_audio_buffer_config = struct_ma_audio_buffer_config
 try:
-    ma_audio_buffer_config_init = _libraries['miniaudio.so'].ma_audio_buffer_config_init
+    ma_audio_buffer_config_init = _libraries['libminiaudio.so'].ma_audio_buffer_config_init
     ma_audio_buffer_config_init.restype = ma_audio_buffer_config
     ma_audio_buffer_config_init.argtypes = [ma_format, ma_uint32, ma_uint64, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -4413,79 +4413,79 @@ struct_ma_audio_buffer._fields_ = [
 
 ma_audio_buffer = struct_ma_audio_buffer
 try:
-    ma_audio_buffer_init = _libraries['miniaudio.so'].ma_audio_buffer_init
+    ma_audio_buffer_init = _libraries['libminiaudio.so'].ma_audio_buffer_init
     ma_audio_buffer_init.restype = ma_result
     ma_audio_buffer_init.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_config), ctypes.POINTER(struct_ma_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_init_copy = _libraries['miniaudio.so'].ma_audio_buffer_init_copy
+    ma_audio_buffer_init_copy = _libraries['libminiaudio.so'].ma_audio_buffer_init_copy
     ma_audio_buffer_init_copy.restype = ma_result
     ma_audio_buffer_init_copy.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_config), ctypes.POINTER(struct_ma_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_alloc_and_init = _libraries['miniaudio.so'].ma_audio_buffer_alloc_and_init
+    ma_audio_buffer_alloc_and_init = _libraries['libminiaudio.so'].ma_audio_buffer_alloc_and_init
     ma_audio_buffer_alloc_and_init.restype = ma_result
     ma_audio_buffer_alloc_and_init.argtypes = [ctypes.POINTER(struct_ma_audio_buffer_config), ctypes.POINTER(ctypes.POINTER(struct_ma_audio_buffer))]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_uninit = _libraries['miniaudio.so'].ma_audio_buffer_uninit
+    ma_audio_buffer_uninit = _libraries['libminiaudio.so'].ma_audio_buffer_uninit
     ma_audio_buffer_uninit.restype = None
     ma_audio_buffer_uninit.argtypes = [ctypes.POINTER(struct_ma_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_uninit_and_free = _libraries['miniaudio.so'].ma_audio_buffer_uninit_and_free
+    ma_audio_buffer_uninit_and_free = _libraries['libminiaudio.so'].ma_audio_buffer_uninit_and_free
     ma_audio_buffer_uninit_and_free.restype = None
     ma_audio_buffer_uninit_and_free.argtypes = [ctypes.POINTER(struct_ma_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_read_pcm_frames = _libraries['miniaudio.so'].ma_audio_buffer_read_pcm_frames
+    ma_audio_buffer_read_pcm_frames = _libraries['libminiaudio.so'].ma_audio_buffer_read_pcm_frames
     ma_audio_buffer_read_pcm_frames.restype = ma_uint64
     ma_audio_buffer_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ctypes.POINTER(None), ma_uint64, ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_audio_buffer_seek_to_pcm_frame
+    ma_audio_buffer_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_audio_buffer_seek_to_pcm_frame
     ma_audio_buffer_seek_to_pcm_frame.restype = ma_result
     ma_audio_buffer_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_map = _libraries['miniaudio.so'].ma_audio_buffer_map
+    ma_audio_buffer_map = _libraries['libminiaudio.so'].ma_audio_buffer_map
     ma_audio_buffer_map.restype = ma_result
     ma_audio_buffer_map.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ctypes.POINTER(ctypes.POINTER(None)), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_unmap = _libraries['miniaudio.so'].ma_audio_buffer_unmap
+    ma_audio_buffer_unmap = _libraries['libminiaudio.so'].ma_audio_buffer_unmap
     ma_audio_buffer_unmap.restype = ma_result
     ma_audio_buffer_unmap.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_at_end = _libraries['miniaudio.so'].ma_audio_buffer_at_end
+    ma_audio_buffer_at_end = _libraries['libminiaudio.so'].ma_audio_buffer_at_end
     ma_audio_buffer_at_end.restype = ma_bool32
     ma_audio_buffer_at_end.argtypes = [ctypes.POINTER(struct_ma_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_audio_buffer_get_cursor_in_pcm_frames
+    ma_audio_buffer_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_audio_buffer_get_cursor_in_pcm_frames
     ma_audio_buffer_get_cursor_in_pcm_frames.restype = ma_result
     ma_audio_buffer_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_audio_buffer_get_length_in_pcm_frames
+    ma_audio_buffer_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_audio_buffer_get_length_in_pcm_frames
     ma_audio_buffer_get_length_in_pcm_frames.restype = ma_result
     ma_audio_buffer_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_audio_buffer_get_available_frames = _libraries['miniaudio.so'].ma_audio_buffer_get_available_frames
+    ma_audio_buffer_get_available_frames = _libraries['libminiaudio.so'].ma_audio_buffer_get_available_frames
     ma_audio_buffer_get_available_frames.restype = ma_result
     ma_audio_buffer_get_available_frames.argtypes = [ctypes.POINTER(struct_ma_audio_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
@@ -4515,55 +4515,55 @@ struct_ma_paged_audio_buffer_data._fields_ = [
 
 ma_paged_audio_buffer_data = struct_ma_paged_audio_buffer_data
 try:
-    ma_paged_audio_buffer_data_init = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_init
+    ma_paged_audio_buffer_data_init = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_init
     ma_paged_audio_buffer_data_init.restype = ma_result
     ma_paged_audio_buffer_data_init.argtypes = [ma_format, ma_uint32, ctypes.POINTER(struct_ma_paged_audio_buffer_data)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_uninit = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_uninit
+    ma_paged_audio_buffer_data_uninit = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_uninit
     ma_paged_audio_buffer_data_uninit.restype = None
     ma_paged_audio_buffer_data_uninit.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_get_head = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_get_head
+    ma_paged_audio_buffer_data_get_head = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_get_head
     ma_paged_audio_buffer_data_get_head.restype = ctypes.POINTER(struct_ma_paged_audio_buffer_page)
     ma_paged_audio_buffer_data_get_head.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_get_tail = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_get_tail
+    ma_paged_audio_buffer_data_get_tail = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_get_tail
     ma_paged_audio_buffer_data_get_tail.restype = ctypes.POINTER(struct_ma_paged_audio_buffer_page)
     ma_paged_audio_buffer_data_get_tail.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_get_length_in_pcm_frames
+    ma_paged_audio_buffer_data_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_get_length_in_pcm_frames
     ma_paged_audio_buffer_data_get_length_in_pcm_frames.restype = ma_result
     ma_paged_audio_buffer_data_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_allocate_page = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_allocate_page
+    ma_paged_audio_buffer_data_allocate_page = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_allocate_page
     ma_paged_audio_buffer_data_allocate_page.restype = ma_result
     ma_paged_audio_buffer_data_allocate_page.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data), ma_uint64, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(ctypes.POINTER(struct_ma_paged_audio_buffer_page))]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_free_page = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_free_page
+    ma_paged_audio_buffer_data_free_page = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_free_page
     ma_paged_audio_buffer_data_free_page.restype = ma_result
     ma_paged_audio_buffer_data_free_page.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data), ctypes.POINTER(struct_ma_paged_audio_buffer_page), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_append_page = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_append_page
+    ma_paged_audio_buffer_data_append_page = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_append_page
     ma_paged_audio_buffer_data_append_page.restype = ma_result
     ma_paged_audio_buffer_data_append_page.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data), ctypes.POINTER(struct_ma_paged_audio_buffer_page)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_data_allocate_and_append_page = _libraries['miniaudio.so'].ma_paged_audio_buffer_data_allocate_and_append_page
+    ma_paged_audio_buffer_data_allocate_and_append_page = _libraries['libminiaudio.so'].ma_paged_audio_buffer_data_allocate_and_append_page
     ma_paged_audio_buffer_data_allocate_and_append_page.restype = ma_result
     ma_paged_audio_buffer_data_allocate_and_append_page.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data), ma_uint32, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -4578,7 +4578,7 @@ struct_ma_paged_audio_buffer_config._fields_ = [
 
 ma_paged_audio_buffer_config = struct_ma_paged_audio_buffer_config
 try:
-    ma_paged_audio_buffer_config_init = _libraries['miniaudio.so'].ma_paged_audio_buffer_config_init
+    ma_paged_audio_buffer_config_init = _libraries['libminiaudio.so'].ma_paged_audio_buffer_config_init
     ma_paged_audio_buffer_config_init.restype = ma_paged_audio_buffer_config
     ma_paged_audio_buffer_config_init.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_data)]
 except AttributeError:
@@ -4597,337 +4597,337 @@ struct_ma_paged_audio_buffer._fields_ = [
 
 ma_paged_audio_buffer = struct_ma_paged_audio_buffer
 try:
-    ma_paged_audio_buffer_init = _libraries['miniaudio.so'].ma_paged_audio_buffer_init
+    ma_paged_audio_buffer_init = _libraries['libminiaudio.so'].ma_paged_audio_buffer_init
     ma_paged_audio_buffer_init.restype = ma_result
     ma_paged_audio_buffer_init.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer_config), ctypes.POINTER(struct_ma_paged_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_uninit = _libraries['miniaudio.so'].ma_paged_audio_buffer_uninit
+    ma_paged_audio_buffer_uninit = _libraries['libminiaudio.so'].ma_paged_audio_buffer_uninit
     ma_paged_audio_buffer_uninit.restype = None
     ma_paged_audio_buffer_uninit.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_read_pcm_frames = _libraries['miniaudio.so'].ma_paged_audio_buffer_read_pcm_frames
+    ma_paged_audio_buffer_read_pcm_frames = _libraries['libminiaudio.so'].ma_paged_audio_buffer_read_pcm_frames
     ma_paged_audio_buffer_read_pcm_frames.restype = ma_result
     ma_paged_audio_buffer_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_paged_audio_buffer_seek_to_pcm_frame
+    ma_paged_audio_buffer_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_paged_audio_buffer_seek_to_pcm_frame
     ma_paged_audio_buffer_seek_to_pcm_frame.restype = ma_result
     ma_paged_audio_buffer_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_paged_audio_buffer_get_cursor_in_pcm_frames
+    ma_paged_audio_buffer_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_paged_audio_buffer_get_cursor_in_pcm_frames
     ma_paged_audio_buffer_get_cursor_in_pcm_frames.restype = ma_result
     ma_paged_audio_buffer_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_paged_audio_buffer_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_paged_audio_buffer_get_length_in_pcm_frames
+    ma_paged_audio_buffer_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_paged_audio_buffer_get_length_in_pcm_frames
     ma_paged_audio_buffer_get_length_in_pcm_frames.restype = ma_result
     ma_paged_audio_buffer_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_paged_audio_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_rb_init_ex = _libraries['miniaudio.so'].ma_rb_init_ex
+    ma_rb_init_ex = _libraries['libminiaudio.so'].ma_rb_init_ex
     ma_rb_init_ex.restype = ma_result
     ma_rb_init_ex.argtypes = [size_t, size_t, size_t, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_init = _libraries['miniaudio.so'].ma_rb_init
+    ma_rb_init = _libraries['libminiaudio.so'].ma_rb_init
     ma_rb_init.restype = ma_result
     ma_rb_init.argtypes = [size_t, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_uninit = _libraries['miniaudio.so'].ma_rb_uninit
+    ma_rb_uninit = _libraries['libminiaudio.so'].ma_rb_uninit
     ma_rb_uninit.restype = None
     ma_rb_uninit.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_reset = _libraries['miniaudio.so'].ma_rb_reset
+    ma_rb_reset = _libraries['libminiaudio.so'].ma_rb_reset
     ma_rb_reset.restype = None
     ma_rb_reset.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_acquire_read = _libraries['miniaudio.so'].ma_rb_acquire_read
+    ma_rb_acquire_read = _libraries['libminiaudio.so'].ma_rb_acquire_read
     ma_rb_acquire_read.restype = ma_result
     ma_rb_acquire_read.argtypes = [ctypes.POINTER(struct_ma_rb), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_rb_commit_read = _libraries['miniaudio.so'].ma_rb_commit_read
+    ma_rb_commit_read = _libraries['libminiaudio.so'].ma_rb_commit_read
     ma_rb_commit_read.restype = ma_result
     ma_rb_commit_read.argtypes = [ctypes.POINTER(struct_ma_rb), size_t]
 except AttributeError:
     pass
 try:
-    ma_rb_acquire_write = _libraries['miniaudio.so'].ma_rb_acquire_write
+    ma_rb_acquire_write = _libraries['libminiaudio.so'].ma_rb_acquire_write
     ma_rb_acquire_write.restype = ma_result
     ma_rb_acquire_write.argtypes = [ctypes.POINTER(struct_ma_rb), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_rb_commit_write = _libraries['miniaudio.so'].ma_rb_commit_write
+    ma_rb_commit_write = _libraries['libminiaudio.so'].ma_rb_commit_write
     ma_rb_commit_write.restype = ma_result
     ma_rb_commit_write.argtypes = [ctypes.POINTER(struct_ma_rb), size_t]
 except AttributeError:
     pass
 try:
-    ma_rb_seek_read = _libraries['miniaudio.so'].ma_rb_seek_read
+    ma_rb_seek_read = _libraries['libminiaudio.so'].ma_rb_seek_read
     ma_rb_seek_read.restype = ma_result
     ma_rb_seek_read.argtypes = [ctypes.POINTER(struct_ma_rb), size_t]
 except AttributeError:
     pass
 try:
-    ma_rb_seek_write = _libraries['miniaudio.so'].ma_rb_seek_write
+    ma_rb_seek_write = _libraries['libminiaudio.so'].ma_rb_seek_write
     ma_rb_seek_write.restype = ma_result
     ma_rb_seek_write.argtypes = [ctypes.POINTER(struct_ma_rb), size_t]
 except AttributeError:
     pass
 try:
-    ma_rb_pointer_distance = _libraries['miniaudio.so'].ma_rb_pointer_distance
+    ma_rb_pointer_distance = _libraries['libminiaudio.so'].ma_rb_pointer_distance
     ma_rb_pointer_distance.restype = ma_int32
     ma_rb_pointer_distance.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_available_read = _libraries['miniaudio.so'].ma_rb_available_read
+    ma_rb_available_read = _libraries['libminiaudio.so'].ma_rb_available_read
     ma_rb_available_read.restype = ma_uint32
     ma_rb_available_read.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_available_write = _libraries['miniaudio.so'].ma_rb_available_write
+    ma_rb_available_write = _libraries['libminiaudio.so'].ma_rb_available_write
     ma_rb_available_write.restype = ma_uint32
     ma_rb_available_write.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_get_subbuffer_size = _libraries['miniaudio.so'].ma_rb_get_subbuffer_size
+    ma_rb_get_subbuffer_size = _libraries['libminiaudio.so'].ma_rb_get_subbuffer_size
     ma_rb_get_subbuffer_size.restype = size_t
     ma_rb_get_subbuffer_size.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_get_subbuffer_stride = _libraries['miniaudio.so'].ma_rb_get_subbuffer_stride
+    ma_rb_get_subbuffer_stride = _libraries['libminiaudio.so'].ma_rb_get_subbuffer_stride
     ma_rb_get_subbuffer_stride.restype = size_t
     ma_rb_get_subbuffer_stride.argtypes = [ctypes.POINTER(struct_ma_rb)]
 except AttributeError:
     pass
 try:
-    ma_rb_get_subbuffer_offset = _libraries['miniaudio.so'].ma_rb_get_subbuffer_offset
+    ma_rb_get_subbuffer_offset = _libraries['libminiaudio.so'].ma_rb_get_subbuffer_offset
     ma_rb_get_subbuffer_offset.restype = size_t
     ma_rb_get_subbuffer_offset.argtypes = [ctypes.POINTER(struct_ma_rb), size_t]
 except AttributeError:
     pass
 try:
-    ma_rb_get_subbuffer_ptr = _libraries['miniaudio.so'].ma_rb_get_subbuffer_ptr
+    ma_rb_get_subbuffer_ptr = _libraries['libminiaudio.so'].ma_rb_get_subbuffer_ptr
     ma_rb_get_subbuffer_ptr.restype = ctypes.POINTER(None)
     ma_rb_get_subbuffer_ptr.argtypes = [ctypes.POINTER(struct_ma_rb), size_t, ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_init_ex = _libraries['miniaudio.so'].ma_pcm_rb_init_ex
+    ma_pcm_rb_init_ex = _libraries['libminiaudio.so'].ma_pcm_rb_init_ex
     ma_pcm_rb_init_ex.restype = ma_result
     ma_pcm_rb_init_ex.argtypes = [ma_format, ma_uint32, ma_uint32, ma_uint32, ma_uint32, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_init = _libraries['miniaudio.so'].ma_pcm_rb_init
+    ma_pcm_rb_init = _libraries['libminiaudio.so'].ma_pcm_rb_init
     ma_pcm_rb_init.restype = ma_result
     ma_pcm_rb_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_uninit = _libraries['miniaudio.so'].ma_pcm_rb_uninit
+    ma_pcm_rb_uninit = _libraries['libminiaudio.so'].ma_pcm_rb_uninit
     ma_pcm_rb_uninit.restype = None
     ma_pcm_rb_uninit.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_reset = _libraries['miniaudio.so'].ma_pcm_rb_reset
+    ma_pcm_rb_reset = _libraries['libminiaudio.so'].ma_pcm_rb_reset
     ma_pcm_rb_reset.restype = None
     ma_pcm_rb_reset.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_acquire_read = _libraries['miniaudio.so'].ma_pcm_rb_acquire_read
+    ma_pcm_rb_acquire_read = _libraries['libminiaudio.so'].ma_pcm_rb_acquire_read
     ma_pcm_rb_acquire_read.restype = ma_result
     ma_pcm_rb_acquire_read.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_commit_read = _libraries['miniaudio.so'].ma_pcm_rb_commit_read
+    ma_pcm_rb_commit_read = _libraries['libminiaudio.so'].ma_pcm_rb_commit_read
     ma_pcm_rb_commit_read.restype = ma_result
     ma_pcm_rb_commit_read.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_acquire_write = _libraries['miniaudio.so'].ma_pcm_rb_acquire_write
+    ma_pcm_rb_acquire_write = _libraries['libminiaudio.so'].ma_pcm_rb_acquire_write
     ma_pcm_rb_acquire_write.restype = ma_result
     ma_pcm_rb_acquire_write.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_commit_write = _libraries['miniaudio.so'].ma_pcm_rb_commit_write
+    ma_pcm_rb_commit_write = _libraries['libminiaudio.so'].ma_pcm_rb_commit_write
     ma_pcm_rb_commit_write.restype = ma_result
     ma_pcm_rb_commit_write.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_seek_read = _libraries['miniaudio.so'].ma_pcm_rb_seek_read
+    ma_pcm_rb_seek_read = _libraries['libminiaudio.so'].ma_pcm_rb_seek_read
     ma_pcm_rb_seek_read.restype = ma_result
     ma_pcm_rb_seek_read.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_seek_write = _libraries['miniaudio.so'].ma_pcm_rb_seek_write
+    ma_pcm_rb_seek_write = _libraries['libminiaudio.so'].ma_pcm_rb_seek_write
     ma_pcm_rb_seek_write.restype = ma_result
     ma_pcm_rb_seek_write.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_pointer_distance = _libraries['miniaudio.so'].ma_pcm_rb_pointer_distance
+    ma_pcm_rb_pointer_distance = _libraries['libminiaudio.so'].ma_pcm_rb_pointer_distance
     ma_pcm_rb_pointer_distance.restype = ma_int32
     ma_pcm_rb_pointer_distance.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_available_read = _libraries['miniaudio.so'].ma_pcm_rb_available_read
+    ma_pcm_rb_available_read = _libraries['libminiaudio.so'].ma_pcm_rb_available_read
     ma_pcm_rb_available_read.restype = ma_uint32
     ma_pcm_rb_available_read.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_available_write = _libraries['miniaudio.so'].ma_pcm_rb_available_write
+    ma_pcm_rb_available_write = _libraries['libminiaudio.so'].ma_pcm_rb_available_write
     ma_pcm_rb_available_write.restype = ma_uint32
     ma_pcm_rb_available_write.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_subbuffer_size = _libraries['miniaudio.so'].ma_pcm_rb_get_subbuffer_size
+    ma_pcm_rb_get_subbuffer_size = _libraries['libminiaudio.so'].ma_pcm_rb_get_subbuffer_size
     ma_pcm_rb_get_subbuffer_size.restype = ma_uint32
     ma_pcm_rb_get_subbuffer_size.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_subbuffer_stride = _libraries['miniaudio.so'].ma_pcm_rb_get_subbuffer_stride
+    ma_pcm_rb_get_subbuffer_stride = _libraries['libminiaudio.so'].ma_pcm_rb_get_subbuffer_stride
     ma_pcm_rb_get_subbuffer_stride.restype = ma_uint32
     ma_pcm_rb_get_subbuffer_stride.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_subbuffer_offset = _libraries['miniaudio.so'].ma_pcm_rb_get_subbuffer_offset
+    ma_pcm_rb_get_subbuffer_offset = _libraries['libminiaudio.so'].ma_pcm_rb_get_subbuffer_offset
     ma_pcm_rb_get_subbuffer_offset.restype = ma_uint32
     ma_pcm_rb_get_subbuffer_offset.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_subbuffer_ptr = _libraries['miniaudio.so'].ma_pcm_rb_get_subbuffer_ptr
+    ma_pcm_rb_get_subbuffer_ptr = _libraries['libminiaudio.so'].ma_pcm_rb_get_subbuffer_ptr
     ma_pcm_rb_get_subbuffer_ptr.restype = ctypes.POINTER(None)
     ma_pcm_rb_get_subbuffer_ptr.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32, ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_format = _libraries['miniaudio.so'].ma_pcm_rb_get_format
+    ma_pcm_rb_get_format = _libraries['libminiaudio.so'].ma_pcm_rb_get_format
     ma_pcm_rb_get_format.restype = ma_format
     ma_pcm_rb_get_format.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_channels = _libraries['miniaudio.so'].ma_pcm_rb_get_channels
+    ma_pcm_rb_get_channels = _libraries['libminiaudio.so'].ma_pcm_rb_get_channels
     ma_pcm_rb_get_channels.restype = ma_uint32
     ma_pcm_rb_get_channels.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_get_sample_rate = _libraries['miniaudio.so'].ma_pcm_rb_get_sample_rate
+    ma_pcm_rb_get_sample_rate = _libraries['libminiaudio.so'].ma_pcm_rb_get_sample_rate
     ma_pcm_rb_get_sample_rate.restype = ma_uint32
     ma_pcm_rb_get_sample_rate.argtypes = [ctypes.POINTER(struct_ma_pcm_rb)]
 except AttributeError:
     pass
 try:
-    ma_pcm_rb_set_sample_rate = _libraries['miniaudio.so'].ma_pcm_rb_set_sample_rate
+    ma_pcm_rb_set_sample_rate = _libraries['libminiaudio.so'].ma_pcm_rb_set_sample_rate
     ma_pcm_rb_set_sample_rate.restype = None
     ma_pcm_rb_set_sample_rate.argtypes = [ctypes.POINTER(struct_ma_pcm_rb), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_duplex_rb_init = _libraries['miniaudio.so'].ma_duplex_rb_init
+    ma_duplex_rb_init = _libraries['libminiaudio.so'].ma_duplex_rb_init
     ma_duplex_rb_init.restype = ma_result
     ma_duplex_rb_init.argtypes = [ma_format, ma_uint32, ma_uint32, ma_uint32, ma_uint32, ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_duplex_rb)]
 except AttributeError:
     pass
 try:
-    ma_duplex_rb_uninit = _libraries['miniaudio.so'].ma_duplex_rb_uninit
+    ma_duplex_rb_uninit = _libraries['libminiaudio.so'].ma_duplex_rb_uninit
     ma_duplex_rb_uninit.restype = ma_result
     ma_duplex_rb_uninit.argtypes = [ctypes.POINTER(struct_ma_duplex_rb)]
 except AttributeError:
     pass
 try:
-    ma_result_description = _libraries['miniaudio.so'].ma_result_description
+    ma_result_description = _libraries['libminiaudio.so'].ma_result_description
     ma_result_description.restype = ctypes.POINTER(ctypes.c_char)
     ma_result_description.argtypes = [ma_result]
 except AttributeError:
     pass
 try:
-    ma_malloc = _libraries['miniaudio.so'].ma_malloc
+    ma_malloc = _libraries['libminiaudio.so'].ma_malloc
     ma_malloc.restype = ctypes.POINTER(None)
     ma_malloc.argtypes = [size_t, ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_calloc = _libraries['miniaudio.so'].ma_calloc
+    ma_calloc = _libraries['libminiaudio.so'].ma_calloc
     ma_calloc.restype = ctypes.POINTER(None)
     ma_calloc.argtypes = [size_t, ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_realloc = _libraries['miniaudio.so'].ma_realloc
+    ma_realloc = _libraries['libminiaudio.so'].ma_realloc
     ma_realloc.restype = ctypes.POINTER(None)
     ma_realloc.argtypes = [ctypes.POINTER(None), size_t, ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_free = _libraries['miniaudio.so'].ma_free
+    ma_free = _libraries['libminiaudio.so'].ma_free
     ma_free.restype = None
     ma_free.argtypes = [ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_aligned_malloc = _libraries['miniaudio.so'].ma_aligned_malloc
+    ma_aligned_malloc = _libraries['libminiaudio.so'].ma_aligned_malloc
     ma_aligned_malloc.restype = ctypes.POINTER(None)
     ma_aligned_malloc.argtypes = [size_t, size_t, ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_aligned_free = _libraries['miniaudio.so'].ma_aligned_free
+    ma_aligned_free = _libraries['libminiaudio.so'].ma_aligned_free
     ma_aligned_free.restype = None
     ma_aligned_free.argtypes = [ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_get_format_name = _libraries['miniaudio.so'].ma_get_format_name
+    ma_get_format_name = _libraries['libminiaudio.so'].ma_get_format_name
     ma_get_format_name.restype = ctypes.POINTER(ctypes.c_char)
     ma_get_format_name.argtypes = [ma_format]
 except AttributeError:
     pass
 try:
-    ma_blend_f32 = _libraries['miniaudio.so'].ma_blend_f32
+    ma_blend_f32 = _libraries['libminiaudio.so'].ma_blend_f32
     ma_blend_f32.restype = None
     ma_blend_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.c_float, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_get_bytes_per_sample = _libraries['miniaudio.so'].ma_get_bytes_per_sample
+    ma_get_bytes_per_sample = _libraries['libminiaudio.so'].ma_get_bytes_per_sample
     ma_get_bytes_per_sample.restype = ma_uint32
     ma_get_bytes_per_sample.argtypes = [ma_format]
 except AttributeError:
@@ -4939,97 +4939,97 @@ try:
 except AttributeError:
     pass
 try:
-    ma_log_level_to_string = _libraries['miniaudio.so'].ma_log_level_to_string
+    ma_log_level_to_string = _libraries['libminiaudio.so'].ma_log_level_to_string
     ma_log_level_to_string.restype = ctypes.POINTER(ctypes.c_char)
     ma_log_level_to_string.argtypes = [ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_spinlock_lock = _libraries['miniaudio.so'].ma_spinlock_lock
+    ma_spinlock_lock = _libraries['libminiaudio.so'].ma_spinlock_lock
     ma_spinlock_lock.restype = ma_result
     ma_spinlock_lock.argtypes = [ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_spinlock_lock_noyield = _libraries['miniaudio.so'].ma_spinlock_lock_noyield
+    ma_spinlock_lock_noyield = _libraries['libminiaudio.so'].ma_spinlock_lock_noyield
     ma_spinlock_lock_noyield.restype = ma_result
     ma_spinlock_lock_noyield.argtypes = [ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_spinlock_unlock = _libraries['miniaudio.so'].ma_spinlock_unlock
+    ma_spinlock_unlock = _libraries['libminiaudio.so'].ma_spinlock_unlock
     ma_spinlock_unlock.restype = ma_result
     ma_spinlock_unlock.argtypes = [ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_mutex_init = _libraries['miniaudio.so'].ma_mutex_init
+    ma_mutex_init = _libraries['libminiaudio.so'].ma_mutex_init
     ma_mutex_init.restype = ma_result
     ma_mutex_init.argtypes = [ctypes.POINTER(union_pthread_mutex_t)]
 except AttributeError:
     pass
 try:
-    ma_mutex_uninit = _libraries['miniaudio.so'].ma_mutex_uninit
+    ma_mutex_uninit = _libraries['libminiaudio.so'].ma_mutex_uninit
     ma_mutex_uninit.restype = None
     ma_mutex_uninit.argtypes = [ctypes.POINTER(union_pthread_mutex_t)]
 except AttributeError:
     pass
 try:
-    ma_mutex_lock = _libraries['miniaudio.so'].ma_mutex_lock
+    ma_mutex_lock = _libraries['libminiaudio.so'].ma_mutex_lock
     ma_mutex_lock.restype = None
     ma_mutex_lock.argtypes = [ctypes.POINTER(union_pthread_mutex_t)]
 except AttributeError:
     pass
 try:
-    ma_mutex_unlock = _libraries['miniaudio.so'].ma_mutex_unlock
+    ma_mutex_unlock = _libraries['libminiaudio.so'].ma_mutex_unlock
     ma_mutex_unlock.restype = None
     ma_mutex_unlock.argtypes = [ctypes.POINTER(union_pthread_mutex_t)]
 except AttributeError:
     pass
 try:
-    ma_event_init = _libraries['miniaudio.so'].ma_event_init
+    ma_event_init = _libraries['libminiaudio.so'].ma_event_init
     ma_event_init.restype = ma_result
     ma_event_init.argtypes = [ctypes.POINTER(struct_ma_event)]
 except AttributeError:
     pass
 try:
-    ma_event_uninit = _libraries['miniaudio.so'].ma_event_uninit
+    ma_event_uninit = _libraries['libminiaudio.so'].ma_event_uninit
     ma_event_uninit.restype = None
     ma_event_uninit.argtypes = [ctypes.POINTER(struct_ma_event)]
 except AttributeError:
     pass
 try:
-    ma_event_wait = _libraries['miniaudio.so'].ma_event_wait
+    ma_event_wait = _libraries['libminiaudio.so'].ma_event_wait
     ma_event_wait.restype = ma_result
     ma_event_wait.argtypes = [ctypes.POINTER(struct_ma_event)]
 except AttributeError:
     pass
 try:
-    ma_event_signal = _libraries['miniaudio.so'].ma_event_signal
+    ma_event_signal = _libraries['libminiaudio.so'].ma_event_signal
     ma_event_signal.restype = ma_result
     ma_event_signal.argtypes = [ctypes.POINTER(struct_ma_event)]
 except AttributeError:
     pass
 try:
-    ma_semaphore_init = _libraries['miniaudio.so'].ma_semaphore_init
+    ma_semaphore_init = _libraries['libminiaudio.so'].ma_semaphore_init
     ma_semaphore_init.restype = ma_result
     ma_semaphore_init.argtypes = [ctypes.c_int32, ctypes.POINTER(struct_ma_semaphore)]
 except AttributeError:
     pass
 try:
-    ma_semaphore_uninit = _libraries['miniaudio.so'].ma_semaphore_uninit
+    ma_semaphore_uninit = _libraries['libminiaudio.so'].ma_semaphore_uninit
     ma_semaphore_uninit.restype = None
     ma_semaphore_uninit.argtypes = [ctypes.POINTER(struct_ma_semaphore)]
 except AttributeError:
     pass
 try:
-    ma_semaphore_wait = _libraries['miniaudio.so'].ma_semaphore_wait
+    ma_semaphore_wait = _libraries['libminiaudio.so'].ma_semaphore_wait
     ma_semaphore_wait.restype = ma_result
     ma_semaphore_wait.argtypes = [ctypes.POINTER(struct_ma_semaphore)]
 except AttributeError:
     pass
 try:
-    ma_semaphore_release = _libraries['miniaudio.so'].ma_semaphore_release
+    ma_semaphore_release = _libraries['libminiaudio.so'].ma_semaphore_release
     ma_semaphore_release.restype = ma_result
     ma_semaphore_release.argtypes = [ctypes.POINTER(struct_ma_semaphore)]
 except AttributeError:
@@ -5046,31 +5046,31 @@ struct_ma_fence._fields_ = [
 
 ma_fence = struct_ma_fence
 try:
-    ma_fence_init = _libraries['miniaudio.so'].ma_fence_init
+    ma_fence_init = _libraries['libminiaudio.so'].ma_fence_init
     ma_fence_init.restype = ma_result
     ma_fence_init.argtypes = [ctypes.POINTER(struct_ma_fence)]
 except AttributeError:
     pass
 try:
-    ma_fence_uninit = _libraries['miniaudio.so'].ma_fence_uninit
+    ma_fence_uninit = _libraries['libminiaudio.so'].ma_fence_uninit
     ma_fence_uninit.restype = None
     ma_fence_uninit.argtypes = [ctypes.POINTER(struct_ma_fence)]
 except AttributeError:
     pass
 try:
-    ma_fence_acquire = _libraries['miniaudio.so'].ma_fence_acquire
+    ma_fence_acquire = _libraries['libminiaudio.so'].ma_fence_acquire
     ma_fence_acquire.restype = ma_result
     ma_fence_acquire.argtypes = [ctypes.POINTER(struct_ma_fence)]
 except AttributeError:
     pass
 try:
-    ma_fence_release = _libraries['miniaudio.so'].ma_fence_release
+    ma_fence_release = _libraries['libminiaudio.so'].ma_fence_release
     ma_fence_release.restype = ma_result
     ma_fence_release.argtypes = [ctypes.POINTER(struct_ma_fence)]
 except AttributeError:
     pass
 try:
-    ma_fence_wait = _libraries['miniaudio.so'].ma_fence_wait
+    ma_fence_wait = _libraries['libminiaudio.so'].ma_fence_wait
     ma_fence_wait.restype = ma_result
     ma_fence_wait.argtypes = [ctypes.POINTER(struct_ma_fence)]
 except AttributeError:
@@ -5086,7 +5086,7 @@ struct_ma_async_notification_callbacks._fields_ = [
 
 ma_async_notification_callbacks = struct_ma_async_notification_callbacks
 try:
-    ma_async_notification_signal = _libraries['miniaudio.so'].ma_async_notification_signal
+    ma_async_notification_signal = _libraries['libminiaudio.so'].ma_async_notification_signal
     ma_async_notification_signal.restype = ma_result
     ma_async_notification_signal.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
@@ -5103,13 +5103,13 @@ struct_ma_async_notification_poll._fields_ = [
 
 ma_async_notification_poll = struct_ma_async_notification_poll
 try:
-    ma_async_notification_poll_init = _libraries['miniaudio.so'].ma_async_notification_poll_init
+    ma_async_notification_poll_init = _libraries['libminiaudio.so'].ma_async_notification_poll_init
     ma_async_notification_poll_init.restype = ma_result
     ma_async_notification_poll_init.argtypes = [ctypes.POINTER(struct_ma_async_notification_poll)]
 except AttributeError:
     pass
 try:
-    ma_async_notification_poll_is_signalled = _libraries['miniaudio.so'].ma_async_notification_poll_is_signalled
+    ma_async_notification_poll_is_signalled = _libraries['libminiaudio.so'].ma_async_notification_poll_is_signalled
     ma_async_notification_poll_is_signalled.restype = ma_bool32
     ma_async_notification_poll_is_signalled.argtypes = [ctypes.POINTER(struct_ma_async_notification_poll)]
 except AttributeError:
@@ -5123,25 +5123,25 @@ class struct_ma_async_notification_event(Structure):
 
 ma_async_notification_event = struct_ma_async_notification_event
 try:
-    ma_async_notification_event_init = _libraries['miniaudio.so'].ma_async_notification_event_init
+    ma_async_notification_event_init = _libraries['libminiaudio.so'].ma_async_notification_event_init
     ma_async_notification_event_init.restype = ma_result
     ma_async_notification_event_init.argtypes = [ctypes.POINTER(struct_ma_async_notification_event)]
 except AttributeError:
     pass
 try:
-    ma_async_notification_event_uninit = _libraries['miniaudio.so'].ma_async_notification_event_uninit
+    ma_async_notification_event_uninit = _libraries['libminiaudio.so'].ma_async_notification_event_uninit
     ma_async_notification_event_uninit.restype = ma_result
     ma_async_notification_event_uninit.argtypes = [ctypes.POINTER(struct_ma_async_notification_event)]
 except AttributeError:
     pass
 try:
-    ma_async_notification_event_wait = _libraries['miniaudio.so'].ma_async_notification_event_wait
+    ma_async_notification_event_wait = _libraries['libminiaudio.so'].ma_async_notification_event_wait
     ma_async_notification_event_wait.restype = ma_result
     ma_async_notification_event_wait.argtypes = [ctypes.POINTER(struct_ma_async_notification_event)]
 except AttributeError:
     pass
 try:
-    ma_async_notification_event_signal = _libraries['miniaudio.so'].ma_async_notification_event_signal
+    ma_async_notification_event_signal = _libraries['libminiaudio.so'].ma_async_notification_event_signal
     ma_async_notification_event_signal.restype = ma_result
     ma_async_notification_event_signal.argtypes = [ctypes.POINTER(struct_ma_async_notification_event)]
 except AttributeError:
@@ -5156,7 +5156,7 @@ struct_ma_slot_allocator_config._fields_ = [
 
 ma_slot_allocator_config = struct_ma_slot_allocator_config
 try:
-    ma_slot_allocator_config_init = _libraries['miniaudio.so'].ma_slot_allocator_config_init
+    ma_slot_allocator_config_init = _libraries['libminiaudio.so'].ma_slot_allocator_config_init
     ma_slot_allocator_config_init.restype = ma_slot_allocator_config
     ma_slot_allocator_config_init.argtypes = [ma_uint32]
 except AttributeError:
@@ -5186,37 +5186,37 @@ struct_ma_slot_allocator._fields_ = [
 
 ma_slot_allocator = struct_ma_slot_allocator
 try:
-    ma_slot_allocator_get_heap_size = _libraries['miniaudio.so'].ma_slot_allocator_get_heap_size
+    ma_slot_allocator_get_heap_size = _libraries['libminiaudio.so'].ma_slot_allocator_get_heap_size
     ma_slot_allocator_get_heap_size.restype = ma_result
     ma_slot_allocator_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_slot_allocator_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_slot_allocator_init_preallocated = _libraries['miniaudio.so'].ma_slot_allocator_init_preallocated
+    ma_slot_allocator_init_preallocated = _libraries['libminiaudio.so'].ma_slot_allocator_init_preallocated
     ma_slot_allocator_init_preallocated.restype = ma_result
     ma_slot_allocator_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_slot_allocator_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_slot_allocator)]
 except AttributeError:
     pass
 try:
-    ma_slot_allocator_init = _libraries['miniaudio.so'].ma_slot_allocator_init
+    ma_slot_allocator_init = _libraries['libminiaudio.so'].ma_slot_allocator_init
     ma_slot_allocator_init.restype = ma_result
     ma_slot_allocator_init.argtypes = [ctypes.POINTER(struct_ma_slot_allocator_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_slot_allocator)]
 except AttributeError:
     pass
 try:
-    ma_slot_allocator_uninit = _libraries['miniaudio.so'].ma_slot_allocator_uninit
+    ma_slot_allocator_uninit = _libraries['libminiaudio.so'].ma_slot_allocator_uninit
     ma_slot_allocator_uninit.restype = None
     ma_slot_allocator_uninit.argtypes = [ctypes.POINTER(struct_ma_slot_allocator), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_slot_allocator_alloc = _libraries['miniaudio.so'].ma_slot_allocator_alloc
+    ma_slot_allocator_alloc = _libraries['libminiaudio.so'].ma_slot_allocator_alloc
     ma_slot_allocator_alloc.restype = ma_result
     ma_slot_allocator_alloc.argtypes = [ctypes.POINTER(struct_ma_slot_allocator), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_slot_allocator_free = _libraries['miniaudio.so'].ma_slot_allocator_free
+    ma_slot_allocator_free = _libraries['libminiaudio.so'].ma_slot_allocator_free
     ma_slot_allocator_free.restype = ma_result
     ma_slot_allocator_free.argtypes = [ctypes.POINTER(struct_ma_slot_allocator), ma_uint64]
 except AttributeError:
@@ -5460,13 +5460,13 @@ MA_JOB_TYPE_DEVICE_AAUDIO_REROUTE = 11
 MA_JOB_TYPE_COUNT = 12
 ma_job_type = ctypes.c_uint32 # enum
 try:
-    ma_job_init = _libraries['miniaudio.so'].ma_job_init
+    ma_job_init = _libraries['libminiaudio.so'].ma_job_init
     ma_job_init.restype = ma_job
     ma_job_init.argtypes = [ma_uint16]
 except AttributeError:
     pass
 try:
-    ma_job_process = _libraries['miniaudio.so'].ma_job_process
+    ma_job_process = _libraries['libminiaudio.so'].ma_job_process
     ma_job_process.restype = ma_result
     ma_job_process.argtypes = [ctypes.POINTER(struct_ma_job)]
 except AttributeError:
@@ -5489,7 +5489,7 @@ struct_ma_job_queue_config._fields_ = [
 
 ma_job_queue_config = struct_ma_job_queue_config
 try:
-    ma_job_queue_config_init = _libraries['miniaudio.so'].ma_job_queue_config_init
+    ma_job_queue_config_init = _libraries['libminiaudio.so'].ma_job_queue_config_init
     ma_job_queue_config_init.restype = ma_job_queue_config
     ma_job_queue_config_init.argtypes = [ma_uint32, ma_uint32]
 except AttributeError:
@@ -5515,37 +5515,37 @@ struct_ma_job_queue._fields_ = [
 
 ma_job_queue = struct_ma_job_queue
 try:
-    ma_job_queue_get_heap_size = _libraries['miniaudio.so'].ma_job_queue_get_heap_size
+    ma_job_queue_get_heap_size = _libraries['libminiaudio.so'].ma_job_queue_get_heap_size
     ma_job_queue_get_heap_size.restype = ma_result
     ma_job_queue_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_job_queue_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_job_queue_init_preallocated = _libraries['miniaudio.so'].ma_job_queue_init_preallocated
+    ma_job_queue_init_preallocated = _libraries['libminiaudio.so'].ma_job_queue_init_preallocated
     ma_job_queue_init_preallocated.restype = ma_result
     ma_job_queue_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_job_queue_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_job_queue)]
 except AttributeError:
     pass
 try:
-    ma_job_queue_init = _libraries['miniaudio.so'].ma_job_queue_init
+    ma_job_queue_init = _libraries['libminiaudio.so'].ma_job_queue_init
     ma_job_queue_init.restype = ma_result
     ma_job_queue_init.argtypes = [ctypes.POINTER(struct_ma_job_queue_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_job_queue)]
 except AttributeError:
     pass
 try:
-    ma_job_queue_uninit = _libraries['miniaudio.so'].ma_job_queue_uninit
+    ma_job_queue_uninit = _libraries['libminiaudio.so'].ma_job_queue_uninit
     ma_job_queue_uninit.restype = None
     ma_job_queue_uninit.argtypes = [ctypes.POINTER(struct_ma_job_queue), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_job_queue_post = _libraries['miniaudio.so'].ma_job_queue_post
+    ma_job_queue_post = _libraries['libminiaudio.so'].ma_job_queue_post
     ma_job_queue_post.restype = ma_result
     ma_job_queue_post.argtypes = [ctypes.POINTER(struct_ma_job_queue), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
     pass
 try:
-    ma_job_queue_next = _libraries['miniaudio.so'].ma_job_queue_next
+    ma_job_queue_next = _libraries['libminiaudio.so'].ma_job_queue_next
     ma_job_queue_next.restype = ma_result
     ma_job_queue_next.argtypes = [ctypes.POINTER(struct_ma_job_queue), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
@@ -5562,7 +5562,7 @@ struct_ma_device_job_thread_config._fields_ = [
 
 ma_device_job_thread_config = struct_ma_device_job_thread_config
 try:
-    ma_device_job_thread_config_init = _libraries['miniaudio.so'].ma_device_job_thread_config_init
+    ma_device_job_thread_config_init = _libraries['libminiaudio.so'].ma_device_job_thread_config_init
     ma_device_job_thread_config_init.restype = ma_device_job_thread_config
     ma_device_job_thread_config_init.argtypes = []
 except AttributeError:
@@ -5580,25 +5580,25 @@ struct_ma_device_job_thread._fields_ = [
 
 ma_device_job_thread = struct_ma_device_job_thread
 try:
-    ma_device_job_thread_init = _libraries['miniaudio.so'].ma_device_job_thread_init
+    ma_device_job_thread_init = _libraries['libminiaudio.so'].ma_device_job_thread_init
     ma_device_job_thread_init.restype = ma_result
     ma_device_job_thread_init.argtypes = [ctypes.POINTER(struct_ma_device_job_thread_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_device_job_thread)]
 except AttributeError:
     pass
 try:
-    ma_device_job_thread_uninit = _libraries['miniaudio.so'].ma_device_job_thread_uninit
+    ma_device_job_thread_uninit = _libraries['libminiaudio.so'].ma_device_job_thread_uninit
     ma_device_job_thread_uninit.restype = None
     ma_device_job_thread_uninit.argtypes = [ctypes.POINTER(struct_ma_device_job_thread), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_device_job_thread_post = _libraries['miniaudio.so'].ma_device_job_thread_post
+    ma_device_job_thread_post = _libraries['libminiaudio.so'].ma_device_job_thread_post
     ma_device_job_thread_post.restype = ma_result
     ma_device_job_thread_post.argtypes = [ctypes.POINTER(struct_ma_device_job_thread), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
     pass
 try:
-    ma_device_job_thread_next = _libraries['miniaudio.so'].ma_device_job_thread_next
+    ma_device_job_thread_next = _libraries['libminiaudio.so'].ma_device_job_thread_next
     ma_device_job_thread_next.restype = ma_result
     ma_device_job_thread_next.argtypes = [ctypes.POINTER(struct_ma_device_job_thread), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
@@ -5848,7 +5848,7 @@ ma_aaudio_allow_capture_by_system = 2
 ma_aaudio_allow_capture_by_none = 3
 ma_aaudio_allowed_capture_policy = ctypes.c_uint32 # enum
 try:
-    ma_device_id_equal = _libraries['miniaudio.so'].ma_device_id_equal
+    ma_device_id_equal = _libraries['libminiaudio.so'].ma_device_id_equal
     ma_device_id_equal.restype = ma_bool32
     ma_device_id_equal.argtypes = [ctypes.POINTER(union_ma_device_id), ctypes.POINTER(union_ma_device_id)]
 except AttributeError:
@@ -6140,235 +6140,235 @@ struct_ma_context_command__wasapi._fields_ = [
 
 ma_context_command__wasapi = struct_ma_context_command__wasapi
 try:
-    ma_context_config_init = _libraries['miniaudio.so'].ma_context_config_init
+    ma_context_config_init = _libraries['libminiaudio.so'].ma_context_config_init
     ma_context_config_init.restype = ma_context_config
     ma_context_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_context_init = _libraries['miniaudio.so'].ma_context_init
+    ma_context_init = _libraries['libminiaudio.so'].ma_context_init
     ma_context_init.restype = ma_result
     ma_context_init.argtypes = [ma_backend * 0, ma_uint32, ctypes.POINTER(struct_ma_context_config), ctypes.POINTER(struct_ma_context)]
 except AttributeError:
     pass
 try:
-    ma_context_uninit = _libraries['miniaudio.so'].ma_context_uninit
+    ma_context_uninit = _libraries['libminiaudio.so'].ma_context_uninit
     ma_context_uninit.restype = ma_result
     ma_context_uninit.argtypes = [ctypes.POINTER(struct_ma_context)]
 except AttributeError:
     pass
 try:
-    ma_context_sizeof = _libraries['miniaudio.so'].ma_context_sizeof
+    ma_context_sizeof = _libraries['libminiaudio.so'].ma_context_sizeof
     ma_context_sizeof.restype = size_t
     ma_context_sizeof.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_context_get_log = _libraries['miniaudio.so'].ma_context_get_log
+    ma_context_get_log = _libraries['libminiaudio.so'].ma_context_get_log
     ma_context_get_log.restype = ctypes.POINTER(struct_ma_log)
     ma_context_get_log.argtypes = [ctypes.POINTER(struct_ma_context)]
 except AttributeError:
     pass
 try:
-    ma_context_enumerate_devices = _libraries['miniaudio.so'].ma_context_enumerate_devices
+    ma_context_enumerate_devices = _libraries['libminiaudio.so'].ma_context_enumerate_devices
     ma_context_enumerate_devices.restype = ma_result
     ma_context_enumerate_devices.argtypes = [ctypes.POINTER(struct_ma_context), ma_enum_devices_callback_proc, ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_context_get_devices = _libraries['miniaudio.so'].ma_context_get_devices
+    ma_context_get_devices = _libraries['libminiaudio.so'].ma_context_get_devices
     ma_context_get_devices.restype = ma_result
     ma_context_get_devices.argtypes = [ctypes.POINTER(struct_ma_context), ctypes.POINTER(ctypes.POINTER(struct_ma_device_info)), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.POINTER(struct_ma_device_info)), ctypes.POINTER(ctypes.c_uint32)]
 except AttributeError:
     pass
 try:
-    ma_context_get_device_info = _libraries['miniaudio.so'].ma_context_get_device_info
+    ma_context_get_device_info = _libraries['libminiaudio.so'].ma_context_get_device_info
     ma_context_get_device_info.restype = ma_result
     ma_context_get_device_info.argtypes = [ctypes.POINTER(struct_ma_context), ma_device_type, ctypes.POINTER(union_ma_device_id), ctypes.POINTER(struct_ma_device_info)]
 except AttributeError:
     pass
 try:
-    ma_context_is_loopback_supported = _libraries['miniaudio.so'].ma_context_is_loopback_supported
+    ma_context_is_loopback_supported = _libraries['libminiaudio.so'].ma_context_is_loopback_supported
     ma_context_is_loopback_supported.restype = ma_bool32
     ma_context_is_loopback_supported.argtypes = [ctypes.POINTER(struct_ma_context)]
 except AttributeError:
     pass
 try:
-    ma_device_config_init = _libraries['miniaudio.so'].ma_device_config_init
+    ma_device_config_init = _libraries['libminiaudio.so'].ma_device_config_init
     ma_device_config_init.restype = ma_device_config
     ma_device_config_init.argtypes = [ma_device_type]
 except AttributeError:
     pass
 try:
-    ma_device_init = _libraries['miniaudio.so'].ma_device_init
+    ma_device_init = _libraries['libminiaudio.so'].ma_device_init
     ma_device_init.restype = ma_result
     ma_device_init.argtypes = [ctypes.POINTER(struct_ma_context), ctypes.POINTER(struct_ma_device_config), ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_init_ex = _libraries['miniaudio.so'].ma_device_init_ex
+    ma_device_init_ex = _libraries['libminiaudio.so'].ma_device_init_ex
     ma_device_init_ex.restype = ma_result
     ma_device_init_ex.argtypes = [ma_backend * 0, ma_uint32, ctypes.POINTER(struct_ma_context_config), ctypes.POINTER(struct_ma_device_config), ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_uninit = _libraries['miniaudio.so'].ma_device_uninit
+    ma_device_uninit = _libraries['libminiaudio.so'].ma_device_uninit
     ma_device_uninit.restype = None
     ma_device_uninit.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_get_context = _libraries['miniaudio.so'].ma_device_get_context
+    ma_device_get_context = _libraries['libminiaudio.so'].ma_device_get_context
     ma_device_get_context.restype = ctypes.POINTER(struct_ma_context)
     ma_device_get_context.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_get_log = _libraries['miniaudio.so'].ma_device_get_log
+    ma_device_get_log = _libraries['libminiaudio.so'].ma_device_get_log
     ma_device_get_log.restype = ctypes.POINTER(struct_ma_log)
     ma_device_get_log.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_get_info = _libraries['miniaudio.so'].ma_device_get_info
+    ma_device_get_info = _libraries['libminiaudio.so'].ma_device_get_info
     ma_device_get_info.restype = ma_result
     ma_device_get_info.argtypes = [ctypes.POINTER(struct_ma_device), ma_device_type, ctypes.POINTER(struct_ma_device_info)]
 except AttributeError:
     pass
 try:
-    ma_device_get_name = _libraries['miniaudio.so'].ma_device_get_name
+    ma_device_get_name = _libraries['libminiaudio.so'].ma_device_get_name
     ma_device_get_name.restype = ma_result
     ma_device_get_name.argtypes = [ctypes.POINTER(struct_ma_device), ma_device_type, ctypes.POINTER(ctypes.c_char), size_t, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_device_start = _libraries['miniaudio.so'].ma_device_start
+    ma_device_start = _libraries['libminiaudio.so'].ma_device_start
     ma_device_start.restype = ma_result
     ma_device_start.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_stop = _libraries['miniaudio.so'].ma_device_stop
+    ma_device_stop = _libraries['libminiaudio.so'].ma_device_stop
     ma_device_stop.restype = ma_result
     ma_device_stop.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_is_started = _libraries['miniaudio.so'].ma_device_is_started
+    ma_device_is_started = _libraries['libminiaudio.so'].ma_device_is_started
     ma_device_is_started.restype = ma_bool32
     ma_device_is_started.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_get_state = _libraries['miniaudio.so'].ma_device_get_state
+    ma_device_get_state = _libraries['libminiaudio.so'].ma_device_get_state
     ma_device_get_state.restype = ma_device_state
     ma_device_get_state.argtypes = [ctypes.POINTER(struct_ma_device)]
 except AttributeError:
     pass
 try:
-    ma_device_post_init = _libraries['miniaudio.so'].ma_device_post_init
+    ma_device_post_init = _libraries['libminiaudio.so'].ma_device_post_init
     ma_device_post_init.restype = ma_result
     ma_device_post_init.argtypes = [ctypes.POINTER(struct_ma_device), ma_device_type, ctypes.POINTER(struct_ma_device_descriptor), ctypes.POINTER(struct_ma_device_descriptor)]
 except AttributeError:
     pass
 try:
-    ma_device_set_master_volume = _libraries['miniaudio.so'].ma_device_set_master_volume
+    ma_device_set_master_volume = _libraries['libminiaudio.so'].ma_device_set_master_volume
     ma_device_set_master_volume.restype = ma_result
     ma_device_set_master_volume.argtypes = [ctypes.POINTER(struct_ma_device), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_device_get_master_volume = _libraries['miniaudio.so'].ma_device_get_master_volume
+    ma_device_get_master_volume = _libraries['libminiaudio.so'].ma_device_get_master_volume
     ma_device_get_master_volume.restype = ma_result
     ma_device_get_master_volume.argtypes = [ctypes.POINTER(struct_ma_device), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_device_set_master_volume_db = _libraries['miniaudio.so'].ma_device_set_master_volume_db
+    ma_device_set_master_volume_db = _libraries['libminiaudio.so'].ma_device_set_master_volume_db
     ma_device_set_master_volume_db.restype = ma_result
     ma_device_set_master_volume_db.argtypes = [ctypes.POINTER(struct_ma_device), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_device_get_master_volume_db = _libraries['miniaudio.so'].ma_device_get_master_volume_db
+    ma_device_get_master_volume_db = _libraries['libminiaudio.so'].ma_device_get_master_volume_db
     ma_device_get_master_volume_db.restype = ma_result
     ma_device_get_master_volume_db.argtypes = [ctypes.POINTER(struct_ma_device), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_device_handle_backend_data_callback = _libraries['miniaudio.so'].ma_device_handle_backend_data_callback
+    ma_device_handle_backend_data_callback = _libraries['libminiaudio.so'].ma_device_handle_backend_data_callback
     ma_device_handle_backend_data_callback.restype = ma_result
     ma_device_handle_backend_data_callback.argtypes = [ctypes.POINTER(struct_ma_device), ctypes.POINTER(None), ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_calculate_buffer_size_in_frames_from_descriptor = _libraries['miniaudio.so'].ma_calculate_buffer_size_in_frames_from_descriptor
+    ma_calculate_buffer_size_in_frames_from_descriptor = _libraries['libminiaudio.so'].ma_calculate_buffer_size_in_frames_from_descriptor
     ma_calculate_buffer_size_in_frames_from_descriptor.restype = ma_uint32
     ma_calculate_buffer_size_in_frames_from_descriptor.argtypes = [ctypes.POINTER(struct_ma_device_descriptor), ma_uint32, ma_performance_profile]
 except AttributeError:
     pass
 try:
-    ma_get_backend_name = _libraries['miniaudio.so'].ma_get_backend_name
+    ma_get_backend_name = _libraries['libminiaudio.so'].ma_get_backend_name
     ma_get_backend_name.restype = ctypes.POINTER(ctypes.c_char)
     ma_get_backend_name.argtypes = [ma_backend]
 except AttributeError:
     pass
 try:
-    ma_get_backend_from_name = _libraries['miniaudio.so'].ma_get_backend_from_name
+    ma_get_backend_from_name = _libraries['libminiaudio.so'].ma_get_backend_from_name
     ma_get_backend_from_name.restype = ma_result
     ma_get_backend_from_name.argtypes = [ctypes.POINTER(ctypes.c_char), ctypes.POINTER(ma_backend)]
 except AttributeError:
     pass
 try:
-    ma_is_backend_enabled = _libraries['miniaudio.so'].ma_is_backend_enabled
+    ma_is_backend_enabled = _libraries['libminiaudio.so'].ma_is_backend_enabled
     ma_is_backend_enabled.restype = ma_bool32
     ma_is_backend_enabled.argtypes = [ma_backend]
 except AttributeError:
     pass
 try:
-    ma_get_enabled_backends = _libraries['miniaudio.so'].ma_get_enabled_backends
+    ma_get_enabled_backends = _libraries['libminiaudio.so'].ma_get_enabled_backends
     ma_get_enabled_backends.restype = ma_result
     ma_get_enabled_backends.argtypes = [ctypes.POINTER(ma_backend), size_t, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_is_loopback_supported = _libraries['miniaudio.so'].ma_is_loopback_supported
+    ma_is_loopback_supported = _libraries['libminiaudio.so'].ma_is_loopback_supported
     ma_is_loopback_supported.restype = ma_bool32
     ma_is_loopback_supported.argtypes = [ma_backend]
 except AttributeError:
     pass
 try:
-    ma_calculate_buffer_size_in_milliseconds_from_frames = _libraries['miniaudio.so'].ma_calculate_buffer_size_in_milliseconds_from_frames
+    ma_calculate_buffer_size_in_milliseconds_from_frames = _libraries['libminiaudio.so'].ma_calculate_buffer_size_in_milliseconds_from_frames
     ma_calculate_buffer_size_in_milliseconds_from_frames.restype = ma_uint32
     ma_calculate_buffer_size_in_milliseconds_from_frames.argtypes = [ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_calculate_buffer_size_in_frames_from_milliseconds = _libraries['miniaudio.so'].ma_calculate_buffer_size_in_frames_from_milliseconds
+    ma_calculate_buffer_size_in_frames_from_milliseconds = _libraries['libminiaudio.so'].ma_calculate_buffer_size_in_frames_from_milliseconds
     ma_calculate_buffer_size_in_frames_from_milliseconds.restype = ma_uint32
     ma_calculate_buffer_size_in_frames_from_milliseconds.argtypes = [ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_copy_pcm_frames = _libraries['miniaudio.so'].ma_copy_pcm_frames
+    ma_copy_pcm_frames = _libraries['libminiaudio.so'].ma_copy_pcm_frames
     ma_copy_pcm_frames.restype = None
     ma_copy_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_silence_pcm_frames = _libraries['miniaudio.so'].ma_silence_pcm_frames
+    ma_silence_pcm_frames = _libraries['libminiaudio.so'].ma_silence_pcm_frames
     ma_silence_pcm_frames.restype = None
     ma_silence_pcm_frames.argtypes = [ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_offset_pcm_frames_ptr = _libraries['miniaudio.so'].ma_offset_pcm_frames_ptr
+    ma_offset_pcm_frames_ptr = _libraries['libminiaudio.so'].ma_offset_pcm_frames_ptr
     ma_offset_pcm_frames_ptr.restype = ctypes.POINTER(None)
     ma_offset_pcm_frames_ptr.argtypes = [ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_offset_pcm_frames_const_ptr = _libraries['miniaudio.so'].ma_offset_pcm_frames_const_ptr
+    ma_offset_pcm_frames_const_ptr = _libraries['libminiaudio.so'].ma_offset_pcm_frames_const_ptr
     ma_offset_pcm_frames_const_ptr.restype = ctypes.POINTER(None)
     ma_offset_pcm_frames_const_ptr.argtypes = [ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32]
 except AttributeError:
@@ -6386,229 +6386,229 @@ try:
 except AttributeError:
     pass
 try:
-    ma_clip_samples_u8 = _libraries['miniaudio.so'].ma_clip_samples_u8
+    ma_clip_samples_u8 = _libraries['libminiaudio.so'].ma_clip_samples_u8
     ma_clip_samples_u8.restype = None
     ma_clip_samples_u8.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_int16), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_clip_samples_s16 = _libraries['miniaudio.so'].ma_clip_samples_s16
+    ma_clip_samples_s16 = _libraries['libminiaudio.so'].ma_clip_samples_s16
     ma_clip_samples_s16.restype = None
     ma_clip_samples_s16.argtypes = [ctypes.POINTER(ctypes.c_int16), ctypes.POINTER(ctypes.c_int32), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_clip_samples_s24 = _libraries['miniaudio.so'].ma_clip_samples_s24
+    ma_clip_samples_s24 = _libraries['libminiaudio.so'].ma_clip_samples_s24
     ma_clip_samples_s24.restype = None
     ma_clip_samples_s24.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_int64), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_clip_samples_s32 = _libraries['miniaudio.so'].ma_clip_samples_s32
+    ma_clip_samples_s32 = _libraries['libminiaudio.so'].ma_clip_samples_s32
     ma_clip_samples_s32.restype = None
     ma_clip_samples_s32.argtypes = [ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(ctypes.c_int64), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_clip_samples_f32 = _libraries['miniaudio.so'].ma_clip_samples_f32
+    ma_clip_samples_f32 = _libraries['libminiaudio.so'].ma_clip_samples_f32
     ma_clip_samples_f32.restype = None
     ma_clip_samples_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_clip_pcm_frames = _libraries['miniaudio.so'].ma_clip_pcm_frames
+    ma_clip_pcm_frames = _libraries['libminiaudio.so'].ma_clip_pcm_frames
     ma_clip_pcm_frames.restype = None
     ma_clip_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_u8 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_u8
+    ma_copy_and_apply_volume_factor_u8 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_u8
     ma_copy_and_apply_volume_factor_u8.restype = None
     ma_copy_and_apply_volume_factor_u8.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_ubyte), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_s16 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_s16
+    ma_copy_and_apply_volume_factor_s16 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_s16
     ma_copy_and_apply_volume_factor_s16.restype = None
     ma_copy_and_apply_volume_factor_s16.argtypes = [ctypes.POINTER(ctypes.c_int16), ctypes.POINTER(ctypes.c_int16), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_s24 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_s24
+    ma_copy_and_apply_volume_factor_s24 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_s24
     ma_copy_and_apply_volume_factor_s24.restype = None
     ma_copy_and_apply_volume_factor_s24.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_s32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_s32
+    ma_copy_and_apply_volume_factor_s32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_s32
     ma_copy_and_apply_volume_factor_s32.restype = None
     ma_copy_and_apply_volume_factor_s32.argtypes = [ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(ctypes.c_int32), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_f32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_f32
+    ma_copy_and_apply_volume_factor_f32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_f32
     ma_copy_and_apply_volume_factor_f32.restype = None
     ma_copy_and_apply_volume_factor_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_u8 = _libraries['miniaudio.so'].ma_apply_volume_factor_u8
+    ma_apply_volume_factor_u8 = _libraries['libminiaudio.so'].ma_apply_volume_factor_u8
     ma_apply_volume_factor_u8.restype = None
     ma_apply_volume_factor_u8.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_s16 = _libraries['miniaudio.so'].ma_apply_volume_factor_s16
+    ma_apply_volume_factor_s16 = _libraries['libminiaudio.so'].ma_apply_volume_factor_s16
     ma_apply_volume_factor_s16.restype = None
     ma_apply_volume_factor_s16.argtypes = [ctypes.POINTER(ctypes.c_int16), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_s24 = _libraries['miniaudio.so'].ma_apply_volume_factor_s24
+    ma_apply_volume_factor_s24 = _libraries['libminiaudio.so'].ma_apply_volume_factor_s24
     ma_apply_volume_factor_s24.restype = None
     ma_apply_volume_factor_s24.argtypes = [ctypes.POINTER(None), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_s32 = _libraries['miniaudio.so'].ma_apply_volume_factor_s32
+    ma_apply_volume_factor_s32 = _libraries['libminiaudio.so'].ma_apply_volume_factor_s32
     ma_apply_volume_factor_s32.restype = None
     ma_apply_volume_factor_s32.argtypes = [ctypes.POINTER(ctypes.c_int32), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_f32 = _libraries['miniaudio.so'].ma_apply_volume_factor_f32
+    ma_apply_volume_factor_f32 = _libraries['libminiaudio.so'].ma_apply_volume_factor_f32
     ma_apply_volume_factor_f32.restype = None
     ma_apply_volume_factor_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_pcm_frames_u8 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_u8
+    ma_copy_and_apply_volume_factor_pcm_frames_u8 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_u8
     ma_copy_and_apply_volume_factor_pcm_frames_u8.restype = None
     ma_copy_and_apply_volume_factor_pcm_frames_u8.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_ubyte), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_pcm_frames_s16 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_s16
+    ma_copy_and_apply_volume_factor_pcm_frames_s16 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_s16
     ma_copy_and_apply_volume_factor_pcm_frames_s16.restype = None
     ma_copy_and_apply_volume_factor_pcm_frames_s16.argtypes = [ctypes.POINTER(ctypes.c_int16), ctypes.POINTER(ctypes.c_int16), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_pcm_frames_s24 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_s24
+    ma_copy_and_apply_volume_factor_pcm_frames_s24 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_s24
     ma_copy_and_apply_volume_factor_pcm_frames_s24.restype = None
     ma_copy_and_apply_volume_factor_pcm_frames_s24.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_pcm_frames_s32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_s32
+    ma_copy_and_apply_volume_factor_pcm_frames_s32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_s32
     ma_copy_and_apply_volume_factor_pcm_frames_s32.restype = None
     ma_copy_and_apply_volume_factor_pcm_frames_s32.argtypes = [ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(ctypes.c_int32), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_pcm_frames_f32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_f32
+    ma_copy_and_apply_volume_factor_pcm_frames_f32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames_f32
     ma_copy_and_apply_volume_factor_pcm_frames_f32.restype = None
     ma_copy_and_apply_volume_factor_pcm_frames_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_pcm_frames = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames
+    ma_copy_and_apply_volume_factor_pcm_frames = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_pcm_frames
     ma_copy_and_apply_volume_factor_pcm_frames.restype = None
     ma_copy_and_apply_volume_factor_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_pcm_frames_u8 = _libraries['miniaudio.so'].ma_apply_volume_factor_pcm_frames_u8
+    ma_apply_volume_factor_pcm_frames_u8 = _libraries['libminiaudio.so'].ma_apply_volume_factor_pcm_frames_u8
     ma_apply_volume_factor_pcm_frames_u8.restype = None
     ma_apply_volume_factor_pcm_frames_u8.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_pcm_frames_s16 = _libraries['miniaudio.so'].ma_apply_volume_factor_pcm_frames_s16
+    ma_apply_volume_factor_pcm_frames_s16 = _libraries['libminiaudio.so'].ma_apply_volume_factor_pcm_frames_s16
     ma_apply_volume_factor_pcm_frames_s16.restype = None
     ma_apply_volume_factor_pcm_frames_s16.argtypes = [ctypes.POINTER(ctypes.c_int16), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_pcm_frames_s24 = _libraries['miniaudio.so'].ma_apply_volume_factor_pcm_frames_s24
+    ma_apply_volume_factor_pcm_frames_s24 = _libraries['libminiaudio.so'].ma_apply_volume_factor_pcm_frames_s24
     ma_apply_volume_factor_pcm_frames_s24.restype = None
     ma_apply_volume_factor_pcm_frames_s24.argtypes = [ctypes.POINTER(None), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_pcm_frames_s32 = _libraries['miniaudio.so'].ma_apply_volume_factor_pcm_frames_s32
+    ma_apply_volume_factor_pcm_frames_s32 = _libraries['libminiaudio.so'].ma_apply_volume_factor_pcm_frames_s32
     ma_apply_volume_factor_pcm_frames_s32.restype = None
     ma_apply_volume_factor_pcm_frames_s32.argtypes = [ctypes.POINTER(ctypes.c_int32), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_pcm_frames_f32 = _libraries['miniaudio.so'].ma_apply_volume_factor_pcm_frames_f32
+    ma_apply_volume_factor_pcm_frames_f32 = _libraries['libminiaudio.so'].ma_apply_volume_factor_pcm_frames_f32
     ma_apply_volume_factor_pcm_frames_f32.restype = None
     ma_apply_volume_factor_pcm_frames_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_apply_volume_factor_pcm_frames = _libraries['miniaudio.so'].ma_apply_volume_factor_pcm_frames
+    ma_apply_volume_factor_pcm_frames = _libraries['libminiaudio.so'].ma_apply_volume_factor_pcm_frames
     ma_apply_volume_factor_pcm_frames.restype = None
     ma_apply_volume_factor_pcm_frames.argtypes = [ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_factor_per_channel_f32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_factor_per_channel_f32
+    ma_copy_and_apply_volume_factor_per_channel_f32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_factor_per_channel_f32
     ma_copy_and_apply_volume_factor_per_channel_f32.restype = None
     ma_copy_and_apply_volume_factor_per_channel_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ma_uint64, ma_uint32, ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_and_clip_samples_u8 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_and_clip_samples_u8
+    ma_copy_and_apply_volume_and_clip_samples_u8 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_and_clip_samples_u8
     ma_copy_and_apply_volume_and_clip_samples_u8.restype = None
     ma_copy_and_apply_volume_and_clip_samples_u8.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_int16), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_and_clip_samples_s16 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_and_clip_samples_s16
+    ma_copy_and_apply_volume_and_clip_samples_s16 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_and_clip_samples_s16
     ma_copy_and_apply_volume_and_clip_samples_s16.restype = None
     ma_copy_and_apply_volume_and_clip_samples_s16.argtypes = [ctypes.POINTER(ctypes.c_int16), ctypes.POINTER(ctypes.c_int32), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_and_clip_samples_s24 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_and_clip_samples_s24
+    ma_copy_and_apply_volume_and_clip_samples_s24 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_and_clip_samples_s24
     ma_copy_and_apply_volume_and_clip_samples_s24.restype = None
     ma_copy_and_apply_volume_and_clip_samples_s24.argtypes = [ctypes.POINTER(ctypes.c_ubyte), ctypes.POINTER(ctypes.c_int64), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_and_clip_samples_s32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_and_clip_samples_s32
+    ma_copy_and_apply_volume_and_clip_samples_s32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_and_clip_samples_s32
     ma_copy_and_apply_volume_and_clip_samples_s32.restype = None
     ma_copy_and_apply_volume_and_clip_samples_s32.argtypes = [ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(ctypes.c_int64), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_and_clip_samples_f32 = _libraries['miniaudio.so'].ma_copy_and_apply_volume_and_clip_samples_f32
+    ma_copy_and_apply_volume_and_clip_samples_f32 = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_and_clip_samples_f32
     ma_copy_and_apply_volume_and_clip_samples_f32.restype = None
     ma_copy_and_apply_volume_and_clip_samples_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ma_uint64, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_copy_and_apply_volume_and_clip_pcm_frames = _libraries['miniaudio.so'].ma_copy_and_apply_volume_and_clip_pcm_frames
+    ma_copy_and_apply_volume_and_clip_pcm_frames = _libraries['libminiaudio.so'].ma_copy_and_apply_volume_and_clip_pcm_frames
     ma_copy_and_apply_volume_and_clip_pcm_frames.restype = None
     ma_copy_and_apply_volume_and_clip_pcm_frames.argtypes = [ctypes.POINTER(None), ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_volume_linear_to_db = _libraries['miniaudio.so'].ma_volume_linear_to_db
+    ma_volume_linear_to_db = _libraries['libminiaudio.so'].ma_volume_linear_to_db
     ma_volume_linear_to_db.restype = ctypes.c_float
     ma_volume_linear_to_db.argtypes = [ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_volume_db_to_linear = _libraries['miniaudio.so'].ma_volume_db_to_linear
+    ma_volume_db_to_linear = _libraries['libminiaudio.so'].ma_volume_db_to_linear
     ma_volume_db_to_linear.restype = ctypes.c_float
     ma_volume_db_to_linear.argtypes = [ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_mix_pcm_frames_f32 = _libraries['miniaudio.so'].ma_mix_pcm_frames_f32
+    ma_mix_pcm_frames_f32 = _libraries['libminiaudio.so'].ma_mix_pcm_frames_f32
     ma_mix_pcm_frames_f32.restype = ma_result
     ma_mix_pcm_frames_f32.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ma_uint64, ma_uint32, ctypes.c_float]
 except AttributeError:
@@ -6661,55 +6661,55 @@ struct_ma_vfs_callbacks._fields_ = [
 
 ma_vfs_callbacks = struct_ma_vfs_callbacks
 try:
-    ma_vfs_open = _libraries['miniaudio.so'].ma_vfs_open
+    ma_vfs_open = _libraries['libminiaudio.so'].ma_vfs_open
     ma_vfs_open.restype = ma_result
     ma_vfs_open.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_char), ma_uint32, ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_vfs_open_w = _libraries['miniaudio.so'].ma_vfs_open_w
+    ma_vfs_open_w = _libraries['libminiaudio.so'].ma_vfs_open_w
     ma_vfs_open_w.restype = ma_result
     ma_vfs_open_w.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_int32), ma_uint32, ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_vfs_close = _libraries['miniaudio.so'].ma_vfs_close
+    ma_vfs_close = _libraries['libminiaudio.so'].ma_vfs_close
     ma_vfs_close.restype = ma_result
     ma_vfs_close.argtypes = [ctypes.POINTER(None), ma_vfs_file]
 except AttributeError:
     pass
 try:
-    ma_vfs_read = _libraries['miniaudio.so'].ma_vfs_read
+    ma_vfs_read = _libraries['libminiaudio.so'].ma_vfs_read
     ma_vfs_read.restype = ma_result
     ma_vfs_read.argtypes = [ctypes.POINTER(None), ma_vfs_file, ctypes.POINTER(None), size_t, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_vfs_write = _libraries['miniaudio.so'].ma_vfs_write
+    ma_vfs_write = _libraries['libminiaudio.so'].ma_vfs_write
     ma_vfs_write.restype = ma_result
     ma_vfs_write.argtypes = [ctypes.POINTER(None), ma_vfs_file, ctypes.POINTER(None), size_t, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_vfs_seek = _libraries['miniaudio.so'].ma_vfs_seek
+    ma_vfs_seek = _libraries['libminiaudio.so'].ma_vfs_seek
     ma_vfs_seek.restype = ma_result
     ma_vfs_seek.argtypes = [ctypes.POINTER(None), ma_vfs_file, ma_int64, ma_seek_origin]
 except AttributeError:
     pass
 try:
-    ma_vfs_tell = _libraries['miniaudio.so'].ma_vfs_tell
+    ma_vfs_tell = _libraries['libminiaudio.so'].ma_vfs_tell
     ma_vfs_tell.restype = ma_result
     ma_vfs_tell.argtypes = [ctypes.POINTER(None), ma_vfs_file, ctypes.POINTER(ctypes.c_int64)]
 except AttributeError:
     pass
 try:
-    ma_vfs_info = _libraries['miniaudio.so'].ma_vfs_info
+    ma_vfs_info = _libraries['libminiaudio.so'].ma_vfs_info
     ma_vfs_info.restype = ma_result
     ma_vfs_info.argtypes = [ctypes.POINTER(None), ma_vfs_file, ctypes.POINTER(struct_ma_file_info)]
 except AttributeError:
     pass
 try:
-    ma_vfs_open_and_read_file = _libraries['miniaudio.so'].ma_vfs_open_and_read_file
+    ma_vfs_open_and_read_file = _libraries['libminiaudio.so'].ma_vfs_open_and_read_file
     ma_vfs_open_and_read_file.restype = ma_result
     ma_vfs_open_and_read_file.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(ctypes.POINTER(None)), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -6723,7 +6723,7 @@ class struct_ma_default_vfs(Structure):
 
 ma_default_vfs = struct_ma_default_vfs
 try:
-    ma_default_vfs_init = _libraries['miniaudio.so'].ma_default_vfs_init
+    ma_default_vfs_init = _libraries['libminiaudio.so'].ma_default_vfs_init
     ma_default_vfs_init.restype = ma_result
     ma_default_vfs_init.argtypes = [ctypes.POINTER(struct_ma_default_vfs), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -6816,7 +6816,7 @@ struct_ma_decoding_backend_config._fields_ = [
 
 ma_decoding_backend_config = struct_ma_decoding_backend_config
 try:
-    ma_decoding_backend_config_init = _libraries['miniaudio.so'].ma_decoding_backend_config_init
+    ma_decoding_backend_config_init = _libraries['libminiaudio.so'].ma_decoding_backend_config_init
     ma_decoding_backend_config_init.restype = ma_decoding_backend_config
     ma_decoding_backend_config_init.argtypes = [ma_format, ma_uint32]
 except AttributeError:
@@ -6858,109 +6858,109 @@ struct_ma_decoder_config._fields_ = [
 
 ma_decoder_config = struct_ma_decoder_config
 try:
-    ma_decoder_config_init = _libraries['miniaudio.so'].ma_decoder_config_init
+    ma_decoder_config_init = _libraries['libminiaudio.so'].ma_decoder_config_init
     ma_decoder_config_init.restype = ma_decoder_config
     ma_decoder_config_init.argtypes = [ma_format, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_decoder_config_init_default = _libraries['miniaudio.so'].ma_decoder_config_init_default
+    ma_decoder_config_init_default = _libraries['libminiaudio.so'].ma_decoder_config_init_default
     ma_decoder_config_init_default.restype = ma_decoder_config
     ma_decoder_config_init_default.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_decoder_init = _libraries['miniaudio.so'].ma_decoder_init
+    ma_decoder_init = _libraries['libminiaudio.so'].ma_decoder_init
     ma_decoder_init.restype = ma_result
     ma_decoder_init.argtypes = [ma_decoder_read_proc, ma_decoder_seek_proc, ctypes.POINTER(None), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_init_memory = _libraries['miniaudio.so'].ma_decoder_init_memory
+    ma_decoder_init_memory = _libraries['libminiaudio.so'].ma_decoder_init_memory
     ma_decoder_init_memory.restype = ma_result
     ma_decoder_init_memory.argtypes = [ctypes.POINTER(None), size_t, ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_init_vfs = _libraries['miniaudio.so'].ma_decoder_init_vfs
+    ma_decoder_init_vfs = _libraries['libminiaudio.so'].ma_decoder_init_vfs
     ma_decoder_init_vfs.restype = ma_result
     ma_decoder_init_vfs.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_init_vfs_w = _libraries['miniaudio.so'].ma_decoder_init_vfs_w
+    ma_decoder_init_vfs_w = _libraries['libminiaudio.so'].ma_decoder_init_vfs_w
     ma_decoder_init_vfs_w.restype = ma_result
     ma_decoder_init_vfs_w.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_init_file = _libraries['miniaudio.so'].ma_decoder_init_file
+    ma_decoder_init_file = _libraries['libminiaudio.so'].ma_decoder_init_file
     ma_decoder_init_file.restype = ma_result
     ma_decoder_init_file.argtypes = [ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_init_file_w = _libraries['miniaudio.so'].ma_decoder_init_file_w
+    ma_decoder_init_file_w = _libraries['libminiaudio.so'].ma_decoder_init_file_w
     ma_decoder_init_file_w.restype = ma_result
     ma_decoder_init_file_w.argtypes = [ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_uninit = _libraries['miniaudio.so'].ma_decoder_uninit
+    ma_decoder_uninit = _libraries['libminiaudio.so'].ma_decoder_uninit
     ma_decoder_uninit.restype = ma_result
     ma_decoder_uninit.argtypes = [ctypes.POINTER(struct_ma_decoder)]
 except AttributeError:
     pass
 try:
-    ma_decoder_read_pcm_frames = _libraries['miniaudio.so'].ma_decoder_read_pcm_frames
+    ma_decoder_read_pcm_frames = _libraries['libminiaudio.so'].ma_decoder_read_pcm_frames
     ma_decoder_read_pcm_frames.restype = ma_result
     ma_decoder_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_decoder), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_decoder_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_decoder_seek_to_pcm_frame
+    ma_decoder_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_decoder_seek_to_pcm_frame
     ma_decoder_seek_to_pcm_frame.restype = ma_result
     ma_decoder_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_decoder), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_decoder_get_data_format = _libraries['miniaudio.so'].ma_decoder_get_data_format
+    ma_decoder_get_data_format = _libraries['libminiaudio.so'].ma_decoder_get_data_format
     ma_decoder_get_data_format.restype = ma_result
     ma_decoder_get_data_format.argtypes = [ctypes.POINTER(struct_ma_decoder), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_decoder_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_decoder_get_cursor_in_pcm_frames
+    ma_decoder_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_decoder_get_cursor_in_pcm_frames
     ma_decoder_get_cursor_in_pcm_frames.restype = ma_result
     ma_decoder_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_decoder), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_decoder_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_decoder_get_length_in_pcm_frames
+    ma_decoder_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_decoder_get_length_in_pcm_frames
     ma_decoder_get_length_in_pcm_frames.restype = ma_result
     ma_decoder_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_decoder), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_decoder_get_available_frames = _libraries['miniaudio.so'].ma_decoder_get_available_frames
+    ma_decoder_get_available_frames = _libraries['libminiaudio.so'].ma_decoder_get_available_frames
     ma_decoder_get_available_frames.restype = ma_result
     ma_decoder_get_available_frames.argtypes = [ctypes.POINTER(struct_ma_decoder), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_decode_from_vfs = _libraries['miniaudio.so'].ma_decode_from_vfs
+    ma_decode_from_vfs = _libraries['libminiaudio.so'].ma_decode_from_vfs
     ma_decode_from_vfs.restype = ma_result
     ma_decode_from_vfs.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_decode_file = _libraries['miniaudio.so'].ma_decode_file
+    ma_decode_file = _libraries['libminiaudio.so'].ma_decode_file
     ma_decode_file.restype = ma_result
     ma_decode_file.argtypes = [ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
     pass
 try:
-    ma_decode_memory = _libraries['miniaudio.so'].ma_decode_memory
+    ma_decode_memory = _libraries['libminiaudio.so'].ma_decode_memory
     ma_decode_memory.restype = ma_result
     ma_decode_memory.argtypes = [ctypes.POINTER(None), size_t, ctypes.POINTER(struct_ma_decoder_config), ctypes.POINTER(ctypes.c_uint64), ctypes.POINTER(ctypes.POINTER(None))]
 except AttributeError:
@@ -7018,49 +7018,49 @@ ma_encoder_init_proc = ctypes.CFUNCTYPE(ma_result, ctypes.POINTER(struct_ma_enco
 ma_encoder_uninit_proc = ctypes.CFUNCTYPE(None, ctypes.POINTER(struct_ma_encoder))
 ma_encoder_write_pcm_frames_proc = ctypes.CFUNCTYPE(ma_result, ctypes.POINTER(struct_ma_encoder), ctypes.POINTER(None), ctypes.c_uint64, ctypes.POINTER(ctypes.c_uint64))
 try:
-    ma_encoder_config_init = _libraries['miniaudio.so'].ma_encoder_config_init
+    ma_encoder_config_init = _libraries['libminiaudio.so'].ma_encoder_config_init
     ma_encoder_config_init.restype = ma_encoder_config
     ma_encoder_config_init.argtypes = [ma_encoding_format, ma_format, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_encoder_init = _libraries['miniaudio.so'].ma_encoder_init
+    ma_encoder_init = _libraries['libminiaudio.so'].ma_encoder_init
     ma_encoder_init.restype = ma_result
     ma_encoder_init.argtypes = [ma_encoder_write_proc, ma_encoder_seek_proc, ctypes.POINTER(None), ctypes.POINTER(struct_ma_encoder_config), ctypes.POINTER(struct_ma_encoder)]
 except AttributeError:
     pass
 try:
-    ma_encoder_init_vfs = _libraries['miniaudio.so'].ma_encoder_init_vfs
+    ma_encoder_init_vfs = _libraries['libminiaudio.so'].ma_encoder_init_vfs
     ma_encoder_init_vfs.restype = ma_result
     ma_encoder_init_vfs.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_encoder_config), ctypes.POINTER(struct_ma_encoder)]
 except AttributeError:
     pass
 try:
-    ma_encoder_init_vfs_w = _libraries['miniaudio.so'].ma_encoder_init_vfs_w
+    ma_encoder_init_vfs_w = _libraries['libminiaudio.so'].ma_encoder_init_vfs_w
     ma_encoder_init_vfs_w.restype = ma_result
     ma_encoder_init_vfs_w.argtypes = [ctypes.POINTER(None), ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(struct_ma_encoder_config), ctypes.POINTER(struct_ma_encoder)]
 except AttributeError:
     pass
 try:
-    ma_encoder_init_file = _libraries['miniaudio.so'].ma_encoder_init_file
+    ma_encoder_init_file = _libraries['libminiaudio.so'].ma_encoder_init_file
     ma_encoder_init_file.restype = ma_result
     ma_encoder_init_file.argtypes = [ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_encoder_config), ctypes.POINTER(struct_ma_encoder)]
 except AttributeError:
     pass
 try:
-    ma_encoder_init_file_w = _libraries['miniaudio.so'].ma_encoder_init_file_w
+    ma_encoder_init_file_w = _libraries['libminiaudio.so'].ma_encoder_init_file_w
     ma_encoder_init_file_w.restype = ma_result
     ma_encoder_init_file_w.argtypes = [ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(struct_ma_encoder_config), ctypes.POINTER(struct_ma_encoder)]
 except AttributeError:
     pass
 try:
-    ma_encoder_uninit = _libraries['miniaudio.so'].ma_encoder_uninit
+    ma_encoder_uninit = _libraries['libminiaudio.so'].ma_encoder_uninit
     ma_encoder_uninit.restype = None
     ma_encoder_uninit.argtypes = [ctypes.POINTER(struct_ma_encoder)]
 except AttributeError:
     pass
 try:
-    ma_encoder_write_pcm_frames = _libraries['miniaudio.so'].ma_encoder_write_pcm_frames
+    ma_encoder_write_pcm_frames = _libraries['libminiaudio.so'].ma_encoder_write_pcm_frames
     ma_encoder_write_pcm_frames.restype = ma_result
     ma_encoder_write_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_encoder), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
@@ -7093,7 +7093,7 @@ struct_ma_waveform_config._fields_ = [
 
 ma_waveform_config = struct_ma_waveform_config
 try:
-    ma_waveform_config_init = _libraries['miniaudio.so'].ma_waveform_config_init
+    ma_waveform_config_init = _libraries['libminiaudio.so'].ma_waveform_config_init
     ma_waveform_config_init.restype = ma_waveform_config
     ma_waveform_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ma_waveform_type, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -7111,49 +7111,49 @@ struct_ma_waveform._fields_ = [
 
 ma_waveform = struct_ma_waveform
 try:
-    ma_waveform_init = _libraries['miniaudio.so'].ma_waveform_init
+    ma_waveform_init = _libraries['libminiaudio.so'].ma_waveform_init
     ma_waveform_init.restype = ma_result
     ma_waveform_init.argtypes = [ctypes.POINTER(struct_ma_waveform_config), ctypes.POINTER(struct_ma_waveform)]
 except AttributeError:
     pass
 try:
-    ma_waveform_uninit = _libraries['miniaudio.so'].ma_waveform_uninit
+    ma_waveform_uninit = _libraries['libminiaudio.so'].ma_waveform_uninit
     ma_waveform_uninit.restype = None
     ma_waveform_uninit.argtypes = [ctypes.POINTER(struct_ma_waveform)]
 except AttributeError:
     pass
 try:
-    ma_waveform_read_pcm_frames = _libraries['miniaudio.so'].ma_waveform_read_pcm_frames
+    ma_waveform_read_pcm_frames = _libraries['libminiaudio.so'].ma_waveform_read_pcm_frames
     ma_waveform_read_pcm_frames.restype = ma_result
     ma_waveform_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_waveform), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_waveform_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_waveform_seek_to_pcm_frame
+    ma_waveform_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_waveform_seek_to_pcm_frame
     ma_waveform_seek_to_pcm_frame.restype = ma_result
     ma_waveform_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_waveform), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_waveform_set_amplitude = _libraries['miniaudio.so'].ma_waveform_set_amplitude
+    ma_waveform_set_amplitude = _libraries['libminiaudio.so'].ma_waveform_set_amplitude
     ma_waveform_set_amplitude.restype = ma_result
     ma_waveform_set_amplitude.argtypes = [ctypes.POINTER(struct_ma_waveform), ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_waveform_set_frequency = _libraries['miniaudio.so'].ma_waveform_set_frequency
+    ma_waveform_set_frequency = _libraries['libminiaudio.so'].ma_waveform_set_frequency
     ma_waveform_set_frequency.restype = ma_result
     ma_waveform_set_frequency.argtypes = [ctypes.POINTER(struct_ma_waveform), ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_waveform_set_type = _libraries['miniaudio.so'].ma_waveform_set_type
+    ma_waveform_set_type = _libraries['libminiaudio.so'].ma_waveform_set_type
     ma_waveform_set_type.restype = ma_result
     ma_waveform_set_type.argtypes = [ctypes.POINTER(struct_ma_waveform), ma_waveform_type]
 except AttributeError:
     pass
 try:
-    ma_waveform_set_sample_rate = _libraries['miniaudio.so'].ma_waveform_set_sample_rate
+    ma_waveform_set_sample_rate = _libraries['libminiaudio.so'].ma_waveform_set_sample_rate
     ma_waveform_set_sample_rate.restype = ma_result
     ma_waveform_set_sample_rate.argtypes = [ctypes.POINTER(struct_ma_waveform), ma_uint32]
 except AttributeError:
@@ -7174,7 +7174,7 @@ struct_ma_pulsewave_config._fields_ = [
 
 ma_pulsewave_config = struct_ma_pulsewave_config
 try:
-    ma_pulsewave_config_init = _libraries['miniaudio.so'].ma_pulsewave_config_init
+    ma_pulsewave_config_init = _libraries['libminiaudio.so'].ma_pulsewave_config_init
     ma_pulsewave_config_init.restype = ma_pulsewave_config
     ma_pulsewave_config_init.argtypes = [ma_format, ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -7188,49 +7188,49 @@ class struct_ma_pulsewave(Structure):
 
 ma_pulsewave = struct_ma_pulsewave
 try:
-    ma_pulsewave_init = _libraries['miniaudio.so'].ma_pulsewave_init
+    ma_pulsewave_init = _libraries['libminiaudio.so'].ma_pulsewave_init
     ma_pulsewave_init.restype = ma_result
     ma_pulsewave_init.argtypes = [ctypes.POINTER(struct_ma_pulsewave_config), ctypes.POINTER(struct_ma_pulsewave)]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_uninit = _libraries['miniaudio.so'].ma_pulsewave_uninit
+    ma_pulsewave_uninit = _libraries['libminiaudio.so'].ma_pulsewave_uninit
     ma_pulsewave_uninit.restype = None
     ma_pulsewave_uninit.argtypes = [ctypes.POINTER(struct_ma_pulsewave)]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_read_pcm_frames = _libraries['miniaudio.so'].ma_pulsewave_read_pcm_frames
+    ma_pulsewave_read_pcm_frames = _libraries['libminiaudio.so'].ma_pulsewave_read_pcm_frames
     ma_pulsewave_read_pcm_frames.restype = ma_result
     ma_pulsewave_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_pulsewave), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_pulsewave_seek_to_pcm_frame
+    ma_pulsewave_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_pulsewave_seek_to_pcm_frame
     ma_pulsewave_seek_to_pcm_frame.restype = ma_result
     ma_pulsewave_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_pulsewave), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_set_amplitude = _libraries['miniaudio.so'].ma_pulsewave_set_amplitude
+    ma_pulsewave_set_amplitude = _libraries['libminiaudio.so'].ma_pulsewave_set_amplitude
     ma_pulsewave_set_amplitude.restype = ma_result
     ma_pulsewave_set_amplitude.argtypes = [ctypes.POINTER(struct_ma_pulsewave), ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_set_frequency = _libraries['miniaudio.so'].ma_pulsewave_set_frequency
+    ma_pulsewave_set_frequency = _libraries['libminiaudio.so'].ma_pulsewave_set_frequency
     ma_pulsewave_set_frequency.restype = ma_result
     ma_pulsewave_set_frequency.argtypes = [ctypes.POINTER(struct_ma_pulsewave), ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_set_sample_rate = _libraries['miniaudio.so'].ma_pulsewave_set_sample_rate
+    ma_pulsewave_set_sample_rate = _libraries['libminiaudio.so'].ma_pulsewave_set_sample_rate
     ma_pulsewave_set_sample_rate.restype = ma_result
     ma_pulsewave_set_sample_rate.argtypes = [ctypes.POINTER(struct_ma_pulsewave), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_pulsewave_set_duty_cycle = _libraries['miniaudio.so'].ma_pulsewave_set_duty_cycle
+    ma_pulsewave_set_duty_cycle = _libraries['libminiaudio.so'].ma_pulsewave_set_duty_cycle
     ma_pulsewave_set_duty_cycle.restype = ma_result
     ma_pulsewave_set_duty_cycle.argtypes = [ctypes.POINTER(struct_ma_pulsewave), ctypes.c_double]
 except AttributeError:
@@ -7262,7 +7262,7 @@ struct_ma_noise_config._fields_ = [
 
 ma_noise_config = struct_ma_noise_config
 try:
-    ma_noise_config_init = _libraries['miniaudio.so'].ma_noise_config_init
+    ma_noise_config_init = _libraries['libminiaudio.so'].ma_noise_config_init
     ma_noise_config_init.restype = ma_noise_config
     ma_noise_config_init.argtypes = [ma_format, ma_uint32, ma_noise_type, ma_int32, ctypes.c_double]
 except AttributeError:
@@ -7312,49 +7312,49 @@ struct_ma_noise._fields_ = [
 
 ma_noise = struct_ma_noise
 try:
-    ma_noise_get_heap_size = _libraries['miniaudio.so'].ma_noise_get_heap_size
+    ma_noise_get_heap_size = _libraries['libminiaudio.so'].ma_noise_get_heap_size
     ma_noise_get_heap_size.restype = ma_result
     ma_noise_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_noise_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_noise_init_preallocated = _libraries['miniaudio.so'].ma_noise_init_preallocated
+    ma_noise_init_preallocated = _libraries['libminiaudio.so'].ma_noise_init_preallocated
     ma_noise_init_preallocated.restype = ma_result
     ma_noise_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_noise_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_noise)]
 except AttributeError:
     pass
 try:
-    ma_noise_init = _libraries['miniaudio.so'].ma_noise_init
+    ma_noise_init = _libraries['libminiaudio.so'].ma_noise_init
     ma_noise_init.restype = ma_result
     ma_noise_init.argtypes = [ctypes.POINTER(struct_ma_noise_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_noise)]
 except AttributeError:
     pass
 try:
-    ma_noise_uninit = _libraries['miniaudio.so'].ma_noise_uninit
+    ma_noise_uninit = _libraries['libminiaudio.so'].ma_noise_uninit
     ma_noise_uninit.restype = None
     ma_noise_uninit.argtypes = [ctypes.POINTER(struct_ma_noise), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_noise_read_pcm_frames = _libraries['miniaudio.so'].ma_noise_read_pcm_frames
+    ma_noise_read_pcm_frames = _libraries['libminiaudio.so'].ma_noise_read_pcm_frames
     ma_noise_read_pcm_frames.restype = ma_result
     ma_noise_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_noise), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_noise_set_amplitude = _libraries['miniaudio.so'].ma_noise_set_amplitude
+    ma_noise_set_amplitude = _libraries['libminiaudio.so'].ma_noise_set_amplitude
     ma_noise_set_amplitude.restype = ma_result
     ma_noise_set_amplitude.argtypes = [ctypes.POINTER(struct_ma_noise), ctypes.c_double]
 except AttributeError:
     pass
 try:
-    ma_noise_set_seed = _libraries['miniaudio.so'].ma_noise_set_seed
+    ma_noise_set_seed = _libraries['libminiaudio.so'].ma_noise_set_seed
     ma_noise_set_seed.restype = ma_result
     ma_noise_set_seed.argtypes = [ctypes.POINTER(struct_ma_noise), ma_int32]
 except AttributeError:
     pass
 try:
-    ma_noise_set_type = _libraries['miniaudio.so'].ma_noise_set_type
+    ma_noise_set_type = _libraries['libminiaudio.so'].ma_noise_set_type
     ma_noise_set_type.restype = ma_result
     ma_noise_set_type.argtypes = [ctypes.POINTER(struct_ma_noise), ma_noise_type]
 except AttributeError:
@@ -7600,7 +7600,7 @@ class struct_ma_resource_manager_pipeline_notifications(Structure):
 
 ma_resource_manager_pipeline_notifications = struct_ma_resource_manager_pipeline_notifications
 try:
-    ma_resource_manager_pipeline_notifications_init = _libraries['miniaudio.so'].ma_resource_manager_pipeline_notifications_init
+    ma_resource_manager_pipeline_notifications_init = _libraries['libminiaudio.so'].ma_resource_manager_pipeline_notifications_init
     ma_resource_manager_pipeline_notifications_init.restype = ma_resource_manager_pipeline_notifications
     ma_resource_manager_pipeline_notifications_init.argtypes = []
 except AttributeError:
@@ -7633,367 +7633,367 @@ struct_ma_resource_manager_data_source_config._fields_ = [
 
 ma_resource_manager_data_source_config = struct_ma_resource_manager_data_source_config
 try:
-    ma_resource_manager_data_source_config_init = _libraries['miniaudio.so'].ma_resource_manager_data_source_config_init
+    ma_resource_manager_data_source_config_init = _libraries['libminiaudio.so'].ma_resource_manager_data_source_config_init
     ma_resource_manager_data_source_config_init.restype = ma_resource_manager_data_source_config
     ma_resource_manager_data_source_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_resource_manager_config_init = _libraries['miniaudio.so'].ma_resource_manager_config_init
+    ma_resource_manager_config_init = _libraries['libminiaudio.so'].ma_resource_manager_config_init
     ma_resource_manager_config_init.restype = ma_resource_manager_config
     ma_resource_manager_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_resource_manager_init = _libraries['miniaudio.so'].ma_resource_manager_init
+    ma_resource_manager_init = _libraries['libminiaudio.so'].ma_resource_manager_init
     ma_resource_manager_init.restype = ma_result
     ma_resource_manager_init.argtypes = [ctypes.POINTER(struct_ma_resource_manager_config), ctypes.POINTER(struct_ma_resource_manager)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_uninit = _libraries['miniaudio.so'].ma_resource_manager_uninit
+    ma_resource_manager_uninit = _libraries['libminiaudio.so'].ma_resource_manager_uninit
     ma_resource_manager_uninit.restype = None
     ma_resource_manager_uninit.argtypes = [ctypes.POINTER(struct_ma_resource_manager)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_get_log = _libraries['miniaudio.so'].ma_resource_manager_get_log
+    ma_resource_manager_get_log = _libraries['libminiaudio.so'].ma_resource_manager_get_log
     ma_resource_manager_get_log.restype = ctypes.POINTER(struct_ma_log)
     ma_resource_manager_get_log.argtypes = [ctypes.POINTER(struct_ma_resource_manager)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_register_file = _libraries['miniaudio.so'].ma_resource_manager_register_file
+    ma_resource_manager_register_file = _libraries['libminiaudio.so'].ma_resource_manager_register_file
     ma_resource_manager_register_file.restype = ma_result
     ma_resource_manager_register_file.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_register_file_w = _libraries['miniaudio.so'].ma_resource_manager_register_file_w
+    ma_resource_manager_register_file_w = _libraries['libminiaudio.so'].ma_resource_manager_register_file_w
     ma_resource_manager_register_file_w.restype = ma_result
     ma_resource_manager_register_file_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_register_decoded_data = _libraries['miniaudio.so'].ma_resource_manager_register_decoded_data
+    ma_resource_manager_register_decoded_data = _libraries['libminiaudio.so'].ma_resource_manager_register_decoded_data
     ma_resource_manager_register_decoded_data.restype = ma_result
     ma_resource_manager_register_decoded_data.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_register_decoded_data_w = _libraries['miniaudio.so'].ma_resource_manager_register_decoded_data_w
+    ma_resource_manager_register_decoded_data_w = _libraries['libminiaudio.so'].ma_resource_manager_register_decoded_data_w
     ma_resource_manager_register_decoded_data_w.restype = ma_result
     ma_resource_manager_register_decoded_data_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(None), ma_uint64, ma_format, ma_uint32, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_register_encoded_data = _libraries['miniaudio.so'].ma_resource_manager_register_encoded_data
+    ma_resource_manager_register_encoded_data = _libraries['libminiaudio.so'].ma_resource_manager_register_encoded_data
     ma_resource_manager_register_encoded_data.restype = ma_result
     ma_resource_manager_register_encoded_data.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(None), size_t]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_register_encoded_data_w = _libraries['miniaudio.so'].ma_resource_manager_register_encoded_data_w
+    ma_resource_manager_register_encoded_data_w = _libraries['libminiaudio.so'].ma_resource_manager_register_encoded_data_w
     ma_resource_manager_register_encoded_data_w.restype = ma_result
     ma_resource_manager_register_encoded_data_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32), ctypes.POINTER(None), size_t]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_unregister_file = _libraries['miniaudio.so'].ma_resource_manager_unregister_file
+    ma_resource_manager_unregister_file = _libraries['libminiaudio.so'].ma_resource_manager_unregister_file
     ma_resource_manager_unregister_file.restype = ma_result
     ma_resource_manager_unregister_file.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_unregister_file_w = _libraries['miniaudio.so'].ma_resource_manager_unregister_file_w
+    ma_resource_manager_unregister_file_w = _libraries['libminiaudio.so'].ma_resource_manager_unregister_file_w
     ma_resource_manager_unregister_file_w.restype = ma_result
     ma_resource_manager_unregister_file_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_unregister_data = _libraries['miniaudio.so'].ma_resource_manager_unregister_data
+    ma_resource_manager_unregister_data = _libraries['libminiaudio.so'].ma_resource_manager_unregister_data
     ma_resource_manager_unregister_data.restype = ma_result
     ma_resource_manager_unregister_data.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_unregister_data_w = _libraries['miniaudio.so'].ma_resource_manager_unregister_data_w
+    ma_resource_manager_unregister_data_w = _libraries['libminiaudio.so'].ma_resource_manager_unregister_data_w
     ma_resource_manager_unregister_data_w.restype = ma_result
     ma_resource_manager_unregister_data_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_init_ex = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_init_ex
+    ma_resource_manager_data_buffer_init_ex = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_init_ex
     ma_resource_manager_data_buffer_init_ex.restype = ma_result
     ma_resource_manager_data_buffer_init_ex.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_resource_manager_data_source_config), ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_init = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_init
+    ma_resource_manager_data_buffer_init = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_init
     ma_resource_manager_data_buffer_init.restype = ma_result
     ma_resource_manager_data_buffer_init.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char), ma_uint32, ctypes.POINTER(struct_ma_resource_manager_pipeline_notifications), ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_init_w = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_init_w
+    ma_resource_manager_data_buffer_init_w = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_init_w
     ma_resource_manager_data_buffer_init_w.restype = ma_result
     ma_resource_manager_data_buffer_init_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32), ma_uint32, ctypes.POINTER(struct_ma_resource_manager_pipeline_notifications), ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_init_copy = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_init_copy
+    ma_resource_manager_data_buffer_init_copy = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_init_copy
     ma_resource_manager_data_buffer_init_copy.restype = ma_result
     ma_resource_manager_data_buffer_init_copy.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_resource_manager_data_buffer), ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_uninit = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_uninit
+    ma_resource_manager_data_buffer_uninit = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_uninit
     ma_resource_manager_data_buffer_uninit.restype = ma_result
     ma_resource_manager_data_buffer_uninit.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_read_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_read_pcm_frames
+    ma_resource_manager_data_buffer_read_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_read_pcm_frames
     ma_resource_manager_data_buffer_read_pcm_frames.restype = ma_result
     ma_resource_manager_data_buffer_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_seek_to_pcm_frame
+    ma_resource_manager_data_buffer_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_seek_to_pcm_frame
     ma_resource_manager_data_buffer_seek_to_pcm_frame.restype = ma_result
     ma_resource_manager_data_buffer_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_get_data_format = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_get_data_format
+    ma_resource_manager_data_buffer_get_data_format = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_get_data_format
     ma_resource_manager_data_buffer_get_data_format.restype = ma_result
     ma_resource_manager_data_buffer_get_data_format.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_get_cursor_in_pcm_frames
+    ma_resource_manager_data_buffer_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_get_cursor_in_pcm_frames
     ma_resource_manager_data_buffer_get_cursor_in_pcm_frames.restype = ma_result
     ma_resource_manager_data_buffer_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_get_length_in_pcm_frames
+    ma_resource_manager_data_buffer_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_get_length_in_pcm_frames
     ma_resource_manager_data_buffer_get_length_in_pcm_frames.restype = ma_result
     ma_resource_manager_data_buffer_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_result = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_result
+    ma_resource_manager_data_buffer_result = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_result
     ma_resource_manager_data_buffer_result.restype = ma_result
     ma_resource_manager_data_buffer_result.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_set_looping = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_set_looping
+    ma_resource_manager_data_buffer_set_looping = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_set_looping
     ma_resource_manager_data_buffer_set_looping.restype = ma_result
     ma_resource_manager_data_buffer_set_looping.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_is_looping = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_is_looping
+    ma_resource_manager_data_buffer_is_looping = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_is_looping
     ma_resource_manager_data_buffer_is_looping.restype = ma_bool32
     ma_resource_manager_data_buffer_is_looping.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_buffer_get_available_frames = _libraries['miniaudio.so'].ma_resource_manager_data_buffer_get_available_frames
+    ma_resource_manager_data_buffer_get_available_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_buffer_get_available_frames
     ma_resource_manager_data_buffer_get_available_frames.restype = ma_result
     ma_resource_manager_data_buffer_get_available_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_buffer), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_init_ex = _libraries['miniaudio.so'].ma_resource_manager_data_stream_init_ex
+    ma_resource_manager_data_stream_init_ex = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_init_ex
     ma_resource_manager_data_stream_init_ex.restype = ma_result
     ma_resource_manager_data_stream_init_ex.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_resource_manager_data_source_config), ctypes.POINTER(struct_ma_resource_manager_data_stream)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_init = _libraries['miniaudio.so'].ma_resource_manager_data_stream_init
+    ma_resource_manager_data_stream_init = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_init
     ma_resource_manager_data_stream_init.restype = ma_result
     ma_resource_manager_data_stream_init.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char), ma_uint32, ctypes.POINTER(struct_ma_resource_manager_pipeline_notifications), ctypes.POINTER(struct_ma_resource_manager_data_stream)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_init_w = _libraries['miniaudio.so'].ma_resource_manager_data_stream_init_w
+    ma_resource_manager_data_stream_init_w = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_init_w
     ma_resource_manager_data_stream_init_w.restype = ma_result
     ma_resource_manager_data_stream_init_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32), ma_uint32, ctypes.POINTER(struct_ma_resource_manager_pipeline_notifications), ctypes.POINTER(struct_ma_resource_manager_data_stream)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_uninit = _libraries['miniaudio.so'].ma_resource_manager_data_stream_uninit
+    ma_resource_manager_data_stream_uninit = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_uninit
     ma_resource_manager_data_stream_uninit.restype = ma_result
     ma_resource_manager_data_stream_uninit.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_read_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_stream_read_pcm_frames
+    ma_resource_manager_data_stream_read_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_read_pcm_frames
     ma_resource_manager_data_stream_read_pcm_frames.restype = ma_result
     ma_resource_manager_data_stream_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_resource_manager_data_stream_seek_to_pcm_frame
+    ma_resource_manager_data_stream_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_seek_to_pcm_frame
     ma_resource_manager_data_stream_seek_to_pcm_frame.restype = ma_result
     ma_resource_manager_data_stream_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_get_data_format = _libraries['miniaudio.so'].ma_resource_manager_data_stream_get_data_format
+    ma_resource_manager_data_stream_get_data_format = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_get_data_format
     ma_resource_manager_data_stream_get_data_format.restype = ma_result
     ma_resource_manager_data_stream_get_data_format.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_stream_get_cursor_in_pcm_frames
+    ma_resource_manager_data_stream_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_get_cursor_in_pcm_frames
     ma_resource_manager_data_stream_get_cursor_in_pcm_frames.restype = ma_result
     ma_resource_manager_data_stream_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_stream_get_length_in_pcm_frames
+    ma_resource_manager_data_stream_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_get_length_in_pcm_frames
     ma_resource_manager_data_stream_get_length_in_pcm_frames.restype = ma_result
     ma_resource_manager_data_stream_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_result = _libraries['miniaudio.so'].ma_resource_manager_data_stream_result
+    ma_resource_manager_data_stream_result = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_result
     ma_resource_manager_data_stream_result.restype = ma_result
     ma_resource_manager_data_stream_result.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_set_looping = _libraries['miniaudio.so'].ma_resource_manager_data_stream_set_looping
+    ma_resource_manager_data_stream_set_looping = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_set_looping
     ma_resource_manager_data_stream_set_looping.restype = ma_result
     ma_resource_manager_data_stream_set_looping.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_is_looping = _libraries['miniaudio.so'].ma_resource_manager_data_stream_is_looping
+    ma_resource_manager_data_stream_is_looping = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_is_looping
     ma_resource_manager_data_stream_is_looping.restype = ma_bool32
     ma_resource_manager_data_stream_is_looping.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_stream_get_available_frames = _libraries['miniaudio.so'].ma_resource_manager_data_stream_get_available_frames
+    ma_resource_manager_data_stream_get_available_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_stream_get_available_frames
     ma_resource_manager_data_stream_get_available_frames.restype = ma_result
     ma_resource_manager_data_stream_get_available_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_stream), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_init_ex = _libraries['miniaudio.so'].ma_resource_manager_data_source_init_ex
+    ma_resource_manager_data_source_init_ex = _libraries['libminiaudio.so'].ma_resource_manager_data_source_init_ex
     ma_resource_manager_data_source_init_ex.restype = ma_result
     ma_resource_manager_data_source_init_ex.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_resource_manager_data_source_config), ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_init = _libraries['miniaudio.so'].ma_resource_manager_data_source_init
+    ma_resource_manager_data_source_init = _libraries['libminiaudio.so'].ma_resource_manager_data_source_init
     ma_resource_manager_data_source_init.restype = ma_result
     ma_resource_manager_data_source_init.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_char), ma_uint32, ctypes.POINTER(struct_ma_resource_manager_pipeline_notifications), ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_init_w = _libraries['miniaudio.so'].ma_resource_manager_data_source_init_w
+    ma_resource_manager_data_source_init_w = _libraries['libminiaudio.so'].ma_resource_manager_data_source_init_w
     ma_resource_manager_data_source_init_w.restype = ma_result
     ma_resource_manager_data_source_init_w.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(ctypes.c_int32), ma_uint32, ctypes.POINTER(struct_ma_resource_manager_pipeline_notifications), ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_init_copy = _libraries['miniaudio.so'].ma_resource_manager_data_source_init_copy
+    ma_resource_manager_data_source_init_copy = _libraries['libminiaudio.so'].ma_resource_manager_data_source_init_copy
     ma_resource_manager_data_source_init_copy.restype = ma_result
     ma_resource_manager_data_source_init_copy.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_resource_manager_data_source), ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_uninit = _libraries['miniaudio.so'].ma_resource_manager_data_source_uninit
+    ma_resource_manager_data_source_uninit = _libraries['libminiaudio.so'].ma_resource_manager_data_source_uninit
     ma_resource_manager_data_source_uninit.restype = ma_result
     ma_resource_manager_data_source_uninit.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_read_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_source_read_pcm_frames
+    ma_resource_manager_data_source_read_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_source_read_pcm_frames
     ma_resource_manager_data_source_read_pcm_frames.restype = ma_result
     ma_resource_manager_data_source_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_resource_manager_data_source_seek_to_pcm_frame
+    ma_resource_manager_data_source_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_resource_manager_data_source_seek_to_pcm_frame
     ma_resource_manager_data_source_seek_to_pcm_frame.restype = ma_result
     ma_resource_manager_data_source_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_get_data_format = _libraries['miniaudio.so'].ma_resource_manager_data_source_get_data_format
+    ma_resource_manager_data_source_get_data_format = _libraries['libminiaudio.so'].ma_resource_manager_data_source_get_data_format
     ma_resource_manager_data_source_get_data_format.restype = ma_result
     ma_resource_manager_data_source_get_data_format.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_source_get_cursor_in_pcm_frames
+    ma_resource_manager_data_source_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_source_get_cursor_in_pcm_frames
     ma_resource_manager_data_source_get_cursor_in_pcm_frames.restype = ma_result
     ma_resource_manager_data_source_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_resource_manager_data_source_get_length_in_pcm_frames
+    ma_resource_manager_data_source_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_source_get_length_in_pcm_frames
     ma_resource_manager_data_source_get_length_in_pcm_frames.restype = ma_result
     ma_resource_manager_data_source_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_result = _libraries['miniaudio.so'].ma_resource_manager_data_source_result
+    ma_resource_manager_data_source_result = _libraries['libminiaudio.so'].ma_resource_manager_data_source_result
     ma_resource_manager_data_source_result.restype = ma_result
     ma_resource_manager_data_source_result.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_set_looping = _libraries['miniaudio.so'].ma_resource_manager_data_source_set_looping
+    ma_resource_manager_data_source_set_looping = _libraries['libminiaudio.so'].ma_resource_manager_data_source_set_looping
     ma_resource_manager_data_source_set_looping.restype = ma_result
     ma_resource_manager_data_source_set_looping.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_is_looping = _libraries['miniaudio.so'].ma_resource_manager_data_source_is_looping
+    ma_resource_manager_data_source_is_looping = _libraries['libminiaudio.so'].ma_resource_manager_data_source_is_looping
     ma_resource_manager_data_source_is_looping.restype = ma_bool32
     ma_resource_manager_data_source_is_looping.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_data_source_get_available_frames = _libraries['miniaudio.so'].ma_resource_manager_data_source_get_available_frames
+    ma_resource_manager_data_source_get_available_frames = _libraries['libminiaudio.so'].ma_resource_manager_data_source_get_available_frames
     ma_resource_manager_data_source_get_available_frames.restype = ma_result
     ma_resource_manager_data_source_get_available_frames.argtypes = [ctypes.POINTER(struct_ma_resource_manager_data_source), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_post_job = _libraries['miniaudio.so'].ma_resource_manager_post_job
+    ma_resource_manager_post_job = _libraries['libminiaudio.so'].ma_resource_manager_post_job
     ma_resource_manager_post_job.restype = ma_result
     ma_resource_manager_post_job.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_post_job_quit = _libraries['miniaudio.so'].ma_resource_manager_post_job_quit
+    ma_resource_manager_post_job_quit = _libraries['libminiaudio.so'].ma_resource_manager_post_job_quit
     ma_resource_manager_post_job_quit.restype = ma_result
     ma_resource_manager_post_job_quit.argtypes = [ctypes.POINTER(struct_ma_resource_manager)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_next_job = _libraries['miniaudio.so'].ma_resource_manager_next_job
+    ma_resource_manager_next_job = _libraries['libminiaudio.so'].ma_resource_manager_next_job
     ma_resource_manager_next_job.restype = ma_result
     ma_resource_manager_next_job.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_process_job = _libraries['miniaudio.so'].ma_resource_manager_process_job
+    ma_resource_manager_process_job = _libraries['libminiaudio.so'].ma_resource_manager_process_job
     ma_resource_manager_process_job.restype = ma_result
     ma_resource_manager_process_job.argtypes = [ctypes.POINTER(struct_ma_resource_manager), ctypes.POINTER(struct_ma_job)]
 except AttributeError:
     pass
 try:
-    ma_resource_manager_process_next_job = _libraries['miniaudio.so'].ma_resource_manager_process_next_job
+    ma_resource_manager_process_next_job = _libraries['libminiaudio.so'].ma_resource_manager_process_next_job
     ma_resource_manager_process_next_job.restype = ma_result
     ma_resource_manager_process_next_job.argtypes = [ctypes.POINTER(struct_ma_resource_manager)]
 except AttributeError:
@@ -8142,140 +8142,140 @@ struct_ma_node_config._fields_ = [
 
 ma_node_config = struct_ma_node_config
 try:
-    ma_node_config_init = _libraries['miniaudio.so'].ma_node_config_init
+    ma_node_config_init = _libraries['libminiaudio.so'].ma_node_config_init
     ma_node_config_init.restype = ma_node_config
     ma_node_config_init.argtypes = []
 except AttributeError:
     pass
 ma_node_input_bus = struct_ma_node_input_bus
 try:
-    ma_node_get_heap_size = _libraries['miniaudio.so'].ma_node_get_heap_size
+    ma_node_get_heap_size = _libraries['libminiaudio.so'].ma_node_get_heap_size
     ma_node_get_heap_size.restype = ma_result
     ma_node_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_node_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_node_init_preallocated = _libraries['miniaudio.so'].ma_node_init_preallocated
+    ma_node_init_preallocated = _libraries['libminiaudio.so'].ma_node_init_preallocated
     ma_node_init_preallocated.restype = ma_result
     ma_node_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_node_config), ctypes.POINTER(None), ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_init = _libraries['miniaudio.so'].ma_node_init
+    ma_node_init = _libraries['libminiaudio.so'].ma_node_init
     ma_node_init.restype = ma_result
     ma_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_uninit = _libraries['miniaudio.so'].ma_node_uninit
+    ma_node_uninit = _libraries['libminiaudio.so'].ma_node_uninit
     ma_node_uninit.restype = None
     ma_node_uninit.argtypes = [ctypes.POINTER(None), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_node_get_node_graph = _libraries['miniaudio.so'].ma_node_get_node_graph
+    ma_node_get_node_graph = _libraries['libminiaudio.so'].ma_node_get_node_graph
     ma_node_get_node_graph.restype = ctypes.POINTER(struct_ma_node_graph)
     ma_node_get_node_graph.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_get_input_bus_count = _libraries['miniaudio.so'].ma_node_get_input_bus_count
+    ma_node_get_input_bus_count = _libraries['libminiaudio.so'].ma_node_get_input_bus_count
     ma_node_get_input_bus_count.restype = ma_uint32
     ma_node_get_input_bus_count.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_get_output_bus_count = _libraries['miniaudio.so'].ma_node_get_output_bus_count
+    ma_node_get_output_bus_count = _libraries['libminiaudio.so'].ma_node_get_output_bus_count
     ma_node_get_output_bus_count.restype = ma_uint32
     ma_node_get_output_bus_count.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_get_input_channels = _libraries['miniaudio.so'].ma_node_get_input_channels
+    ma_node_get_input_channels = _libraries['libminiaudio.so'].ma_node_get_input_channels
     ma_node_get_input_channels.restype = ma_uint32
     ma_node_get_input_channels.argtypes = [ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_node_get_output_channels = _libraries['miniaudio.so'].ma_node_get_output_channels
+    ma_node_get_output_channels = _libraries['libminiaudio.so'].ma_node_get_output_channels
     ma_node_get_output_channels.restype = ma_uint32
     ma_node_get_output_channels.argtypes = [ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_node_attach_output_bus = _libraries['miniaudio.so'].ma_node_attach_output_bus
+    ma_node_attach_output_bus = _libraries['libminiaudio.so'].ma_node_attach_output_bus
     ma_node_attach_output_bus.restype = ma_result
     ma_node_attach_output_bus.argtypes = [ctypes.POINTER(None), ma_uint32, ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_node_detach_output_bus = _libraries['miniaudio.so'].ma_node_detach_output_bus
+    ma_node_detach_output_bus = _libraries['libminiaudio.so'].ma_node_detach_output_bus
     ma_node_detach_output_bus.restype = ma_result
     ma_node_detach_output_bus.argtypes = [ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_node_detach_all_output_buses = _libraries['miniaudio.so'].ma_node_detach_all_output_buses
+    ma_node_detach_all_output_buses = _libraries['libminiaudio.so'].ma_node_detach_all_output_buses
     ma_node_detach_all_output_buses.restype = ma_result
     ma_node_detach_all_output_buses.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_set_output_bus_volume = _libraries['miniaudio.so'].ma_node_set_output_bus_volume
+    ma_node_set_output_bus_volume = _libraries['libminiaudio.so'].ma_node_set_output_bus_volume
     ma_node_set_output_bus_volume.restype = ma_result
     ma_node_set_output_bus_volume.argtypes = [ctypes.POINTER(None), ma_uint32, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_node_get_output_bus_volume = _libraries['miniaudio.so'].ma_node_get_output_bus_volume
+    ma_node_get_output_bus_volume = _libraries['libminiaudio.so'].ma_node_get_output_bus_volume
     ma_node_get_output_bus_volume.restype = ctypes.c_float
     ma_node_get_output_bus_volume.argtypes = [ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_node_set_state = _libraries['miniaudio.so'].ma_node_set_state
+    ma_node_set_state = _libraries['libminiaudio.so'].ma_node_set_state
     ma_node_set_state.restype = ma_result
     ma_node_set_state.argtypes = [ctypes.POINTER(None), ma_node_state]
 except AttributeError:
     pass
 try:
-    ma_node_get_state = _libraries['miniaudio.so'].ma_node_get_state
+    ma_node_get_state = _libraries['libminiaudio.so'].ma_node_get_state
     ma_node_get_state.restype = ma_node_state
     ma_node_get_state.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_set_state_time = _libraries['miniaudio.so'].ma_node_set_state_time
+    ma_node_set_state_time = _libraries['libminiaudio.so'].ma_node_set_state_time
     ma_node_set_state_time.restype = ma_result
     ma_node_set_state_time.argtypes = [ctypes.POINTER(None), ma_node_state, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_node_get_state_time = _libraries['miniaudio.so'].ma_node_get_state_time
+    ma_node_get_state_time = _libraries['libminiaudio.so'].ma_node_get_state_time
     ma_node_get_state_time.restype = ma_uint64
     ma_node_get_state_time.argtypes = [ctypes.POINTER(None), ma_node_state]
 except AttributeError:
     pass
 try:
-    ma_node_get_state_by_time = _libraries['miniaudio.so'].ma_node_get_state_by_time
+    ma_node_get_state_by_time = _libraries['libminiaudio.so'].ma_node_get_state_by_time
     ma_node_get_state_by_time.restype = ma_node_state
     ma_node_get_state_by_time.argtypes = [ctypes.POINTER(None), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_node_get_state_by_time_range = _libraries['miniaudio.so'].ma_node_get_state_by_time_range
+    ma_node_get_state_by_time_range = _libraries['libminiaudio.so'].ma_node_get_state_by_time_range
     ma_node_get_state_by_time_range.restype = ma_node_state
     ma_node_get_state_by_time_range.argtypes = [ctypes.POINTER(None), ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_node_get_time = _libraries['miniaudio.so'].ma_node_get_time
+    ma_node_get_time = _libraries['libminiaudio.so'].ma_node_get_time
     ma_node_get_time.restype = ma_uint64
     ma_node_get_time.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_node_set_time = _libraries['miniaudio.so'].ma_node_set_time
+    ma_node_set_time = _libraries['libminiaudio.so'].ma_node_set_time
     ma_node_set_time.restype = ma_result
     ma_node_set_time.argtypes = [ctypes.POINTER(None), ma_uint64]
 except AttributeError:
@@ -8292,49 +8292,49 @@ struct_ma_node_graph_config._fields_ = [
 
 ma_node_graph_config = struct_ma_node_graph_config
 try:
-    ma_node_graph_config_init = _libraries['miniaudio.so'].ma_node_graph_config_init
+    ma_node_graph_config_init = _libraries['libminiaudio.so'].ma_node_graph_config_init
     ma_node_graph_config_init.restype = ma_node_graph_config
     ma_node_graph_config_init.argtypes = [ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_node_graph_init = _libraries['miniaudio.so'].ma_node_graph_init
+    ma_node_graph_init = _libraries['libminiaudio.so'].ma_node_graph_init
     ma_node_graph_init.restype = ma_result
     ma_node_graph_init.argtypes = [ctypes.POINTER(struct_ma_node_graph_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_node_graph)]
 except AttributeError:
     pass
 try:
-    ma_node_graph_uninit = _libraries['miniaudio.so'].ma_node_graph_uninit
+    ma_node_graph_uninit = _libraries['libminiaudio.so'].ma_node_graph_uninit
     ma_node_graph_uninit.restype = None
     ma_node_graph_uninit.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_node_graph_get_endpoint = _libraries['miniaudio.so'].ma_node_graph_get_endpoint
+    ma_node_graph_get_endpoint = _libraries['libminiaudio.so'].ma_node_graph_get_endpoint
     ma_node_graph_get_endpoint.restype = ctypes.POINTER(None)
     ma_node_graph_get_endpoint.argtypes = [ctypes.POINTER(struct_ma_node_graph)]
 except AttributeError:
     pass
 try:
-    ma_node_graph_read_pcm_frames = _libraries['miniaudio.so'].ma_node_graph_read_pcm_frames
+    ma_node_graph_read_pcm_frames = _libraries['libminiaudio.so'].ma_node_graph_read_pcm_frames
     ma_node_graph_read_pcm_frames.restype = ma_result
     ma_node_graph_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_node_graph_get_channels = _libraries['miniaudio.so'].ma_node_graph_get_channels
+    ma_node_graph_get_channels = _libraries['libminiaudio.so'].ma_node_graph_get_channels
     ma_node_graph_get_channels.restype = ma_uint32
     ma_node_graph_get_channels.argtypes = [ctypes.POINTER(struct_ma_node_graph)]
 except AttributeError:
     pass
 try:
-    ma_node_graph_get_time = _libraries['miniaudio.so'].ma_node_graph_get_time
+    ma_node_graph_get_time = _libraries['libminiaudio.so'].ma_node_graph_get_time
     ma_node_graph_get_time.restype = ma_uint64
     ma_node_graph_get_time.argtypes = [ctypes.POINTER(struct_ma_node_graph)]
 except AttributeError:
     pass
 try:
-    ma_node_graph_set_time = _libraries['miniaudio.so'].ma_node_graph_set_time
+    ma_node_graph_set_time = _libraries['libminiaudio.so'].ma_node_graph_set_time
     ma_node_graph_set_time.restype = ma_result
     ma_node_graph_set_time.argtypes = [ctypes.POINTER(struct_ma_node_graph), ma_uint64]
 except AttributeError:
@@ -8350,7 +8350,7 @@ struct_ma_data_source_node_config._fields_ = [
 
 ma_data_source_node_config = struct_ma_data_source_node_config
 try:
-    ma_data_source_node_config_init = _libraries['miniaudio.so'].ma_data_source_node_config_init
+    ma_data_source_node_config_init = _libraries['libminiaudio.so'].ma_data_source_node_config_init
     ma_data_source_node_config_init.restype = ma_data_source_node_config
     ma_data_source_node_config_init.argtypes = [ctypes.POINTER(None)]
 except AttributeError:
@@ -8366,25 +8366,25 @@ struct_ma_data_source_node._fields_ = [
 
 ma_data_source_node = struct_ma_data_source_node
 try:
-    ma_data_source_node_init = _libraries['miniaudio.so'].ma_data_source_node_init
+    ma_data_source_node_init = _libraries['libminiaudio.so'].ma_data_source_node_init
     ma_data_source_node_init.restype = ma_result
     ma_data_source_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_data_source_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_data_source_node)]
 except AttributeError:
     pass
 try:
-    ma_data_source_node_uninit = _libraries['miniaudio.so'].ma_data_source_node_uninit
+    ma_data_source_node_uninit = _libraries['libminiaudio.so'].ma_data_source_node_uninit
     ma_data_source_node_uninit.restype = None
     ma_data_source_node_uninit.argtypes = [ctypes.POINTER(struct_ma_data_source_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_data_source_node_set_looping = _libraries['miniaudio.so'].ma_data_source_node_set_looping
+    ma_data_source_node_set_looping = _libraries['libminiaudio.so'].ma_data_source_node_set_looping
     ma_data_source_node_set_looping.restype = ma_result
     ma_data_source_node_set_looping.argtypes = [ctypes.POINTER(struct_ma_data_source_node), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_data_source_node_is_looping = _libraries['miniaudio.so'].ma_data_source_node_is_looping
+    ma_data_source_node_is_looping = _libraries['libminiaudio.so'].ma_data_source_node_is_looping
     ma_data_source_node_is_looping.restype = ma_bool32
     ma_data_source_node_is_looping.argtypes = [ctypes.POINTER(struct_ma_data_source_node)]
 except AttributeError:
@@ -8401,7 +8401,7 @@ struct_ma_splitter_node_config._fields_ = [
 
 ma_splitter_node_config = struct_ma_splitter_node_config
 try:
-    ma_splitter_node_config_init = _libraries['miniaudio.so'].ma_splitter_node_config_init
+    ma_splitter_node_config_init = _libraries['libminiaudio.so'].ma_splitter_node_config_init
     ma_splitter_node_config_init.restype = ma_splitter_node_config
     ma_splitter_node_config_init.argtypes = [ma_uint32]
 except AttributeError:
@@ -8414,13 +8414,13 @@ class struct_ma_splitter_node(Structure):
 
 ma_splitter_node = struct_ma_splitter_node
 try:
-    ma_splitter_node_init = _libraries['miniaudio.so'].ma_splitter_node_init
+    ma_splitter_node_init = _libraries['libminiaudio.so'].ma_splitter_node_init
     ma_splitter_node_init.restype = ma_result
     ma_splitter_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_splitter_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_splitter_node)]
 except AttributeError:
     pass
 try:
-    ma_splitter_node_uninit = _libraries['miniaudio.so'].ma_splitter_node_uninit
+    ma_splitter_node_uninit = _libraries['libminiaudio.so'].ma_splitter_node_uninit
     ma_splitter_node_uninit.restype = None
     ma_splitter_node_uninit.argtypes = [ctypes.POINTER(struct_ma_splitter_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8434,7 +8434,7 @@ class struct_ma_biquad_node_config(Structure):
 
 ma_biquad_node_config = struct_ma_biquad_node_config
 try:
-    ma_biquad_node_config_init = _libraries['miniaudio.so'].ma_biquad_node_config_init
+    ma_biquad_node_config_init = _libraries['libminiaudio.so'].ma_biquad_node_config_init
     ma_biquad_node_config_init.restype = ma_biquad_node_config
     ma_biquad_node_config_init.argtypes = [ma_uint32, ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
@@ -8448,19 +8448,19 @@ class struct_ma_biquad_node(Structure):
 
 ma_biquad_node = struct_ma_biquad_node
 try:
-    ma_biquad_node_init = _libraries['miniaudio.so'].ma_biquad_node_init
+    ma_biquad_node_init = _libraries['libminiaudio.so'].ma_biquad_node_init
     ma_biquad_node_init.restype = ma_result
     ma_biquad_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_biquad_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_biquad_node)]
 except AttributeError:
     pass
 try:
-    ma_biquad_node_reinit = _libraries['miniaudio.so'].ma_biquad_node_reinit
+    ma_biquad_node_reinit = _libraries['libminiaudio.so'].ma_biquad_node_reinit
     ma_biquad_node_reinit.restype = ma_result
     ma_biquad_node_reinit.argtypes = [ctypes.POINTER(struct_ma_biquad_config), ctypes.POINTER(struct_ma_biquad_node)]
 except AttributeError:
     pass
 try:
-    ma_biquad_node_uninit = _libraries['miniaudio.so'].ma_biquad_node_uninit
+    ma_biquad_node_uninit = _libraries['libminiaudio.so'].ma_biquad_node_uninit
     ma_biquad_node_uninit.restype = None
     ma_biquad_node_uninit.argtypes = [ctypes.POINTER(struct_ma_biquad_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8474,7 +8474,7 @@ class struct_ma_lpf_node_config(Structure):
 
 ma_lpf_node_config = struct_ma_lpf_node_config
 try:
-    ma_lpf_node_config_init = _libraries['miniaudio.so'].ma_lpf_node_config_init
+    ma_lpf_node_config_init = _libraries['libminiaudio.so'].ma_lpf_node_config_init
     ma_lpf_node_config_init.restype = ma_lpf_node_config
     ma_lpf_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ma_uint32]
 except AttributeError:
@@ -8488,19 +8488,19 @@ class struct_ma_lpf_node(Structure):
 
 ma_lpf_node = struct_ma_lpf_node
 try:
-    ma_lpf_node_init = _libraries['miniaudio.so'].ma_lpf_node_init
+    ma_lpf_node_init = _libraries['libminiaudio.so'].ma_lpf_node_init
     ma_lpf_node_init.restype = ma_result
     ma_lpf_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_lpf_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_lpf_node)]
 except AttributeError:
     pass
 try:
-    ma_lpf_node_reinit = _libraries['miniaudio.so'].ma_lpf_node_reinit
+    ma_lpf_node_reinit = _libraries['libminiaudio.so'].ma_lpf_node_reinit
     ma_lpf_node_reinit.restype = ma_result
     ma_lpf_node_reinit.argtypes = [ctypes.POINTER(struct_ma_lpf_config), ctypes.POINTER(struct_ma_lpf_node)]
 except AttributeError:
     pass
 try:
-    ma_lpf_node_uninit = _libraries['miniaudio.so'].ma_lpf_node_uninit
+    ma_lpf_node_uninit = _libraries['libminiaudio.so'].ma_lpf_node_uninit
     ma_lpf_node_uninit.restype = None
     ma_lpf_node_uninit.argtypes = [ctypes.POINTER(struct_ma_lpf_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8514,7 +8514,7 @@ class struct_ma_hpf_node_config(Structure):
 
 ma_hpf_node_config = struct_ma_hpf_node_config
 try:
-    ma_hpf_node_config_init = _libraries['miniaudio.so'].ma_hpf_node_config_init
+    ma_hpf_node_config_init = _libraries['libminiaudio.so'].ma_hpf_node_config_init
     ma_hpf_node_config_init.restype = ma_hpf_node_config
     ma_hpf_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ma_uint32]
 except AttributeError:
@@ -8528,19 +8528,19 @@ class struct_ma_hpf_node(Structure):
 
 ma_hpf_node = struct_ma_hpf_node
 try:
-    ma_hpf_node_init = _libraries['miniaudio.so'].ma_hpf_node_init
+    ma_hpf_node_init = _libraries['libminiaudio.so'].ma_hpf_node_init
     ma_hpf_node_init.restype = ma_result
     ma_hpf_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_hpf_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_hpf_node)]
 except AttributeError:
     pass
 try:
-    ma_hpf_node_reinit = _libraries['miniaudio.so'].ma_hpf_node_reinit
+    ma_hpf_node_reinit = _libraries['libminiaudio.so'].ma_hpf_node_reinit
     ma_hpf_node_reinit.restype = ma_result
     ma_hpf_node_reinit.argtypes = [ctypes.POINTER(struct_ma_hpf_config), ctypes.POINTER(struct_ma_hpf_node)]
 except AttributeError:
     pass
 try:
-    ma_hpf_node_uninit = _libraries['miniaudio.so'].ma_hpf_node_uninit
+    ma_hpf_node_uninit = _libraries['libminiaudio.so'].ma_hpf_node_uninit
     ma_hpf_node_uninit.restype = None
     ma_hpf_node_uninit.argtypes = [ctypes.POINTER(struct_ma_hpf_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8554,7 +8554,7 @@ class struct_ma_bpf_node_config(Structure):
 
 ma_bpf_node_config = struct_ma_bpf_node_config
 try:
-    ma_bpf_node_config_init = _libraries['miniaudio.so'].ma_bpf_node_config_init
+    ma_bpf_node_config_init = _libraries['libminiaudio.so'].ma_bpf_node_config_init
     ma_bpf_node_config_init.restype = ma_bpf_node_config
     ma_bpf_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ma_uint32]
 except AttributeError:
@@ -8568,19 +8568,19 @@ class struct_ma_bpf_node(Structure):
 
 ma_bpf_node = struct_ma_bpf_node
 try:
-    ma_bpf_node_init = _libraries['miniaudio.so'].ma_bpf_node_init
+    ma_bpf_node_init = _libraries['libminiaudio.so'].ma_bpf_node_init
     ma_bpf_node_init.restype = ma_result
     ma_bpf_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_bpf_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_bpf_node)]
 except AttributeError:
     pass
 try:
-    ma_bpf_node_reinit = _libraries['miniaudio.so'].ma_bpf_node_reinit
+    ma_bpf_node_reinit = _libraries['libminiaudio.so'].ma_bpf_node_reinit
     ma_bpf_node_reinit.restype = ma_result
     ma_bpf_node_reinit.argtypes = [ctypes.POINTER(struct_ma_bpf_config), ctypes.POINTER(struct_ma_bpf_node)]
 except AttributeError:
     pass
 try:
-    ma_bpf_node_uninit = _libraries['miniaudio.so'].ma_bpf_node_uninit
+    ma_bpf_node_uninit = _libraries['libminiaudio.so'].ma_bpf_node_uninit
     ma_bpf_node_uninit.restype = None
     ma_bpf_node_uninit.argtypes = [ctypes.POINTER(struct_ma_bpf_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8594,7 +8594,7 @@ class struct_ma_notch_node_config(Structure):
 
 ma_notch_node_config = struct_ma_notch_node_config
 try:
-    ma_notch_node_config_init = _libraries['miniaudio.so'].ma_notch_node_config_init
+    ma_notch_node_config_init = _libraries['libminiaudio.so'].ma_notch_node_config_init
     ma_notch_node_config_init.restype = ma_notch_node_config
     ma_notch_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -8608,19 +8608,19 @@ class struct_ma_notch_node(Structure):
 
 ma_notch_node = struct_ma_notch_node
 try:
-    ma_notch_node_init = _libraries['miniaudio.so'].ma_notch_node_init
+    ma_notch_node_init = _libraries['libminiaudio.so'].ma_notch_node_init
     ma_notch_node_init.restype = ma_result
     ma_notch_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_notch_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_notch_node)]
 except AttributeError:
     pass
 try:
-    ma_notch_node_reinit = _libraries['miniaudio.so'].ma_notch_node_reinit
+    ma_notch_node_reinit = _libraries['libminiaudio.so'].ma_notch_node_reinit
     ma_notch_node_reinit.restype = ma_result
     ma_notch_node_reinit.argtypes = [ctypes.POINTER(struct_ma_notch2_config), ctypes.POINTER(struct_ma_notch_node)]
 except AttributeError:
     pass
 try:
-    ma_notch_node_uninit = _libraries['miniaudio.so'].ma_notch_node_uninit
+    ma_notch_node_uninit = _libraries['libminiaudio.so'].ma_notch_node_uninit
     ma_notch_node_uninit.restype = None
     ma_notch_node_uninit.argtypes = [ctypes.POINTER(struct_ma_notch_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8634,7 +8634,7 @@ class struct_ma_peak_node_config(Structure):
 
 ma_peak_node_config = struct_ma_peak_node_config
 try:
-    ma_peak_node_config_init = _libraries['miniaudio.so'].ma_peak_node_config_init
+    ma_peak_node_config_init = _libraries['libminiaudio.so'].ma_peak_node_config_init
     ma_peak_node_config_init.restype = ma_peak_node_config
     ma_peak_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -8648,19 +8648,19 @@ class struct_ma_peak_node(Structure):
 
 ma_peak_node = struct_ma_peak_node
 try:
-    ma_peak_node_init = _libraries['miniaudio.so'].ma_peak_node_init
+    ma_peak_node_init = _libraries['libminiaudio.so'].ma_peak_node_init
     ma_peak_node_init.restype = ma_result
     ma_peak_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_peak_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_peak_node)]
 except AttributeError:
     pass
 try:
-    ma_peak_node_reinit = _libraries['miniaudio.so'].ma_peak_node_reinit
+    ma_peak_node_reinit = _libraries['libminiaudio.so'].ma_peak_node_reinit
     ma_peak_node_reinit.restype = ma_result
     ma_peak_node_reinit.argtypes = [ctypes.POINTER(struct_ma_peak2_config), ctypes.POINTER(struct_ma_peak_node)]
 except AttributeError:
     pass
 try:
-    ma_peak_node_uninit = _libraries['miniaudio.so'].ma_peak_node_uninit
+    ma_peak_node_uninit = _libraries['libminiaudio.so'].ma_peak_node_uninit
     ma_peak_node_uninit.restype = None
     ma_peak_node_uninit.argtypes = [ctypes.POINTER(struct_ma_peak_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8674,7 +8674,7 @@ class struct_ma_loshelf_node_config(Structure):
 
 ma_loshelf_node_config = struct_ma_loshelf_node_config
 try:
-    ma_loshelf_node_config_init = _libraries['miniaudio.so'].ma_loshelf_node_config_init
+    ma_loshelf_node_config_init = _libraries['libminiaudio.so'].ma_loshelf_node_config_init
     ma_loshelf_node_config_init.restype = ma_loshelf_node_config
     ma_loshelf_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -8688,19 +8688,19 @@ class struct_ma_loshelf_node(Structure):
 
 ma_loshelf_node = struct_ma_loshelf_node
 try:
-    ma_loshelf_node_init = _libraries['miniaudio.so'].ma_loshelf_node_init
+    ma_loshelf_node_init = _libraries['libminiaudio.so'].ma_loshelf_node_init
     ma_loshelf_node_init.restype = ma_result
     ma_loshelf_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_loshelf_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_loshelf_node)]
 except AttributeError:
     pass
 try:
-    ma_loshelf_node_reinit = _libraries['miniaudio.so'].ma_loshelf_node_reinit
+    ma_loshelf_node_reinit = _libraries['libminiaudio.so'].ma_loshelf_node_reinit
     ma_loshelf_node_reinit.restype = ma_result
     ma_loshelf_node_reinit.argtypes = [ctypes.POINTER(struct_ma_loshelf2_config), ctypes.POINTER(struct_ma_loshelf_node)]
 except AttributeError:
     pass
 try:
-    ma_loshelf_node_uninit = _libraries['miniaudio.so'].ma_loshelf_node_uninit
+    ma_loshelf_node_uninit = _libraries['libminiaudio.so'].ma_loshelf_node_uninit
     ma_loshelf_node_uninit.restype = None
     ma_loshelf_node_uninit.argtypes = [ctypes.POINTER(struct_ma_loshelf_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8714,7 +8714,7 @@ class struct_ma_hishelf_node_config(Structure):
 
 ma_hishelf_node_config = struct_ma_hishelf_node_config
 try:
-    ma_hishelf_node_config_init = _libraries['miniaudio.so'].ma_hishelf_node_config_init
+    ma_hishelf_node_config_init = _libraries['libminiaudio.so'].ma_hishelf_node_config_init
     ma_hishelf_node_config_init.restype = ma_hishelf_node_config
     ma_hishelf_node_config_init.argtypes = [ma_uint32, ma_uint32, ctypes.c_double, ctypes.c_double, ctypes.c_double]
 except AttributeError:
@@ -8728,19 +8728,19 @@ class struct_ma_hishelf_node(Structure):
 
 ma_hishelf_node = struct_ma_hishelf_node
 try:
-    ma_hishelf_node_init = _libraries['miniaudio.so'].ma_hishelf_node_init
+    ma_hishelf_node_init = _libraries['libminiaudio.so'].ma_hishelf_node_init
     ma_hishelf_node_init.restype = ma_result
     ma_hishelf_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_hishelf_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_hishelf_node)]
 except AttributeError:
     pass
 try:
-    ma_hishelf_node_reinit = _libraries['miniaudio.so'].ma_hishelf_node_reinit
+    ma_hishelf_node_reinit = _libraries['libminiaudio.so'].ma_hishelf_node_reinit
     ma_hishelf_node_reinit.restype = ma_result
     ma_hishelf_node_reinit.argtypes = [ctypes.POINTER(struct_ma_hishelf2_config), ctypes.POINTER(struct_ma_hishelf_node)]
 except AttributeError:
     pass
 try:
-    ma_hishelf_node_uninit = _libraries['miniaudio.so'].ma_hishelf_node_uninit
+    ma_hishelf_node_uninit = _libraries['libminiaudio.so'].ma_hishelf_node_uninit
     ma_hishelf_node_uninit.restype = None
     ma_hishelf_node_uninit.argtypes = [ctypes.POINTER(struct_ma_hishelf_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -8757,7 +8757,7 @@ struct_ma_delay_node_config._fields_ = [
 
 ma_delay_node_config = struct_ma_delay_node_config
 try:
-    ma_delay_node_config_init = _libraries['miniaudio.so'].ma_delay_node_config_init
+    ma_delay_node_config_init = _libraries['libminiaudio.so'].ma_delay_node_config_init
     ma_delay_node_config_init.restype = ma_delay_node_config
     ma_delay_node_config_init.argtypes = [ma_uint32, ma_uint32, ma_uint32, ctypes.c_float]
 except AttributeError:
@@ -8771,49 +8771,49 @@ class struct_ma_delay_node(Structure):
 
 ma_delay_node = struct_ma_delay_node
 try:
-    ma_delay_node_init = _libraries['miniaudio.so'].ma_delay_node_init
+    ma_delay_node_init = _libraries['libminiaudio.so'].ma_delay_node_init
     ma_delay_node_init.restype = ma_result
     ma_delay_node_init.argtypes = [ctypes.POINTER(struct_ma_node_graph), ctypes.POINTER(struct_ma_delay_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_delay_node)]
 except AttributeError:
     pass
 try:
-    ma_delay_node_uninit = _libraries['miniaudio.so'].ma_delay_node_uninit
+    ma_delay_node_uninit = _libraries['libminiaudio.so'].ma_delay_node_uninit
     ma_delay_node_uninit.restype = None
     ma_delay_node_uninit.argtypes = [ctypes.POINTER(struct_ma_delay_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
     pass
 try:
-    ma_delay_node_set_wet = _libraries['miniaudio.so'].ma_delay_node_set_wet
+    ma_delay_node_set_wet = _libraries['libminiaudio.so'].ma_delay_node_set_wet
     ma_delay_node_set_wet.restype = None
     ma_delay_node_set_wet.argtypes = [ctypes.POINTER(struct_ma_delay_node), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_delay_node_get_wet = _libraries['miniaudio.so'].ma_delay_node_get_wet
+    ma_delay_node_get_wet = _libraries['libminiaudio.so'].ma_delay_node_get_wet
     ma_delay_node_get_wet.restype = ctypes.c_float
     ma_delay_node_get_wet.argtypes = [ctypes.POINTER(struct_ma_delay_node)]
 except AttributeError:
     pass
 try:
-    ma_delay_node_set_dry = _libraries['miniaudio.so'].ma_delay_node_set_dry
+    ma_delay_node_set_dry = _libraries['libminiaudio.so'].ma_delay_node_set_dry
     ma_delay_node_set_dry.restype = None
     ma_delay_node_set_dry.argtypes = [ctypes.POINTER(struct_ma_delay_node), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_delay_node_get_dry = _libraries['miniaudio.so'].ma_delay_node_get_dry
+    ma_delay_node_get_dry = _libraries['libminiaudio.so'].ma_delay_node_get_dry
     ma_delay_node_get_dry.restype = ctypes.c_float
     ma_delay_node_get_dry.argtypes = [ctypes.POINTER(struct_ma_delay_node)]
 except AttributeError:
     pass
 try:
-    ma_delay_node_set_decay = _libraries['miniaudio.so'].ma_delay_node_set_decay
+    ma_delay_node_set_decay = _libraries['libminiaudio.so'].ma_delay_node_set_decay
     ma_delay_node_set_decay.restype = None
     ma_delay_node_set_decay.argtypes = [ctypes.POINTER(struct_ma_delay_node), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_delay_node_get_decay = _libraries['miniaudio.so'].ma_delay_node_get_decay
+    ma_delay_node_get_decay = _libraries['libminiaudio.so'].ma_delay_node_get_decay
     ma_delay_node_get_decay.restype = ctypes.c_float
     ma_delay_node_get_decay.argtypes = [ctypes.POINTER(struct_ma_delay_node)]
 except AttributeError:
@@ -8958,31 +8958,31 @@ struct_ma_engine_node_config._fields_ = [
 
 ma_engine_node_config = struct_ma_engine_node_config
 try:
-    ma_engine_node_config_init = _libraries['miniaudio.so'].ma_engine_node_config_init
+    ma_engine_node_config_init = _libraries['libminiaudio.so'].ma_engine_node_config_init
     ma_engine_node_config_init.restype = ma_engine_node_config
     ma_engine_node_config_init.argtypes = [ctypes.POINTER(struct_ma_engine), ma_engine_node_type, ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_node_get_heap_size = _libraries['miniaudio.so'].ma_engine_node_get_heap_size
+    ma_engine_node_get_heap_size = _libraries['libminiaudio.so'].ma_engine_node_get_heap_size
     ma_engine_node_get_heap_size.restype = ma_result
     ma_engine_node_get_heap_size.argtypes = [ctypes.POINTER(struct_ma_engine_node_config), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_engine_node_init_preallocated = _libraries['miniaudio.so'].ma_engine_node_init_preallocated
+    ma_engine_node_init_preallocated = _libraries['libminiaudio.so'].ma_engine_node_init_preallocated
     ma_engine_node_init_preallocated.restype = ma_result
     ma_engine_node_init_preallocated.argtypes = [ctypes.POINTER(struct_ma_engine_node_config), ctypes.POINTER(None), ctypes.POINTER(struct_ma_engine_node)]
 except AttributeError:
     pass
 try:
-    ma_engine_node_init = _libraries['miniaudio.so'].ma_engine_node_init
+    ma_engine_node_init = _libraries['libminiaudio.so'].ma_engine_node_init
     ma_engine_node_init.restype = ma_result
     ma_engine_node_init.argtypes = [ctypes.POINTER(struct_ma_engine_node_config), ctypes.POINTER(struct_ma_allocation_callbacks), ctypes.POINTER(struct_ma_engine_node)]
 except AttributeError:
     pass
 try:
-    ma_engine_node_uninit = _libraries['miniaudio.so'].ma_engine_node_uninit
+    ma_engine_node_uninit = _libraries['libminiaudio.so'].ma_engine_node_uninit
     ma_engine_node_uninit.restype = None
     ma_engine_node_uninit.argtypes = [ctypes.POINTER(struct_ma_engine_node), ctypes.POINTER(struct_ma_allocation_callbacks)]
 except AttributeError:
@@ -9018,13 +9018,13 @@ struct_ma_sound_config._fields_ = [
 
 ma_sound_config = struct_ma_sound_config
 try:
-    ma_sound_config_init = _libraries['miniaudio.so'].ma_sound_config_init
+    ma_sound_config_init = _libraries['libminiaudio.so'].ma_sound_config_init
     ma_sound_config_init.restype = ma_sound_config
     ma_sound_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_sound_config_init_2 = _libraries['miniaudio.so'].ma_sound_config_init_2
+    ma_sound_config_init_2 = _libraries['libminiaudio.so'].ma_sound_config_init_2
     ma_sound_config_init_2.restype = ma_sound_config
     ma_sound_config_init_2.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
@@ -9040,13 +9040,13 @@ ma_sound_inlined = struct_ma_sound_inlined
 ma_sound_group_config = struct_ma_sound_config
 ma_sound_group = struct_ma_sound
 try:
-    ma_sound_group_config_init = _libraries['miniaudio.so'].ma_sound_group_config_init
+    ma_sound_group_config_init = _libraries['libminiaudio.so'].ma_sound_group_config_init
     ma_sound_group_config_init.restype = ma_sound_group_config
     ma_sound_group_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_sound_group_config_init_2 = _libraries['miniaudio.so'].ma_sound_group_config_init_2
+    ma_sound_group_config_init_2 = _libraries['libminiaudio.so'].ma_sound_group_config_init_2
     ma_sound_group_config_init_2.restype = ma_sound_group_config
     ma_sound_group_config_init_2.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
@@ -9086,1027 +9086,1027 @@ struct_ma_engine_config._fields_ = [
 
 ma_engine_config = struct_ma_engine_config
 try:
-    ma_engine_config_init = _libraries['miniaudio.so'].ma_engine_config_init
+    ma_engine_config_init = _libraries['libminiaudio.so'].ma_engine_config_init
     ma_engine_config_init.restype = ma_engine_config
     ma_engine_config_init.argtypes = []
 except AttributeError:
     pass
 try:
-    ma_engine_init = _libraries['miniaudio.so'].ma_engine_init
+    ma_engine_init = _libraries['libminiaudio.so'].ma_engine_init
     ma_engine_init.restype = ma_result
     ma_engine_init.argtypes = [ctypes.POINTER(struct_ma_engine_config), ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_uninit = _libraries['miniaudio.so'].ma_engine_uninit
+    ma_engine_uninit = _libraries['libminiaudio.so'].ma_engine_uninit
     ma_engine_uninit.restype = None
     ma_engine_uninit.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_read_pcm_frames = _libraries['miniaudio.so'].ma_engine_read_pcm_frames
+    ma_engine_read_pcm_frames = _libraries['libminiaudio.so'].ma_engine_read_pcm_frames
     ma_engine_read_pcm_frames.restype = ma_result
     ma_engine_read_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(None), ma_uint64, ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_node_graph = _libraries['miniaudio.so'].ma_engine_get_node_graph
+    ma_engine_get_node_graph = _libraries['libminiaudio.so'].ma_engine_get_node_graph
     ma_engine_get_node_graph.restype = ctypes.POINTER(struct_ma_node_graph)
     ma_engine_get_node_graph.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_resource_manager = _libraries['miniaudio.so'].ma_engine_get_resource_manager
+    ma_engine_get_resource_manager = _libraries['libminiaudio.so'].ma_engine_get_resource_manager
     ma_engine_get_resource_manager.restype = ctypes.POINTER(struct_ma_resource_manager)
     ma_engine_get_resource_manager.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_device = _libraries['miniaudio.so'].ma_engine_get_device
+    ma_engine_get_device = _libraries['libminiaudio.so'].ma_engine_get_device
     ma_engine_get_device.restype = ctypes.POINTER(struct_ma_device)
     ma_engine_get_device.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_log = _libraries['miniaudio.so'].ma_engine_get_log
+    ma_engine_get_log = _libraries['libminiaudio.so'].ma_engine_get_log
     ma_engine_get_log.restype = ctypes.POINTER(struct_ma_log)
     ma_engine_get_log.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_endpoint = _libraries['miniaudio.so'].ma_engine_get_endpoint
+    ma_engine_get_endpoint = _libraries['libminiaudio.so'].ma_engine_get_endpoint
     ma_engine_get_endpoint.restype = ctypes.POINTER(None)
     ma_engine_get_endpoint.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_time_in_pcm_frames = _libraries['miniaudio.so'].ma_engine_get_time_in_pcm_frames
+    ma_engine_get_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_engine_get_time_in_pcm_frames
     ma_engine_get_time_in_pcm_frames.restype = ma_uint64
     ma_engine_get_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_time_in_milliseconds = _libraries['miniaudio.so'].ma_engine_get_time_in_milliseconds
+    ma_engine_get_time_in_milliseconds = _libraries['libminiaudio.so'].ma_engine_get_time_in_milliseconds
     ma_engine_get_time_in_milliseconds.restype = ma_uint64
     ma_engine_get_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_set_time_in_pcm_frames = _libraries['miniaudio.so'].ma_engine_set_time_in_pcm_frames
+    ma_engine_set_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_engine_set_time_in_pcm_frames
     ma_engine_set_time_in_pcm_frames.restype = ma_result
     ma_engine_set_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_engine_set_time_in_milliseconds = _libraries['miniaudio.so'].ma_engine_set_time_in_milliseconds
+    ma_engine_set_time_in_milliseconds = _libraries['libminiaudio.so'].ma_engine_set_time_in_milliseconds
     ma_engine_set_time_in_milliseconds.restype = ma_result
     ma_engine_set_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_engine_get_time = _libraries['miniaudio.so'].ma_engine_get_time
+    ma_engine_get_time = _libraries['libminiaudio.so'].ma_engine_get_time
     ma_engine_get_time.restype = ma_uint64
     ma_engine_get_time.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_set_time = _libraries['miniaudio.so'].ma_engine_set_time
+    ma_engine_set_time = _libraries['libminiaudio.so'].ma_engine_set_time
     ma_engine_set_time.restype = ma_result
     ma_engine_set_time.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_engine_get_channels = _libraries['miniaudio.so'].ma_engine_get_channels
+    ma_engine_get_channels = _libraries['libminiaudio.so'].ma_engine_get_channels
     ma_engine_get_channels.restype = ma_uint32
     ma_engine_get_channels.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_sample_rate = _libraries['miniaudio.so'].ma_engine_get_sample_rate
+    ma_engine_get_sample_rate = _libraries['libminiaudio.so'].ma_engine_get_sample_rate
     ma_engine_get_sample_rate.restype = ma_uint32
     ma_engine_get_sample_rate.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_start = _libraries['miniaudio.so'].ma_engine_start
+    ma_engine_start = _libraries['libminiaudio.so'].ma_engine_start
     ma_engine_start.restype = ma_result
     ma_engine_start.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_stop = _libraries['miniaudio.so'].ma_engine_stop
+    ma_engine_stop = _libraries['libminiaudio.so'].ma_engine_stop
     ma_engine_stop.restype = ma_result
     ma_engine_stop.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_set_volume = _libraries['miniaudio.so'].ma_engine_set_volume
+    ma_engine_set_volume = _libraries['libminiaudio.so'].ma_engine_set_volume
     ma_engine_set_volume.restype = ma_result
     ma_engine_set_volume.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_get_volume = _libraries['miniaudio.so'].ma_engine_get_volume
+    ma_engine_get_volume = _libraries['libminiaudio.so'].ma_engine_get_volume
     ma_engine_get_volume.restype = ctypes.c_float
     ma_engine_get_volume.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_set_gain_db = _libraries['miniaudio.so'].ma_engine_set_gain_db
+    ma_engine_set_gain_db = _libraries['libminiaudio.so'].ma_engine_set_gain_db
     ma_engine_set_gain_db.restype = ma_result
     ma_engine_set_gain_db.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_get_gain_db = _libraries['miniaudio.so'].ma_engine_get_gain_db
+    ma_engine_get_gain_db = _libraries['libminiaudio.so'].ma_engine_get_gain_db
     ma_engine_get_gain_db.restype = ctypes.c_float
     ma_engine_get_gain_db.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_get_listener_count = _libraries['miniaudio.so'].ma_engine_get_listener_count
+    ma_engine_get_listener_count = _libraries['libminiaudio.so'].ma_engine_get_listener_count
     ma_engine_get_listener_count.restype = ma_uint32
     ma_engine_get_listener_count.argtypes = [ctypes.POINTER(struct_ma_engine)]
 except AttributeError:
     pass
 try:
-    ma_engine_find_closest_listener = _libraries['miniaudio.so'].ma_engine_find_closest_listener
+    ma_engine_find_closest_listener = _libraries['libminiaudio.so'].ma_engine_find_closest_listener
     ma_engine_find_closest_listener.restype = ma_uint32
     ma_engine_find_closest_listener.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_set_position = _libraries['miniaudio.so'].ma_engine_listener_set_position
+    ma_engine_listener_set_position = _libraries['libminiaudio.so'].ma_engine_listener_set_position
     ma_engine_listener_set_position.restype = None
     ma_engine_listener_set_position.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_get_position = _libraries['miniaudio.so'].ma_engine_listener_get_position
+    ma_engine_listener_get_position = _libraries['libminiaudio.so'].ma_engine_listener_get_position
     ma_engine_listener_get_position.restype = ma_vec3f
     ma_engine_listener_get_position.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_set_direction = _libraries['miniaudio.so'].ma_engine_listener_set_direction
+    ma_engine_listener_set_direction = _libraries['libminiaudio.so'].ma_engine_listener_set_direction
     ma_engine_listener_set_direction.restype = None
     ma_engine_listener_set_direction.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_get_direction = _libraries['miniaudio.so'].ma_engine_listener_get_direction
+    ma_engine_listener_get_direction = _libraries['libminiaudio.so'].ma_engine_listener_get_direction
     ma_engine_listener_get_direction.restype = ma_vec3f
     ma_engine_listener_get_direction.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_set_velocity = _libraries['miniaudio.so'].ma_engine_listener_set_velocity
+    ma_engine_listener_set_velocity = _libraries['libminiaudio.so'].ma_engine_listener_set_velocity
     ma_engine_listener_set_velocity.restype = None
     ma_engine_listener_set_velocity.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_get_velocity = _libraries['miniaudio.so'].ma_engine_listener_get_velocity
+    ma_engine_listener_get_velocity = _libraries['libminiaudio.so'].ma_engine_listener_get_velocity
     ma_engine_listener_get_velocity.restype = ma_vec3f
     ma_engine_listener_get_velocity.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_set_cone = _libraries['miniaudio.so'].ma_engine_listener_set_cone
+    ma_engine_listener_set_cone = _libraries['libminiaudio.so'].ma_engine_listener_set_cone
     ma_engine_listener_set_cone.restype = None
     ma_engine_listener_set_cone.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_get_cone = _libraries['miniaudio.so'].ma_engine_listener_get_cone
+    ma_engine_listener_get_cone = _libraries['libminiaudio.so'].ma_engine_listener_get_cone
     ma_engine_listener_get_cone.restype = None
     ma_engine_listener_get_cone.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_set_world_up = _libraries['miniaudio.so'].ma_engine_listener_set_world_up
+    ma_engine_listener_set_world_up = _libraries['libminiaudio.so'].ma_engine_listener_set_world_up
     ma_engine_listener_set_world_up.restype = None
     ma_engine_listener_set_world_up.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_get_world_up = _libraries['miniaudio.so'].ma_engine_listener_get_world_up
+    ma_engine_listener_get_world_up = _libraries['libminiaudio.so'].ma_engine_listener_get_world_up
     ma_engine_listener_get_world_up.restype = ma_vec3f
     ma_engine_listener_get_world_up.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_set_enabled = _libraries['miniaudio.so'].ma_engine_listener_set_enabled
+    ma_engine_listener_set_enabled = _libraries['libminiaudio.so'].ma_engine_listener_set_enabled
     ma_engine_listener_set_enabled.restype = None
     ma_engine_listener_set_enabled.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_engine_listener_is_enabled = _libraries['miniaudio.so'].ma_engine_listener_is_enabled
+    ma_engine_listener_is_enabled = _libraries['libminiaudio.so'].ma_engine_listener_is_enabled
     ma_engine_listener_is_enabled.restype = ma_bool32
     ma_engine_listener_is_enabled.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_play_sound_ex = _libraries['miniaudio.so'].ma_engine_play_sound_ex
+    ma_engine_play_sound_ex = _libraries['libminiaudio.so'].ma_engine_play_sound_ex
     ma_engine_play_sound_ex.restype = ma_result
     ma_engine_play_sound_ex.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(None), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_engine_play_sound = _libraries['miniaudio.so'].ma_engine_play_sound
+    ma_engine_play_sound = _libraries['libminiaudio.so'].ma_engine_play_sound
     ma_engine_play_sound.restype = ma_result
     ma_engine_play_sound.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(ctypes.c_char), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_init_from_file = _libraries['miniaudio.so'].ma_sound_init_from_file
+    ma_sound_init_from_file = _libraries['libminiaudio.so'].ma_sound_init_from_file
     ma_sound_init_from_file.restype = ma_result
     ma_sound_init_from_file.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(ctypes.c_char), ma_uint32, ctypes.POINTER(struct_ma_sound), ctypes.POINTER(struct_ma_fence), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_init_from_file_w = _libraries['miniaudio.so'].ma_sound_init_from_file_w
+    ma_sound_init_from_file_w = _libraries['libminiaudio.so'].ma_sound_init_from_file_w
     ma_sound_init_from_file_w.restype = ma_result
     ma_sound_init_from_file_w.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(ctypes.c_int32), ma_uint32, ctypes.POINTER(struct_ma_sound), ctypes.POINTER(struct_ma_fence), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_init_copy = _libraries['miniaudio.so'].ma_sound_init_copy
+    ma_sound_init_copy = _libraries['libminiaudio.so'].ma_sound_init_copy
     ma_sound_init_copy.restype = ma_result
     ma_sound_init_copy.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(struct_ma_sound), ma_uint32, ctypes.POINTER(struct_ma_sound), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_init_from_data_source = _libraries['miniaudio.so'].ma_sound_init_from_data_source
+    ma_sound_init_from_data_source = _libraries['libminiaudio.so'].ma_sound_init_from_data_source
     ma_sound_init_from_data_source.restype = ma_result
     ma_sound_init_from_data_source.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(None), ma_uint32, ctypes.POINTER(struct_ma_sound), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_init_ex = _libraries['miniaudio.so'].ma_sound_init_ex
+    ma_sound_init_ex = _libraries['libminiaudio.so'].ma_sound_init_ex
     ma_sound_init_ex.restype = ma_result
     ma_sound_init_ex.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(struct_ma_sound_config), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_uninit = _libraries['miniaudio.so'].ma_sound_uninit
+    ma_sound_uninit = _libraries['libminiaudio.so'].ma_sound_uninit
     ma_sound_uninit.restype = None
     ma_sound_uninit.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_engine = _libraries['miniaudio.so'].ma_sound_get_engine
+    ma_sound_get_engine = _libraries['libminiaudio.so'].ma_sound_get_engine
     ma_sound_get_engine.restype = ctypes.POINTER(struct_ma_engine)
     ma_sound_get_engine.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_data_source = _libraries['miniaudio.so'].ma_sound_get_data_source
+    ma_sound_get_data_source = _libraries['libminiaudio.so'].ma_sound_get_data_source
     ma_sound_get_data_source.restype = ctypes.POINTER(None)
     ma_sound_get_data_source.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_start = _libraries['miniaudio.so'].ma_sound_start
+    ma_sound_start = _libraries['libminiaudio.so'].ma_sound_start
     ma_sound_start.restype = ma_result
     ma_sound_start.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_stop = _libraries['miniaudio.so'].ma_sound_stop
+    ma_sound_stop = _libraries['libminiaudio.so'].ma_sound_stop
     ma_sound_stop.restype = ma_result
     ma_sound_stop.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_stop_with_fade_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_stop_with_fade_in_pcm_frames
+    ma_sound_stop_with_fade_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_stop_with_fade_in_pcm_frames
     ma_sound_stop_with_fade_in_pcm_frames.restype = ma_result
     ma_sound_stop_with_fade_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_stop_with_fade_in_milliseconds = _libraries['miniaudio.so'].ma_sound_stop_with_fade_in_milliseconds
+    ma_sound_stop_with_fade_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_stop_with_fade_in_milliseconds
     ma_sound_stop_with_fade_in_milliseconds.restype = ma_result
     ma_sound_stop_with_fade_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_volume = _libraries['miniaudio.so'].ma_sound_set_volume
+    ma_sound_set_volume = _libraries['libminiaudio.so'].ma_sound_set_volume
     ma_sound_set_volume.restype = None
     ma_sound_set_volume.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_volume = _libraries['miniaudio.so'].ma_sound_get_volume
+    ma_sound_get_volume = _libraries['libminiaudio.so'].ma_sound_get_volume
     ma_sound_get_volume.restype = ctypes.c_float
     ma_sound_get_volume.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_pan = _libraries['miniaudio.so'].ma_sound_set_pan
+    ma_sound_set_pan = _libraries['libminiaudio.so'].ma_sound_set_pan
     ma_sound_set_pan.restype = None
     ma_sound_set_pan.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_pan = _libraries['miniaudio.so'].ma_sound_get_pan
+    ma_sound_get_pan = _libraries['libminiaudio.so'].ma_sound_get_pan
     ma_sound_get_pan.restype = ctypes.c_float
     ma_sound_get_pan.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_pan_mode = _libraries['miniaudio.so'].ma_sound_set_pan_mode
+    ma_sound_set_pan_mode = _libraries['libminiaudio.so'].ma_sound_set_pan_mode
     ma_sound_set_pan_mode.restype = None
     ma_sound_set_pan_mode.argtypes = [ctypes.POINTER(struct_ma_sound), ma_pan_mode]
 except AttributeError:
     pass
 try:
-    ma_sound_get_pan_mode = _libraries['miniaudio.so'].ma_sound_get_pan_mode
+    ma_sound_get_pan_mode = _libraries['libminiaudio.so'].ma_sound_get_pan_mode
     ma_sound_get_pan_mode.restype = ma_pan_mode
     ma_sound_get_pan_mode.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_pitch = _libraries['miniaudio.so'].ma_sound_set_pitch
+    ma_sound_set_pitch = _libraries['libminiaudio.so'].ma_sound_set_pitch
     ma_sound_set_pitch.restype = None
     ma_sound_set_pitch.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_pitch = _libraries['miniaudio.so'].ma_sound_get_pitch
+    ma_sound_get_pitch = _libraries['libminiaudio.so'].ma_sound_get_pitch
     ma_sound_get_pitch.restype = ctypes.c_float
     ma_sound_get_pitch.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_spatialization_enabled = _libraries['miniaudio.so'].ma_sound_set_spatialization_enabled
+    ma_sound_set_spatialization_enabled = _libraries['libminiaudio.so'].ma_sound_set_spatialization_enabled
     ma_sound_set_spatialization_enabled.restype = None
     ma_sound_set_spatialization_enabled.argtypes = [ctypes.POINTER(struct_ma_sound), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_sound_is_spatialization_enabled = _libraries['miniaudio.so'].ma_sound_is_spatialization_enabled
+    ma_sound_is_spatialization_enabled = _libraries['libminiaudio.so'].ma_sound_is_spatialization_enabled
     ma_sound_is_spatialization_enabled.restype = ma_bool32
     ma_sound_is_spatialization_enabled.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_pinned_listener_index = _libraries['miniaudio.so'].ma_sound_set_pinned_listener_index
+    ma_sound_set_pinned_listener_index = _libraries['libminiaudio.so'].ma_sound_set_pinned_listener_index
     ma_sound_set_pinned_listener_index.restype = None
     ma_sound_set_pinned_listener_index.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_sound_get_pinned_listener_index = _libraries['miniaudio.so'].ma_sound_get_pinned_listener_index
+    ma_sound_get_pinned_listener_index = _libraries['libminiaudio.so'].ma_sound_get_pinned_listener_index
     ma_sound_get_pinned_listener_index.restype = ma_uint32
     ma_sound_get_pinned_listener_index.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_listener_index = _libraries['miniaudio.so'].ma_sound_get_listener_index
+    ma_sound_get_listener_index = _libraries['libminiaudio.so'].ma_sound_get_listener_index
     ma_sound_get_listener_index.restype = ma_uint32
     ma_sound_get_listener_index.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_direction_to_listener = _libraries['miniaudio.so'].ma_sound_get_direction_to_listener
+    ma_sound_get_direction_to_listener = _libraries['libminiaudio.so'].ma_sound_get_direction_to_listener
     ma_sound_get_direction_to_listener.restype = ma_vec3f
     ma_sound_get_direction_to_listener.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_position = _libraries['miniaudio.so'].ma_sound_set_position
+    ma_sound_set_position = _libraries['libminiaudio.so'].ma_sound_set_position
     ma_sound_set_position.restype = None
     ma_sound_set_position.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_position = _libraries['miniaudio.so'].ma_sound_get_position
+    ma_sound_get_position = _libraries['libminiaudio.so'].ma_sound_get_position
     ma_sound_get_position.restype = ma_vec3f
     ma_sound_get_position.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_direction = _libraries['miniaudio.so'].ma_sound_set_direction
+    ma_sound_set_direction = _libraries['libminiaudio.so'].ma_sound_set_direction
     ma_sound_set_direction.restype = None
     ma_sound_set_direction.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_direction = _libraries['miniaudio.so'].ma_sound_get_direction
+    ma_sound_get_direction = _libraries['libminiaudio.so'].ma_sound_get_direction
     ma_sound_get_direction.restype = ma_vec3f
     ma_sound_get_direction.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_velocity = _libraries['miniaudio.so'].ma_sound_set_velocity
+    ma_sound_set_velocity = _libraries['libminiaudio.so'].ma_sound_set_velocity
     ma_sound_set_velocity.restype = None
     ma_sound_set_velocity.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_velocity = _libraries['miniaudio.so'].ma_sound_get_velocity
+    ma_sound_get_velocity = _libraries['libminiaudio.so'].ma_sound_get_velocity
     ma_sound_get_velocity.restype = ma_vec3f
     ma_sound_get_velocity.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_attenuation_model = _libraries['miniaudio.so'].ma_sound_set_attenuation_model
+    ma_sound_set_attenuation_model = _libraries['libminiaudio.so'].ma_sound_set_attenuation_model
     ma_sound_set_attenuation_model.restype = None
     ma_sound_set_attenuation_model.argtypes = [ctypes.POINTER(struct_ma_sound), ma_attenuation_model]
 except AttributeError:
     pass
 try:
-    ma_sound_get_attenuation_model = _libraries['miniaudio.so'].ma_sound_get_attenuation_model
+    ma_sound_get_attenuation_model = _libraries['libminiaudio.so'].ma_sound_get_attenuation_model
     ma_sound_get_attenuation_model.restype = ma_attenuation_model
     ma_sound_get_attenuation_model.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_positioning = _libraries['miniaudio.so'].ma_sound_set_positioning
+    ma_sound_set_positioning = _libraries['libminiaudio.so'].ma_sound_set_positioning
     ma_sound_set_positioning.restype = None
     ma_sound_set_positioning.argtypes = [ctypes.POINTER(struct_ma_sound), ma_positioning]
 except AttributeError:
     pass
 try:
-    ma_sound_get_positioning = _libraries['miniaudio.so'].ma_sound_get_positioning
+    ma_sound_get_positioning = _libraries['libminiaudio.so'].ma_sound_get_positioning
     ma_sound_get_positioning.restype = ma_positioning
     ma_sound_get_positioning.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_rolloff = _libraries['miniaudio.so'].ma_sound_set_rolloff
+    ma_sound_set_rolloff = _libraries['libminiaudio.so'].ma_sound_set_rolloff
     ma_sound_set_rolloff.restype = None
     ma_sound_set_rolloff.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_rolloff = _libraries['miniaudio.so'].ma_sound_get_rolloff
+    ma_sound_get_rolloff = _libraries['libminiaudio.so'].ma_sound_get_rolloff
     ma_sound_get_rolloff.restype = ctypes.c_float
     ma_sound_get_rolloff.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_min_gain = _libraries['miniaudio.so'].ma_sound_set_min_gain
+    ma_sound_set_min_gain = _libraries['libminiaudio.so'].ma_sound_set_min_gain
     ma_sound_set_min_gain.restype = None
     ma_sound_set_min_gain.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_min_gain = _libraries['miniaudio.so'].ma_sound_get_min_gain
+    ma_sound_get_min_gain = _libraries['libminiaudio.so'].ma_sound_get_min_gain
     ma_sound_get_min_gain.restype = ctypes.c_float
     ma_sound_get_min_gain.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_max_gain = _libraries['miniaudio.so'].ma_sound_set_max_gain
+    ma_sound_set_max_gain = _libraries['libminiaudio.so'].ma_sound_set_max_gain
     ma_sound_set_max_gain.restype = None
     ma_sound_set_max_gain.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_max_gain = _libraries['miniaudio.so'].ma_sound_get_max_gain
+    ma_sound_get_max_gain = _libraries['libminiaudio.so'].ma_sound_get_max_gain
     ma_sound_get_max_gain.restype = ctypes.c_float
     ma_sound_get_max_gain.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_min_distance = _libraries['miniaudio.so'].ma_sound_set_min_distance
+    ma_sound_set_min_distance = _libraries['libminiaudio.so'].ma_sound_set_min_distance
     ma_sound_set_min_distance.restype = None
     ma_sound_set_min_distance.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_min_distance = _libraries['miniaudio.so'].ma_sound_get_min_distance
+    ma_sound_get_min_distance = _libraries['libminiaudio.so'].ma_sound_get_min_distance
     ma_sound_get_min_distance.restype = ctypes.c_float
     ma_sound_get_min_distance.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_max_distance = _libraries['miniaudio.so'].ma_sound_set_max_distance
+    ma_sound_set_max_distance = _libraries['libminiaudio.so'].ma_sound_set_max_distance
     ma_sound_set_max_distance.restype = None
     ma_sound_set_max_distance.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_max_distance = _libraries['miniaudio.so'].ma_sound_get_max_distance
+    ma_sound_get_max_distance = _libraries['libminiaudio.so'].ma_sound_get_max_distance
     ma_sound_get_max_distance.restype = ctypes.c_float
     ma_sound_get_max_distance.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_cone = _libraries['miniaudio.so'].ma_sound_set_cone
+    ma_sound_set_cone = _libraries['libminiaudio.so'].ma_sound_set_cone
     ma_sound_set_cone.restype = None
     ma_sound_set_cone.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_cone = _libraries['miniaudio.so'].ma_sound_get_cone
+    ma_sound_get_cone = _libraries['libminiaudio.so'].ma_sound_get_cone
     ma_sound_get_cone.restype = None
     ma_sound_get_cone.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_doppler_factor = _libraries['miniaudio.so'].ma_sound_set_doppler_factor
+    ma_sound_set_doppler_factor = _libraries['libminiaudio.so'].ma_sound_set_doppler_factor
     ma_sound_set_doppler_factor.restype = None
     ma_sound_set_doppler_factor.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_doppler_factor = _libraries['miniaudio.so'].ma_sound_get_doppler_factor
+    ma_sound_get_doppler_factor = _libraries['libminiaudio.so'].ma_sound_get_doppler_factor
     ma_sound_get_doppler_factor.restype = ctypes.c_float
     ma_sound_get_doppler_factor.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_directional_attenuation_factor = _libraries['miniaudio.so'].ma_sound_set_directional_attenuation_factor
+    ma_sound_set_directional_attenuation_factor = _libraries['libminiaudio.so'].ma_sound_set_directional_attenuation_factor
     ma_sound_set_directional_attenuation_factor.restype = None
     ma_sound_set_directional_attenuation_factor.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_directional_attenuation_factor = _libraries['miniaudio.so'].ma_sound_get_directional_attenuation_factor
+    ma_sound_get_directional_attenuation_factor = _libraries['libminiaudio.so'].ma_sound_get_directional_attenuation_factor
     ma_sound_get_directional_attenuation_factor.restype = ctypes.c_float
     ma_sound_get_directional_attenuation_factor.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_fade_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_set_fade_in_pcm_frames
+    ma_sound_set_fade_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_set_fade_in_pcm_frames
     ma_sound_set_fade_in_pcm_frames.restype = None
     ma_sound_set_fade_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_fade_in_milliseconds = _libraries['miniaudio.so'].ma_sound_set_fade_in_milliseconds
+    ma_sound_set_fade_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_set_fade_in_milliseconds
     ma_sound_set_fade_in_milliseconds.restype = None
     ma_sound_set_fade_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_fade_start_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_set_fade_start_in_pcm_frames
+    ma_sound_set_fade_start_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_set_fade_start_in_pcm_frames
     ma_sound_set_fade_start_in_pcm_frames.restype = None
     ma_sound_set_fade_start_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_fade_start_in_milliseconds = _libraries['miniaudio.so'].ma_sound_set_fade_start_in_milliseconds
+    ma_sound_set_fade_start_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_set_fade_start_in_milliseconds
     ma_sound_set_fade_start_in_milliseconds.restype = None
     ma_sound_set_fade_start_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_get_current_fade_volume = _libraries['miniaudio.so'].ma_sound_get_current_fade_volume
+    ma_sound_get_current_fade_volume = _libraries['libminiaudio.so'].ma_sound_get_current_fade_volume
     ma_sound_get_current_fade_volume.restype = ctypes.c_float
     ma_sound_get_current_fade_volume.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_start_time_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_set_start_time_in_pcm_frames
+    ma_sound_set_start_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_set_start_time_in_pcm_frames
     ma_sound_set_start_time_in_pcm_frames.restype = None
     ma_sound_set_start_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_start_time_in_milliseconds = _libraries['miniaudio.so'].ma_sound_set_start_time_in_milliseconds
+    ma_sound_set_start_time_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_set_start_time_in_milliseconds
     ma_sound_set_start_time_in_milliseconds.restype = None
     ma_sound_set_start_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_stop_time_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_set_stop_time_in_pcm_frames
+    ma_sound_set_stop_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_set_stop_time_in_pcm_frames
     ma_sound_set_stop_time_in_pcm_frames.restype = None
     ma_sound_set_stop_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_stop_time_in_milliseconds = _libraries['miniaudio.so'].ma_sound_set_stop_time_in_milliseconds
+    ma_sound_set_stop_time_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_set_stop_time_in_milliseconds
     ma_sound_set_stop_time_in_milliseconds.restype = None
     ma_sound_set_stop_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_stop_time_with_fade_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_set_stop_time_with_fade_in_pcm_frames
+    ma_sound_set_stop_time_with_fade_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_set_stop_time_with_fade_in_pcm_frames
     ma_sound_set_stop_time_with_fade_in_pcm_frames.restype = None
     ma_sound_set_stop_time_with_fade_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_set_stop_time_with_fade_in_milliseconds = _libraries['miniaudio.so'].ma_sound_set_stop_time_with_fade_in_milliseconds
+    ma_sound_set_stop_time_with_fade_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_set_stop_time_with_fade_in_milliseconds
     ma_sound_set_stop_time_with_fade_in_milliseconds.restype = None
     ma_sound_set_stop_time_with_fade_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_is_playing = _libraries['miniaudio.so'].ma_sound_is_playing
+    ma_sound_is_playing = _libraries['libminiaudio.so'].ma_sound_is_playing
     ma_sound_is_playing.restype = ma_bool32
     ma_sound_is_playing.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_time_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_get_time_in_pcm_frames
+    ma_sound_get_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_get_time_in_pcm_frames
     ma_sound_get_time_in_pcm_frames.restype = ma_uint64
     ma_sound_get_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_time_in_milliseconds = _libraries['miniaudio.so'].ma_sound_get_time_in_milliseconds
+    ma_sound_get_time_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_get_time_in_milliseconds
     ma_sound_get_time_in_milliseconds.restype = ma_uint64
     ma_sound_get_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_looping = _libraries['miniaudio.so'].ma_sound_set_looping
+    ma_sound_set_looping = _libraries['libminiaudio.so'].ma_sound_set_looping
     ma_sound_set_looping.restype = None
     ma_sound_set_looping.argtypes = [ctypes.POINTER(struct_ma_sound), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_sound_is_looping = _libraries['miniaudio.so'].ma_sound_is_looping
+    ma_sound_is_looping = _libraries['libminiaudio.so'].ma_sound_is_looping
     ma_sound_is_looping.restype = ma_bool32
     ma_sound_is_looping.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_at_end = _libraries['miniaudio.so'].ma_sound_at_end
+    ma_sound_at_end = _libraries['libminiaudio.so'].ma_sound_at_end
     ma_sound_at_end.restype = ma_bool32
     ma_sound_at_end.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_seek_to_pcm_frame = _libraries['miniaudio.so'].ma_sound_seek_to_pcm_frame
+    ma_sound_seek_to_pcm_frame = _libraries['libminiaudio.so'].ma_sound_seek_to_pcm_frame
     ma_sound_seek_to_pcm_frame.restype = ma_result
     ma_sound_seek_to_pcm_frame.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_seek_to_second = _libraries['miniaudio.so'].ma_sound_seek_to_second
+    ma_sound_seek_to_second = _libraries['libminiaudio.so'].ma_sound_seek_to_second
     ma_sound_seek_to_second.restype = ma_result
     ma_sound_seek_to_second.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_get_data_format = _libraries['miniaudio.so'].ma_sound_get_data_format
+    ma_sound_get_data_format = _libraries['libminiaudio.so'].ma_sound_get_data_format
     ma_sound_get_data_format.restype = ma_result
     ma_sound_get_data_format.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ma_format), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_ubyte), size_t]
 except AttributeError:
     pass
 try:
-    ma_sound_get_cursor_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_get_cursor_in_pcm_frames
+    ma_sound_get_cursor_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_get_cursor_in_pcm_frames
     ma_sound_get_cursor_in_pcm_frames.restype = ma_result
     ma_sound_get_cursor_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_length_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_get_length_in_pcm_frames
+    ma_sound_get_length_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_get_length_in_pcm_frames
     ma_sound_get_length_in_pcm_frames.restype = ma_result
     ma_sound_get_length_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ctypes.c_uint64)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_cursor_in_seconds = _libraries['miniaudio.so'].ma_sound_get_cursor_in_seconds
+    ma_sound_get_cursor_in_seconds = _libraries['libminiaudio.so'].ma_sound_get_cursor_in_seconds
     ma_sound_get_cursor_in_seconds.restype = ma_result
     ma_sound_get_cursor_in_seconds.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_sound_get_length_in_seconds = _libraries['miniaudio.so'].ma_sound_get_length_in_seconds
+    ma_sound_get_length_in_seconds = _libraries['libminiaudio.so'].ma_sound_get_length_in_seconds
     ma_sound_get_length_in_seconds.restype = ma_result
     ma_sound_get_length_in_seconds.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_sound_set_end_callback = _libraries['miniaudio.so'].ma_sound_set_end_callback
+    ma_sound_set_end_callback = _libraries['libminiaudio.so'].ma_sound_set_end_callback
     ma_sound_set_end_callback.restype = ma_result
     ma_sound_set_end_callback.argtypes = [ctypes.POINTER(struct_ma_sound), ma_sound_end_proc, ctypes.POINTER(None)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_init = _libraries['miniaudio.so'].ma_sound_group_init
+    ma_sound_group_init = _libraries['libminiaudio.so'].ma_sound_group_init
     ma_sound_group_init.restype = ma_result
     ma_sound_group_init.argtypes = [ctypes.POINTER(struct_ma_engine), ma_uint32, ctypes.POINTER(struct_ma_sound), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_init_ex = _libraries['miniaudio.so'].ma_sound_group_init_ex
+    ma_sound_group_init_ex = _libraries['libminiaudio.so'].ma_sound_group_init_ex
     ma_sound_group_init_ex.restype = ma_result
     ma_sound_group_init_ex.argtypes = [ctypes.POINTER(struct_ma_engine), ctypes.POINTER(struct_ma_sound_config), ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_uninit = _libraries['miniaudio.so'].ma_sound_group_uninit
+    ma_sound_group_uninit = _libraries['libminiaudio.so'].ma_sound_group_uninit
     ma_sound_group_uninit.restype = None
     ma_sound_group_uninit.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_engine = _libraries['miniaudio.so'].ma_sound_group_get_engine
+    ma_sound_group_get_engine = _libraries['libminiaudio.so'].ma_sound_group_get_engine
     ma_sound_group_get_engine.restype = ctypes.POINTER(struct_ma_engine)
     ma_sound_group_get_engine.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_start = _libraries['miniaudio.so'].ma_sound_group_start
+    ma_sound_group_start = _libraries['libminiaudio.so'].ma_sound_group_start
     ma_sound_group_start.restype = ma_result
     ma_sound_group_start.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_stop = _libraries['miniaudio.so'].ma_sound_group_stop
+    ma_sound_group_stop = _libraries['libminiaudio.so'].ma_sound_group_stop
     ma_sound_group_stop.restype = ma_result
     ma_sound_group_stop.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_volume = _libraries['miniaudio.so'].ma_sound_group_set_volume
+    ma_sound_group_set_volume = _libraries['libminiaudio.so'].ma_sound_group_set_volume
     ma_sound_group_set_volume.restype = None
     ma_sound_group_set_volume.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_volume = _libraries['miniaudio.so'].ma_sound_group_get_volume
+    ma_sound_group_get_volume = _libraries['libminiaudio.so'].ma_sound_group_get_volume
     ma_sound_group_get_volume.restype = ctypes.c_float
     ma_sound_group_get_volume.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_pan = _libraries['miniaudio.so'].ma_sound_group_set_pan
+    ma_sound_group_set_pan = _libraries['libminiaudio.so'].ma_sound_group_set_pan
     ma_sound_group_set_pan.restype = None
     ma_sound_group_set_pan.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_pan = _libraries['miniaudio.so'].ma_sound_group_get_pan
+    ma_sound_group_get_pan = _libraries['libminiaudio.so'].ma_sound_group_get_pan
     ma_sound_group_get_pan.restype = ctypes.c_float
     ma_sound_group_get_pan.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_pan_mode = _libraries['miniaudio.so'].ma_sound_group_set_pan_mode
+    ma_sound_group_set_pan_mode = _libraries['libminiaudio.so'].ma_sound_group_set_pan_mode
     ma_sound_group_set_pan_mode.restype = None
     ma_sound_group_set_pan_mode.argtypes = [ctypes.POINTER(struct_ma_sound), ma_pan_mode]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_pan_mode = _libraries['miniaudio.so'].ma_sound_group_get_pan_mode
+    ma_sound_group_get_pan_mode = _libraries['libminiaudio.so'].ma_sound_group_get_pan_mode
     ma_sound_group_get_pan_mode.restype = ma_pan_mode
     ma_sound_group_get_pan_mode.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_pitch = _libraries['miniaudio.so'].ma_sound_group_set_pitch
+    ma_sound_group_set_pitch = _libraries['libminiaudio.so'].ma_sound_group_set_pitch
     ma_sound_group_set_pitch.restype = None
     ma_sound_group_set_pitch.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_pitch = _libraries['miniaudio.so'].ma_sound_group_get_pitch
+    ma_sound_group_get_pitch = _libraries['libminiaudio.so'].ma_sound_group_get_pitch
     ma_sound_group_get_pitch.restype = ctypes.c_float
     ma_sound_group_get_pitch.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_spatialization_enabled = _libraries['miniaudio.so'].ma_sound_group_set_spatialization_enabled
+    ma_sound_group_set_spatialization_enabled = _libraries['libminiaudio.so'].ma_sound_group_set_spatialization_enabled
     ma_sound_group_set_spatialization_enabled.restype = None
     ma_sound_group_set_spatialization_enabled.argtypes = [ctypes.POINTER(struct_ma_sound), ma_bool32]
 except AttributeError:
     pass
 try:
-    ma_sound_group_is_spatialization_enabled = _libraries['miniaudio.so'].ma_sound_group_is_spatialization_enabled
+    ma_sound_group_is_spatialization_enabled = _libraries['libminiaudio.so'].ma_sound_group_is_spatialization_enabled
     ma_sound_group_is_spatialization_enabled.restype = ma_bool32
     ma_sound_group_is_spatialization_enabled.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_pinned_listener_index = _libraries['miniaudio.so'].ma_sound_group_set_pinned_listener_index
+    ma_sound_group_set_pinned_listener_index = _libraries['libminiaudio.so'].ma_sound_group_set_pinned_listener_index
     ma_sound_group_set_pinned_listener_index.restype = None
     ma_sound_group_set_pinned_listener_index.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint32]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_pinned_listener_index = _libraries['miniaudio.so'].ma_sound_group_get_pinned_listener_index
+    ma_sound_group_get_pinned_listener_index = _libraries['libminiaudio.so'].ma_sound_group_get_pinned_listener_index
     ma_sound_group_get_pinned_listener_index.restype = ma_uint32
     ma_sound_group_get_pinned_listener_index.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_listener_index = _libraries['miniaudio.so'].ma_sound_group_get_listener_index
+    ma_sound_group_get_listener_index = _libraries['libminiaudio.so'].ma_sound_group_get_listener_index
     ma_sound_group_get_listener_index.restype = ma_uint32
     ma_sound_group_get_listener_index.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_direction_to_listener = _libraries['miniaudio.so'].ma_sound_group_get_direction_to_listener
+    ma_sound_group_get_direction_to_listener = _libraries['libminiaudio.so'].ma_sound_group_get_direction_to_listener
     ma_sound_group_get_direction_to_listener.restype = ma_vec3f
     ma_sound_group_get_direction_to_listener.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_position = _libraries['miniaudio.so'].ma_sound_group_set_position
+    ma_sound_group_set_position = _libraries['libminiaudio.so'].ma_sound_group_set_position
     ma_sound_group_set_position.restype = None
     ma_sound_group_set_position.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_position = _libraries['miniaudio.so'].ma_sound_group_get_position
+    ma_sound_group_get_position = _libraries['libminiaudio.so'].ma_sound_group_get_position
     ma_sound_group_get_position.restype = ma_vec3f
     ma_sound_group_get_position.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_direction = _libraries['miniaudio.so'].ma_sound_group_set_direction
+    ma_sound_group_set_direction = _libraries['libminiaudio.so'].ma_sound_group_set_direction
     ma_sound_group_set_direction.restype = None
     ma_sound_group_set_direction.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_direction = _libraries['miniaudio.so'].ma_sound_group_get_direction
+    ma_sound_group_get_direction = _libraries['libminiaudio.so'].ma_sound_group_get_direction
     ma_sound_group_get_direction.restype = ma_vec3f
     ma_sound_group_get_direction.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_velocity = _libraries['miniaudio.so'].ma_sound_group_set_velocity
+    ma_sound_group_set_velocity = _libraries['libminiaudio.so'].ma_sound_group_set_velocity
     ma_sound_group_set_velocity.restype = None
     ma_sound_group_set_velocity.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_velocity = _libraries['miniaudio.so'].ma_sound_group_get_velocity
+    ma_sound_group_get_velocity = _libraries['libminiaudio.so'].ma_sound_group_get_velocity
     ma_sound_group_get_velocity.restype = ma_vec3f
     ma_sound_group_get_velocity.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_attenuation_model = _libraries['miniaudio.so'].ma_sound_group_set_attenuation_model
+    ma_sound_group_set_attenuation_model = _libraries['libminiaudio.so'].ma_sound_group_set_attenuation_model
     ma_sound_group_set_attenuation_model.restype = None
     ma_sound_group_set_attenuation_model.argtypes = [ctypes.POINTER(struct_ma_sound), ma_attenuation_model]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_attenuation_model = _libraries['miniaudio.so'].ma_sound_group_get_attenuation_model
+    ma_sound_group_get_attenuation_model = _libraries['libminiaudio.so'].ma_sound_group_get_attenuation_model
     ma_sound_group_get_attenuation_model.restype = ma_attenuation_model
     ma_sound_group_get_attenuation_model.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_positioning = _libraries['miniaudio.so'].ma_sound_group_set_positioning
+    ma_sound_group_set_positioning = _libraries['libminiaudio.so'].ma_sound_group_set_positioning
     ma_sound_group_set_positioning.restype = None
     ma_sound_group_set_positioning.argtypes = [ctypes.POINTER(struct_ma_sound), ma_positioning]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_positioning = _libraries['miniaudio.so'].ma_sound_group_get_positioning
+    ma_sound_group_get_positioning = _libraries['libminiaudio.so'].ma_sound_group_get_positioning
     ma_sound_group_get_positioning.restype = ma_positioning
     ma_sound_group_get_positioning.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_rolloff = _libraries['miniaudio.so'].ma_sound_group_set_rolloff
+    ma_sound_group_set_rolloff = _libraries['libminiaudio.so'].ma_sound_group_set_rolloff
     ma_sound_group_set_rolloff.restype = None
     ma_sound_group_set_rolloff.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_rolloff = _libraries['miniaudio.so'].ma_sound_group_get_rolloff
+    ma_sound_group_get_rolloff = _libraries['libminiaudio.so'].ma_sound_group_get_rolloff
     ma_sound_group_get_rolloff.restype = ctypes.c_float
     ma_sound_group_get_rolloff.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_min_gain = _libraries['miniaudio.so'].ma_sound_group_set_min_gain
+    ma_sound_group_set_min_gain = _libraries['libminiaudio.so'].ma_sound_group_set_min_gain
     ma_sound_group_set_min_gain.restype = None
     ma_sound_group_set_min_gain.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_min_gain = _libraries['miniaudio.so'].ma_sound_group_get_min_gain
+    ma_sound_group_get_min_gain = _libraries['libminiaudio.so'].ma_sound_group_get_min_gain
     ma_sound_group_get_min_gain.restype = ctypes.c_float
     ma_sound_group_get_min_gain.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_max_gain = _libraries['miniaudio.so'].ma_sound_group_set_max_gain
+    ma_sound_group_set_max_gain = _libraries['libminiaudio.so'].ma_sound_group_set_max_gain
     ma_sound_group_set_max_gain.restype = None
     ma_sound_group_set_max_gain.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_max_gain = _libraries['miniaudio.so'].ma_sound_group_get_max_gain
+    ma_sound_group_get_max_gain = _libraries['libminiaudio.so'].ma_sound_group_get_max_gain
     ma_sound_group_get_max_gain.restype = ctypes.c_float
     ma_sound_group_get_max_gain.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_min_distance = _libraries['miniaudio.so'].ma_sound_group_set_min_distance
+    ma_sound_group_set_min_distance = _libraries['libminiaudio.so'].ma_sound_group_set_min_distance
     ma_sound_group_set_min_distance.restype = None
     ma_sound_group_set_min_distance.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_min_distance = _libraries['miniaudio.so'].ma_sound_group_get_min_distance
+    ma_sound_group_get_min_distance = _libraries['libminiaudio.so'].ma_sound_group_get_min_distance
     ma_sound_group_get_min_distance.restype = ctypes.c_float
     ma_sound_group_get_min_distance.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_max_distance = _libraries['miniaudio.so'].ma_sound_group_set_max_distance
+    ma_sound_group_set_max_distance = _libraries['libminiaudio.so'].ma_sound_group_set_max_distance
     ma_sound_group_set_max_distance.restype = None
     ma_sound_group_set_max_distance.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_max_distance = _libraries['miniaudio.so'].ma_sound_group_get_max_distance
+    ma_sound_group_get_max_distance = _libraries['libminiaudio.so'].ma_sound_group_get_max_distance
     ma_sound_group_get_max_distance.restype = ctypes.c_float
     ma_sound_group_get_max_distance.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_cone = _libraries['miniaudio.so'].ma_sound_group_set_cone
+    ma_sound_group_set_cone = _libraries['libminiaudio.so'].ma_sound_group_set_cone
     ma_sound_group_set_cone.restype = None
     ma_sound_group_set_cone.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_cone = _libraries['miniaudio.so'].ma_sound_group_get_cone
+    ma_sound_group_get_cone = _libraries['libminiaudio.so'].ma_sound_group_get_cone
     ma_sound_group_get_cone.restype = None
     ma_sound_group_get_cone.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_doppler_factor = _libraries['miniaudio.so'].ma_sound_group_set_doppler_factor
+    ma_sound_group_set_doppler_factor = _libraries['libminiaudio.so'].ma_sound_group_set_doppler_factor
     ma_sound_group_set_doppler_factor.restype = None
     ma_sound_group_set_doppler_factor.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_doppler_factor = _libraries['miniaudio.so'].ma_sound_group_get_doppler_factor
+    ma_sound_group_get_doppler_factor = _libraries['libminiaudio.so'].ma_sound_group_get_doppler_factor
     ma_sound_group_get_doppler_factor.restype = ctypes.c_float
     ma_sound_group_get_doppler_factor.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_directional_attenuation_factor = _libraries['miniaudio.so'].ma_sound_group_set_directional_attenuation_factor
+    ma_sound_group_set_directional_attenuation_factor = _libraries['libminiaudio.so'].ma_sound_group_set_directional_attenuation_factor
     ma_sound_group_set_directional_attenuation_factor.restype = None
     ma_sound_group_set_directional_attenuation_factor.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_directional_attenuation_factor = _libraries['miniaudio.so'].ma_sound_group_get_directional_attenuation_factor
+    ma_sound_group_get_directional_attenuation_factor = _libraries['libminiaudio.so'].ma_sound_group_get_directional_attenuation_factor
     ma_sound_group_get_directional_attenuation_factor.restype = ctypes.c_float
     ma_sound_group_get_directional_attenuation_factor.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_fade_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_group_set_fade_in_pcm_frames
+    ma_sound_group_set_fade_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_group_set_fade_in_pcm_frames
     ma_sound_group_set_fade_in_pcm_frames.restype = None
     ma_sound_group_set_fade_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_fade_in_milliseconds = _libraries['miniaudio.so'].ma_sound_group_set_fade_in_milliseconds
+    ma_sound_group_set_fade_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_group_set_fade_in_milliseconds
     ma_sound_group_set_fade_in_milliseconds.restype = None
     ma_sound_group_set_fade_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ctypes.c_float, ctypes.c_float, ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_current_fade_volume = _libraries['miniaudio.so'].ma_sound_group_get_current_fade_volume
+    ma_sound_group_get_current_fade_volume = _libraries['libminiaudio.so'].ma_sound_group_get_current_fade_volume
     ma_sound_group_get_current_fade_volume.restype = ctypes.c_float
     ma_sound_group_get_current_fade_volume.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_start_time_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_group_set_start_time_in_pcm_frames
+    ma_sound_group_set_start_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_group_set_start_time_in_pcm_frames
     ma_sound_group_set_start_time_in_pcm_frames.restype = None
     ma_sound_group_set_start_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_start_time_in_milliseconds = _libraries['miniaudio.so'].ma_sound_group_set_start_time_in_milliseconds
+    ma_sound_group_set_start_time_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_group_set_start_time_in_milliseconds
     ma_sound_group_set_start_time_in_milliseconds.restype = None
     ma_sound_group_set_start_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_stop_time_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_group_set_stop_time_in_pcm_frames
+    ma_sound_group_set_stop_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_group_set_stop_time_in_pcm_frames
     ma_sound_group_set_stop_time_in_pcm_frames.restype = None
     ma_sound_group_set_stop_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_group_set_stop_time_in_milliseconds = _libraries['miniaudio.so'].ma_sound_group_set_stop_time_in_milliseconds
+    ma_sound_group_set_stop_time_in_milliseconds = _libraries['libminiaudio.so'].ma_sound_group_set_stop_time_in_milliseconds
     ma_sound_group_set_stop_time_in_milliseconds.restype = None
     ma_sound_group_set_stop_time_in_milliseconds.argtypes = [ctypes.POINTER(struct_ma_sound), ma_uint64]
 except AttributeError:
     pass
 try:
-    ma_sound_group_is_playing = _libraries['miniaudio.so'].ma_sound_group_is_playing
+    ma_sound_group_is_playing = _libraries['libminiaudio.so'].ma_sound_group_is_playing
     ma_sound_group_is_playing.restype = ma_bool32
     ma_sound_group_is_playing.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
     pass
 try:
-    ma_sound_group_get_time_in_pcm_frames = _libraries['miniaudio.so'].ma_sound_group_get_time_in_pcm_frames
+    ma_sound_group_get_time_in_pcm_frames = _libraries['libminiaudio.so'].ma_sound_group_get_time_in_pcm_frames
     ma_sound_group_get_time_in_pcm_frames.restype = ma_uint64
     ma_sound_group_get_time_in_pcm_frames.argtypes = [ctypes.POINTER(struct_ma_sound)]
 except AttributeError:
